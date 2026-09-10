@@ -10,7 +10,8 @@
 /srv/html/main.html
 /srv/html/static/*
 !/srv/html/static/.gitkeep
-/srv/tmp/
+/srv/tmp/*
+!/srv/tmp/.gitkeep
 
 # --- Environment & Local Secrets ---
 .env
@@ -34,5 +35,5 @@ Thumbs.db
 
 # --- Logs & Temporary Files ---
 *.log
-tmp/
+/tmp/
 
