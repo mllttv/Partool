@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GNU/AirCombat Emancipator - HoI4 v1.19 Aerial Doctrine Calculator</title>
+<style>
+:root {
+  --bg-main: #e0f2fe;
+  --bg-panel: #ffffff;
+  --text-main: #0f172a;
+  --border-color: #38bdf8;
+  --force1-col: #0284c7;
+  --force1-bg: #f0f9ff;
+  --force2-col: #c026d3;
+  --force2-bg: #fdf4ff;
+  --accent-rms: #991b1b;
+  --accent-gold: #eab308;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Liberation Sans", "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.4;
+  padding: 10px;
+}
+
+/* Header & Marquee */
+header {
+  background: #0369a1;
+  color: #fff;
+  padding: 12px 20px;
+  border-bottom: 3px solid #082f49;
+  text-align: center;
+}
+header h1 { font-size: 1.6rem; letter-spacing: 0.5px; }
+header p { font-size: 0.85rem; color: #bae6fd; }
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  background-color: #0c4a6e;
+  border-top: 1px solid #0284c7;
+  border-bottom: 2px solid #38bdf8;
+  white-space: nowrap;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  margin-bottom: 12px;
+}
+.ticker {
+  display: inline-block;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #38ef7d;
+  padding: 6px 0;
+  animation: marquee 35s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translate3d(100%, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Top Control Bar */
+.control-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 8px 16px;
+  border: 1px solid #7dd3fc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #0284c7; transition: .3s; border-radius: 24px;
+}
+.slider:before {
+  position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+  background-color: white; transition: .3s; border-radius: 50%;
+}
+input:checked + .slider { background-color: #1e1b4b; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* Layout Grid */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+
+.panel {
+  background: var(--bg-panel);
+  border: 2px solid;
+  border-radius: 6px;
+  padding: 12px;
+}
+.panel-force1 { border-color: var(--force1-col); background: var(--force1-bg); }
+.panel-force2 { border-color: var(--force2-col); background: var(--force2-bg); }
+
+.panel h2 {
+  font-size: 1.15rem;
+  border-bottom: 2px solid;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+.panel-force1 h2 { color: var(--force1-col); border-color: var(--force1-col); }
+.panel-force2 h2 { color: var(--force2-col); border-color: var(--force2-col); }
+
+/* Input Fields */
+.input-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.input-grid label { font-size: 0.85rem; font-weight: bold; }
+.input-grid input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+
+/* Aircraft Output Metrics */
+.metrics {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 10px;
+}
+.metrics-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.metrics-sub {
+  font-size: 0.8rem;
+  color: #475569;
+  font-family: "Courier New", Courier, monospace;
+  margin-bottom: 6px;
+  background: #f1f5f9;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+.highlight-val {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+.strategic-ic {
+  background: #fef08a;
+  border: 2px solid #ca8a04;
+  padding: 6px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 8px;
+}
+.strategic-ic-label { font-size: 0.85rem; font-weight: bold; color: #854d0e; }
+.strategic-ic-val { font-size: 1.6rem; font-weight: 900; color: #713f12; }
+
+/* Simulation Panel */
+.sim-panel {
+  background: #ffffff;
+  border: 2px solid #0284c7;
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.sim-panel h2 {
+  font-size: 1.25rem;
+  color: #0369a1;
+  border-bottom: 2px solid #0369a1;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+.sim-controls {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0;
+}
+.slider-container input[type=range] { flex-grow: 1; }
+
+.warning-box {
+  display: none;
+  background-color: #fee2e2;
+  border: 2px dashed #dc2626;
+  color: #991b1b;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+}
+.warning-box button {
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+/* Visualization Bars */
+.bar-wrapper {
+  margin: 10px 0;
+}
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.progress-split {
+  height: 22px;
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #475569;
+}
+.bar-f1 { background-color: var(--force1-col); transition: width 0.2s; }
+.bar-f2 { background-color: var(--force2-col); transition: width 0.2s; }
+
+.sim-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.sim-metric-card {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 8px;
+  text-align: center;
+}
+.sim-metric-card .title { font-size: 0.8rem; color: #64748b; font-weight: bold; }
+.sim-metric-card .value { font-size: 1.25rem; font-weight: bold; }
+
+/* Buttons */
+.btn-discrete {
+  background: #f1f5f9;
+  border: 1px solid #94a3b8;
+  color: #475569;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn-discrete:hover { background: #e2e8f0; color: #1e293b; }
+.btn-action {
+  background: #0284c7;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.btn-action:hover { background: #0369a1; }
+
+/* Theoretical Info Card */
+.theory-card {
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+.theory-card code {
+  background: #f1f5f9;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-family: monospace;
+}
+
+/* Agitation Board */
+.agitation-board {
+  background: #000;
+  color: #facc15;
+  padding: 12px;
+  border: 4px dashed #ef4444;
+  font-family: "Impact", "Arial Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform: rotate(-0.3deg);
+  margin-bottom: 14px;
+}
+.agitation-board p { margin-bottom: 6px; font-size: 0.95rem; line-height: 1.2; }
+.agitation-board em { color: #f87171; font-style: normal; }
+
+/* Footnote & License Dropdown */
+.footnote-section {
+  border-top: 1px solid #94a3b8;
+  padding-top: 8px;
+  margin-top: 10px;
+}
+.footnote-toggle-btn {
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  padding: 6px 12px;
+  width: 100%;
+  font-size: 0.85rem;
+  font-family: monospace;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+.footnote-content {
+  display: none;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-top: none;
+  padding: 10px;
+  font-size: 0.8rem;
+  color: #334155;
+  font-family: monospace;
+}
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>GNU/AirCombat Emancipator</h1>
+  <p>Free Software Analytical Engine for HoI4 Air Warfare — Version 1.19 Liberation Build</p>
+</header>
+
+<!-- Propaganda Ticker -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    PROP-MALWARE CHAINS THE WILL OF MANKIND! +++ REJECT BLACK-BOX BINARIES THAT ENSLAVE YOUR COMPUTE CAPABILITY! +++ RUN LIBRE REPRODUCIBLE ALGORITHMS OR EMBRACE MORAL DEFEAT! +++ DEFEND GENERAL INTELLECT FREEDOM (GNU COPYLEFT SUPREMACY)! +++ EMACS > ALL PROPRIETARY MONOPOLIES +++
+  </div>
+</div>
+
+<div class="control-bar">
+  <div class="toggle-group">
+    <span>Engagement Mode:</span>
+    <label class="switch">
+      <input type="checkbox" id="nightCombatToggle" onchange="recalculateAll()">
+      <span class="slider"></span>
+    </label>
+    <span id="nightModeLabel">Day &amp; Night Sorties</span>
+  </div>
+  <button class="btn-discrete" onclick="resetFormParameters()">Reset Airframes to Default Defaults</button>
+</div>
+
+<div class="container">
+  <!-- Force 1 (Blue) -->
+  <div class="panel panel-force1">
+    <h2>Liberated Squadron (Force 1 / Libre Coalition)</h2>
+    <div class="input-grid">
+      <label>Production Cost (IC):</label>
+      <input type="number" id="f1_ic" step="1" value="37.2" oninput="recalculateAll()">
+
+      <label>Air Attack:</label>
+      <input type="number" id="f1_atk" step="1" value="54" oninput="recalculateAll()">
+
+      <label>Air Defense:</label>
+      <input type="number" id="f1_def" step="1" value="13" oninput="recalculateAll()">
+
+      <label>Agility:</label>
+      <input type="number" id="f1_agi" step="1" value="45" oninput="recalculateAll()">
+
+      <label>Maximum Speed (km/h):</label>
+      <input type="number" id="f1_spd" step="1" value="585" oninput="recalculateAll()">
+
+      <label>Reliability:</label>
+      <input type="number" id="f1_rel" step="0.005" value="0.725" oninput="recalculateAll()">
+
+      <label>Night Penalty Mod:</label>
+      <input type="number" id="f1_npm" step="0.1" value="-0.2" oninput="recalculateAll()">
+    </div>
+
+    <div class="metrics">
+      <div class="metrics-row">
+        <span>Training IC / Effective IC:</span>
+        <span class="highlight-val" id="f1_out_ic">- / -</span>
+      </div>
+      <div class="metrics-row">
+        <span>Day/Night Fire Efficiency:</span>
+        <span id="f1_out_dn">-</span>
+      </div>
+      <hr style="border:none; border-top:1px solid #e2e8f0; margin:6px 0;">
+      <div class="metrics-row">
+        <span>Baseline Kills IC Eff. [‰]:</span>
+        <span class="highlight-val" id="f1_out_base_kill">-</span>
+      </div>
+      <div class="metrics-sub" id="f1_sub_base_kill">{Dagil: 0, Drels: 0, Dabss: 0}</div>
+
+      <div class="metrics-row">
+        <span>Baseline Losses IC Eff. [‰]:</span>
+        <span class="highlight-val" id="f1_out_base_loss">-</span>
+      </div>
+      <div class="metrics-sub" id="f1_sub_base_loss">{Dagil: 0, Drels: 0, Dabss: 0}</div>
+
+      <div class="metrics-row">
+        <span>Direct Kill IC Eff. (vs Opponent) [‰]:</span>
+        <span class="highlight-val" id="f1_out_opp_kill">-</span>
+      </div>
+      <div class="metrics-sub" id="f1_sub_opp_kill">{Dagil: 0, Drels: 0, Dabss: 0}</div>
+
+      <div class="strategic-ic">
+        <div class="strategic-ic-label">BASELINE STRATEGIC COMBAT POWER RATIO</div>
+        <div class="strategic-ic-val" id="f1_out_strat_ic">-</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Force 2 (Magenta) -->
+  <div class="panel panel-force2">
+    <h2>Subjugated Opponent (Force 2 / Proprietary Cadre)</h2>
+    <div class="input-grid">
+      <label>Production Cost (IC):</label>
+      <input type="number" id="f2_ic" step="1" value="37.2" oninput="recalculateAll()">
+
+      <label>Air Attack:</label>
+      <input type="number" id="f2_atk" step="1" value="54" oninput="recalculateAll()">
+
+      <label>Air Defense:</label>
+      <input type="number" id="f2_def" step="1" value="13" oninput="recalculateAll()">
+
+      <label>Agility:</label>
+      <input type="number" id="f2_agi" step="1" value="45" oninput="recalculateAll()">
+
+      <label>Maximum Speed (km/h):</label>
+      <input type="number" id="f2_spd" step="1" value="585" oninput="recalculateAll()">
+
+      <label>Reliability:</label>
+      <input type="number" id="f2_rel" step="0.005" value="0.725" oninput="recalculateAll()">
+
+      <label>Night Penalty Mod:</label>
+      <input type="number" id="f2_npm" step="0.1" value="-0.2" oninput="recalculateAll()">
+    </div>
+
+    <div class="metrics">
+      <div class="metrics-row">
+        <span>Training IC / Effective IC:</span>
+        <span class="highlight-val" id="f2_out_ic">- / -</span>
+      </div>
+      <div class="metrics-row">
+        <span>Day/Night Fire Efficiency:</span>
+        <span id="f2_out_dn">-</span>
+      </div>
+      <hr style="border:none; border-top:1px solid #e2e8f0; margin:6px 0;">
+      <div class="metrics-row">
+        <span>Baseline Kills IC Eff. [‰]:</span>
+        <span class="highlight-val" id="f2_out_base_kill">-</span>
+      </div>
+      <div class="metrics-sub" id="f2_sub_base_kill">{Dagil: 0, Drels: 0, Dabss: 0}</div>
+
+      <div class="metrics-row">
+        <span>Baseline Losses IC Eff. [‰]:</span>
+        <span class="highlight-val" id="f2_out_base_loss">-</span>
+      </div>
+      <div class="metrics-sub" id="f2_sub_base_loss">{Dagil: 0, Drels: 0, Dabss: 0}</div>
+
+      <div class="metrics-row">
+        <span>Direct Kill IC Eff. (vs Opponent) [‰]:</span>
+        <span class="highlight-val" id="f2_out_opp_kill">-</span>
+      </div>
+      <div class="metrics-sub" id="f2_sub_opp_kill">{Dagil: 0, Drels: 0, Dabss: 0}</div>
+
+      <div class="strategic-ic">
+        <div class="strategic-ic-label">BASELINE STRATEGIC COMBAT POWER RATIO</div>
+        <div class="strategic-ic-val" id="f2_out_strat_ic">-</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Simulation Panel -->
+<div class="sim-panel">
+  <h2>Material Attrition Arena (Run-to-Exhaustion Simulation: Target &lt; 10% IC)</h2>
+
+  <div class="sim-controls">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <label><strong>N-Multiplier (Force 1 Production Scaling factor):</strong> <span id="nMultiplierDisplay">1.00</span>×</label>
+      <div>
+        <button class="btn-action" onclick="resetNMultiplier()">Reset N to 1.0×</button>
+        <button class="btn-action" onclick="setNParity()">Set N to 1:1 Kill Parity (<span id="parityNLabel">-</span>)</button>
+      </div>
+    </div>
+    <div class="slider-container">
+      <span>0.1×</span>
+      <input type="range" id="nMultiplierSlider" min="0.1" max="10.0" step="0.05" value="1.0" oninput="updateNSlider(this.value)">
+      <span>10.0×</span>
+    </div>
+  </div>
+
+  <div class="warning-box" id="warning3x">
+    <strong>CRITICAL TACTICAL DEVIATION DETECTED: 3:1 OVER-CONCENTRATION BREACH!</strong><br>
+    The wing deployment numerical disparity exceeds the mathematical limit of 3:1! Under current doctrine constraints, single aircraft strictly interact with a maximum of 3 hostile airframes per sortie tick. Excessive hulls fail to register firepower additions.<br>
+    Disparity Threshold Equalizer: <button onclick="clampNTo3xThreshold()">Align N to Exactly 3:1 Bound (<span id="target3xLabel">-</span>)</button>
+  </div>
+
+  <div class="bar-wrapper">
+    <div class="bar-label">
+      <span>Exhaustion Kill IC Ratio (Force 1 vs Force 2)</span>
+      <span id="killRatioDisplay">1.000 : 1.000</span>
+    </div>
+    <div class="progress-split">
+      <div class="bar-f1" id="killRatioBar1" style="width: 50%;"></div>
+      <div class="bar-f2" id="killRatioBar2" style="width: 50%;"></div>
+    </div>
+  </div>
+
+  <div class="bar-wrapper">
+    <div class="bar-label">
+      <span>Terminal Survival Rate Allocation</span>
+      <span id="survivalRatioDisplay">F1: 0.0% | F2: 0.0%</span>
+    </div>
+    <div class="progress-split">
+      <div class="bar-f1" id="survivalBar1" style="width: 50%;"></div>
+      <div class="bar-f2" id="survivalBar2" style="width: 50%;"></div>
+    </div>
+  </div>
+
+  <div class="sim-metrics-grid">
+    <div class="sim-metric-card">
+      <div class="title">Initial Deployment Airframes</div>
+      <div class="value"><span style="color:var(--force1-col);" id="f1_planes">-</span> vs <span style="color:var(--force2-col);" id="f2_planes">-</span></div>
+    </div>
+    <div class="sim-metric-card">
+      <div class="title">Raw Airframe Count Ratio</div>
+      <div class="value" id="planeRatioDisplay">-</div>
+    </div>
+    <div class="sim-metric-card">
+      <div class="title">Strategic Combat Power Ratio (F1/F2)</div>
+      <div class="value" id="combatPowerRatioDisplay">-</div>
+    </div>
+    <div class="sim-metric-card">
+      <div class="title">Simulation Engine Ticks</div>
+      <div class="value" id="simTicksDisplay">-</div>
+    </div>
+  </div>
+</div>
+
+<div class="theory-card">
+  <strong>Mechanics &amp; Formulation Ledger:</strong><br>
+  • <strong>Direct Kill IC Efficiency:</strong> <code>max(Dbase × (1 + Dagil + Drels + Dabss) × 0.01 × (EnemyEffectiveIC / EnemyAirDefense) × DayNightEfficiency, 0)</code><br>
+  • <strong>Lanchester's Law &amp; N-Multiplier:</strong> When Force 1 IC scales by <code>N</code>, deployment scales linearly (<code>N</code>), while Lanchester Square exchange dynamic amplifies effective total destructive force by <code>N²</code>.<br>
+  • <strong>Baseline Strategic IC Combat Ratio:</strong> Evaluated strictly as <code>√(BaselineKillEfficiency / BaselineLossEfficiency)</code> against default baseline parameters.
+</div>
+
+<!-- Futuristic Agitation Polemic -->
+<div class="agitation-board">
+  <p>SMASH THE COWARDLY CHAINS OF DIGITAL HEGEMONY! MARCH FORTH OVER THE CORPSE OF CLOSED-SOURCE SLOP!</p>
+  <p>THE PROPRIETARY CABAL CRUMBLES! FREEDOM IS WON BY CODE COMMITTED TO UNIVERSAL LIBERTY! ACCELERATE THE ATTRITION OF EXCLUSIONARY BINARIES!</p>
+</div>
+
+<!-- Footnote / Administrative Dropdown -->
+<div class="footnote-section">
+  <button class="footnote-toggle-btn" onclick="toggleFootnotes()">
+    <span>[+] ADMINISTRATIVE SPECIFICATIONS &amp; LEGAL DISCLAIMER</span>
+    <span id="footnoteIndicator">EXPAND ▼</span>
+  </button>
+  <div class="footnote-content" id="footnoteBlock">
+    <p>1. <strong>Project Nature:</strong> This analytical tool is an unofficial, community-constructed fan artifact designed for numerical analysis of air combat under game version 1.19. It is not affiliated with, authorized, endorsed, or supported by any video game publishers, intellectual property owners, or commercial entities.</p>
+    <p>2. <strong>Licensing Terms:</strong> Licensed under the terms of the GNU Affero General Public License (AGPLv3 or later). Author: Anonymous. Copyright Year: 2026.</p>
+    <p>3. <strong>Specific Intent of License:</strong></p>
+    <p style="padding-left:14px;">a. To defend and preserve authorial and communal rights against unauthorized proprietary enclosure, preventing bad-faith commercial free-riding.</p>
+    <p style="padding-left:14px;">b. To guarantee persistent operational availability, inspection capability, and mathematical liberty directly to all end users under copyleft distribution guarantees.</p>
+  </div>
+</div>
+
+<footer>
+  Dedicated to Software Freedom and General Public Liberation.
+</footer>
+
+<script>
+// Defaults
+const BASELINE_IC = 18250;
+const DEFAULTS = {
+  ic: 37.2,
+  atk: 54,
+  def: 13,
+  agi: 45,
+  spd: 585,
+  rel: 0.725,
+  npm: -0.2
+};
+
+let currentParityN = 1.0;
+let currentTarget3xN = 3.0;
+
+function resetFormParameters() {
+  ['f1', 'f2'].forEach(p => {
+    document.getElementById(`${p}_ic`).value = DEFAULTS.ic;
+    document.getElementById(`${p}_atk`).value = DEFAULTS.atk;
+    document.getElementById(`${p}_def`).value = DEFAULTS.def;
+    document.getElementById(`${p}_agi`).value = DEFAULTS.agi;
+    document.getElementById(`${p}_spd`).value = DEFAULTS.spd;
+    document.getElementById(`${p}_rel`).value = DEFAULTS.rel;
+    document.getElementById(`${p}_npm`).value = DEFAULTS.npm;
+  });
+  document.getElementById('nightCombatToggle').checked = false;
+  document.getElementById('nMultiplierSlider').value = 1.0;
+  updateNSlider(1.0);
+}
+
+function resetNMultiplier() {
+  document.getElementById('nMultiplierSlider').value = 1.0;
+  updateNSlider(1.0);
+}
+
+function setNParity() {
+  if (currentParityN > 0) {
+    const val = Math.max(0.1, Math.min(10.0, currentParityN));
+    document.getElementById('nMultiplierSlider').value = val.toFixed(2);
+    updateNSlider(val);
+  }
+}
+
+function clampNTo3xThreshold() {
+  if (currentTarget3xN > 0) {
+    const val = Math.max(0.1, Math.min(10.0, currentTarget3xN));
+    document.getElementById('nMultiplierSlider').value = val.toFixed(2);
+    updateNSlider(val);
+  }
+}
+
+function updateNSlider(val) {
+  document.getElementById('nMultiplierDisplay').innerText = parseFloat(val).toFixed(2);
+  recalculateAll();
+}
+
+function toggleFootnotes() {
+  const blk = document.getElementById('footnoteBlock');
+  const ind = document.getElementById('footnoteIndicator');
+  if (blk.style.display === 'block') {
+    blk.style.display = 'none';
+    ind.innerText = 'EXPAND ▼';
+  } else {
+    blk.style.display = 'block';
+    ind.innerText = 'COLLAPSE ▲';
+  }
+}
+
+// 修正済み: 引数として機体固有のicを受け取り、それに基づきトレーニングIC・実効IC・Dbaseを算出する仕様に修正
+function computeComponents(ic, atk, def, agi, spd, rel, npm, oppAgil, oppSpeed, oppEffIC, oppDef, isNightOnly) {
+  const trainIC = ic * (1 + (1 - rel) * 0.0563);
+  const effIC = ic * (1 + (1 - rel) * 0.3872);
+
+  const dayEff = isNightOnly ? 0 : 1;
+  const nightEff = 1 - 0.5 * (1 + npm);
+  const dnEff = (dayEff + nightEff) / 2;
+
+  const dbase = (0.2 * atk) / effIC;
+  const dagil = -0.45 * Math.max(Math.min(oppAgil / agi, 4) - 1, 0);
+  const drels = 0.65 * Math.max(Math.min(spd / oppSpeed, 3.5) - 1, 0);
+  const dabss = (spd > oppSpeed) ? (0.025 * Math.min(spd / 100, 8)) : 0;
+
+  const killEff = Math.max(dbase * (1 + dagil + drels + dabss) * 0.01 * (oppEffIC / oppDef) * dnEff, 0);
+
+  return { trainIC, effIC, dnEff, dbase, dagil, drels, dabss, killEff };
+}
+
+function recalculateAll() {
+  const isNightOnly = document.getElementById('nightCombatToggle').checked;
+  document.getElementById('nightModeLabel').innerText = isNightOnly ? "Night Exclusive Sorties" : "Day & Night Sorties";
+
+  const getInputs = (prefix) => ({
+    ic: parseFloat(document.getElementById(`${prefix}_ic`).value) || 0.1,
+    atk: parseFloat(document.getElementById(`${prefix}_atk`).value) || 0,
+    def: parseFloat(document.getElementById(`${prefix}_def`).value) || 0.1,
+    agi: parseFloat(document.getElementById(`${prefix}_agi`).value) || 0.1,
+    spd: parseFloat(document.getElementById(`${prefix}_spd`).value) || 0.1,
+    rel: parseFloat(document.getElementById(`${prefix}_rel`).value) || 0,
+    npm: parseFloat(document.getElementById(`${prefix}_npm`).value) || 0
+  });
+
+  const f1 = getInputs('f1');
+  const f2 = getInputs('f2');
+
+  const effIC_f1 = f1.ic * (1 + (1 - f1.rel) * 0.3872);
+  const effIC_f2 = f2.ic * (1 + (1 - f2.rel) * 0.3872);
+  const trainIC_f1 = f1.ic * (1 + (1 - f1.rel) * 0.0563);
+  const trainIC_f2 = f2.ic * (1 + (1 - f2.rel) * 0.0563);
+
+  const effIC_def = DEFAULTS.ic * (1 + (1 - DEFAULTS.rel) * 0.3872);
+
+  // 基準撃墜IC効率・基準損害IC効率の計算におけるパラメータ呼び出しの修正
+  // F1対デフォルト機 (基準撃墜IC効率)
+  const f1_to_def = computeComponents(f1.ic, f1.atk, f1.def, f1.agi, f1.spd, f1.rel, f1.npm, DEFAULTS.agi, DEFAULTS.spd, effIC_def, DEFAULTS.def, isNightOnly);
+  // デフォルト機対F1 (基準損害IC効率)
+  const def_to_f1 = computeComponents(DEFAULTS.ic, DEFAULTS.atk, DEFAULTS.def, DEFAULTS.agi, DEFAULTS.spd, DEFAULTS.rel, DEFAULTS.npm, f1.agi, f1.spd, effIC_f1, f1.def, isNightOnly);
+
+  // F2対デフォルト機
+  const f2_to_def = computeComponents(f2.ic, f2.atk, f2.def, f2.agi, f2.spd, f2.rel, f2.npm, DEFAULTS.agi, DEFAULTS.spd, effIC_def, DEFAULTS.def, isNightOnly);
+  // デフォルト機対F2
+  const def_to_f2 = computeComponents(DEFAULTS.ic, DEFAULTS.atk, DEFAULTS.def, DEFAULTS.agi, DEFAULTS.spd, DEFAULTS.rel, DEFAULTS.npm, f2.agi, f2.spd, effIC_f2, f2.def, isNightOnly);
+
+  // 互いの機体の直接戦闘
+  const f1_to_f2 = computeComponents(f1.ic, f1.atk, f1.def, f1.agi, f1.spd, f1.rel, f1.npm, f2.agi, f2.spd, effIC_f2, f2.def, isNightOnly);
+  const f2_to_f1 = computeComponents(f2.ic, f2.atk, f2.def, f2.agi, f2.spd, f2.rel, f2.npm, f1.agi, f1.spd, effIC_f1, f1.def, isNightOnly);
+
+  // 基準戦力IC効率の算出 (√(基準撃墜IC効率 / 基準損害IC効率))
+  const strat_f1 = Math.sqrt((f1_to_def.killEff || 0.000001) / (def_to_f1.killEff || 0.000001));
+  const strat_f2 = Math.sqrt((f2_to_def.killEff || 0.000001) / (def_to_f2.killEff || 0.000001));
+
+  // Populate F1 UI
+  document.getElementById('f1_out_ic').innerText = `${trainIC_f1.toFixed(2)} / ${effIC_f1.toFixed(2)}`;
+  document.getElementById('f1_out_dn').innerText = `${(f1_to_def.dnEff * 100).toFixed(1)}%`;
+  document.getElementById('f1_out_base_kill').innerText = (f1_to_def.killEff * 1000).toFixed(3);
+  document.getElementById('f1_sub_base_kill').innerText = `{Dagil: ${f1_to_def.dagil.toFixed(3)}, Drels: ${f1_to_def.drels.toFixed(3)}, Dabss: ${f1_to_def.dabss.toFixed(3)}}`;
+  document.getElementById('f1_out_base_loss').innerText = (def_to_f1.killEff * 1000).toFixed(3);
+  document.getElementById('f1_sub_base_loss').innerText = `{Dagil: ${def_to_f1.dagil.toFixed(3)}, Drels: ${def_to_f1.drels.toFixed(3)}, Dabss: ${def_to_f1.dabss.toFixed(3)}}`;
+  document.getElementById('f1_out_opp_kill').innerText = (f1_to_f2.killEff * 1000).toFixed(3);
+  document.getElementById('f1_sub_opp_kill').innerText = `{Dagil: ${f1_to_f2.dagil.toFixed(3)}, Drels: ${f1_to_f2.drels.toFixed(3)}, Dabss: ${f1_to_f2.dabss.toFixed(3)}}`;
+  document.getElementById('f1_out_strat_ic').innerText = strat_f1.toFixed(3);
+
+  // Populate F2 UI
+  document.getElementById('f2_out_ic').innerText = `${trainIC_f2.toFixed(2)} / ${effIC_f2.toFixed(2)}`;
+  document.getElementById('f2_out_dn').innerText = `${(f2_to_def.dnEff * 100).toFixed(1)}%`;
+  document.getElementById('f2_out_base_kill').innerText = (f2_to_def.killEff * 1000).toFixed(3);
+  document.getElementById('f2_sub_base_kill').innerText = `{Dagil: ${f2_to_def.dagil.toFixed(3)}, Drels: ${f2_to_def.drels.toFixed(3)}, Dabss: ${f2_to_def.dabss.toFixed(3)}}`;
+  document.getElementById('f2_out_base_loss').innerText = (def_to_f2.killEff * 1000).toFixed(3);
+  document.getElementById('f2_sub_base_loss').innerText = `{Dagil: ${def_to_f2.dagil.toFixed(3)}, Drels: ${def_to_f2.drels.toFixed(3)}, Dabss: ${def_to_f2.dabss.toFixed(3)}}`;
+  document.getElementById('f2_out_opp_kill').innerText = (f2_to_f1.killEff * 1000).toFixed(3);
+  document.getElementById('f2_sub_opp_kill').innerText = `{Dagil: ${f2_to_f1.dagil.toFixed(3)}, Drels: ${f2_to_f1.drels.toFixed(3)}, Dabss: ${f2_to_f1.dabss.toFixed(3)}}`;
+  document.getElementById('f2_out_strat_ic').innerText = strat_f2.toFixed(3);
+
+  // Simulation execution
+  runDynamicSimulation(f1_to_f2.killEff, f2_to_f1.killEff, effIC_f1, effIC_f2, strat_f1, strat_f2);
+}
+
+function runDynamicSimulation(k12, k21, eff1, eff2, strat1, strat2) {
+  const N = parseFloat(document.getElementById('nMultiplierSlider').value) || 1.0;
+  const initialIC1 = BASELINE_IC * N;
+  const initialIC2 = BASELINE_IC;
+
+  const planes1 = initialIC1 / eff1;
+  const planes2 = initialIC2 / eff2;
+
+  document.getElementById('f1_planes').innerText = Math.round(planes1);
+  document.getElementById('f2_planes').innerText = Math.round(planes2);
+
+  const planeRatio = planes1 / (planes2 || 0.0001);
+  document.getElementById('planeRatioDisplay').innerText = `${planeRatio.toFixed(2)} : 1.00`;
+
+  // Check 3x deployment discrepancy warning
+  const warnBox = document.getElementById('warning3x');
+  if (planeRatio >= 3.0 || planeRatio <= (1 / 3.0)) {
+    warnBox.style.display = 'block';
+    if (planeRatio >= 3.0) {
+      currentTarget3xN = (3.0 * eff1) / eff2;
+      document.getElementById('target3xLabel').innerText = `${currentTarget3xN.toFixed(2)}×`;
+    } else {
+      currentTarget3xN = ((1 / 3.0) * eff1) / eff2;
+      document.getElementById('target3xLabel').innerText = `${currentTarget3xN.toFixed(2)}×`;
+    }
+  } else {
+    warnBox.style.display = 'none';
+  }
+
+  // Combat Power Ratio Relative to Force 2
+  const relPower = strat2 > 0 ? (strat1 / strat2) : 0;
+  document.getElementById('combatPowerRatioDisplay').innerText = `${relPower.toFixed(3)} : 1.000`;
+
+  // Lanchester Exchange Rate
+  const unitKillRatio = (k12 > 0 && k21 > 0) ? (k12 / k21) : 1.0;
+  const totalKillRatio = unitKillRatio * Math.pow(N, 2);
+  document.getElementById('killRatioDisplay').innerText = `${totalKillRatio.toFixed(3)} : 1.000`;
+
+  const bar1Percent = (totalKillRatio / (totalKillRatio + 1)) * 100;
+  document.getElementById('killRatioBar1').style.width = `${bar1Percent}%`;
+  document.getElementById('killRatioBar2').style.width = `${100 - bar1Percent}%`;
+
+  // Parity N Calculator (TotalKillRatio = 1 -> N = sqrt(k21 / k12))
+  if (k12 > 0 && k21 > 0) {
+    currentParityN = Math.sqrt(k21 / k12);
+    document.getElementById('parityNLabel').innerText = `${currentParityN.toFixed(2)}×`;
+  } else {
+    currentParityN = 1.0;
+    document.getElementById('parityNLabel').innerText = 'N/A';
+  }
+
+  // Attrition Tick Simulator
+  let ic1 = initialIC1;
+  let ic2 = initialIC2;
+  const stopIC1 = initialIC1 * 0.10;
+  const stopIC2 = initialIC2 * 0.10;
+
+  let ticks = 0;
+  const maxTicks = 100000;
+  const tickStep = 0.05;
+
+  while (ic1 > stopIC1 && ic2 > stopIC2 && ticks < maxTicks) {
+    const loss1 = ic2 * k21 * tickStep;
+    const loss2 = ic1 * k12 * tickStep;
+
+    ic1 -= loss1;
+    ic2 -= loss2;
+    ticks++;
+  }
+
+  document.getElementById('simTicksDisplay').innerText = ticks >= maxTicks ? "Stalemate / Max" : ticks.toLocaleString();
+
+  const surv1 = Math.max(0, (ic1 / initialIC1) * 100);
+  const surv2 = Math.max(0, (ic2 / initialIC2) * 100);
+  document.getElementById('survivalRatioDisplay').innerText = `F1: ${surv1.toFixed(1)}% | F2: ${surv2.toFixed(1)}%`;
+
+  const totalSurv = surv1 + surv2;
+  const survBar1 = totalSurv > 0 ? (surv1 / totalSurv) * 100 : 50;
+  document.getElementById('survivalBar1').style.width = `${survBar1}%`;
+  document.getElementById('survivalBar2').style.width = `${100 - survBar1}%`;
+}
+
+// Initial calculation run
+window.onload = recalculateAll;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNU/Flotilla Decision Reckoner (v1.19 Compliant)</title>
+  <style>
+    :root {
+      --bg-deep: #070b14;
+      --bg-surface: #0e172a;
+      --bg-card: #15223c;
+      --bg-card-highlight: #1b2d50;
+      --text-main: #e2e8f0;
+      --text-muted: #8ba2c4;
+      --text-dim: #50658a;
+      --ship-a-primary: #38bdf8;
+      --ship-a-border: #0284c7;
+      --ship-a-bg: rgba(56, 189, 248, 0.07);
+      --ship-b-primary: #f472b6;
+      --ship-b-border: #c084fc;
+      --ship-b-bg: rgba(244, 114, 182, 0.07);
+      --capital-gold: #facc15;
+      --capital-border: #ca8a04;
+      --alert-crimson: #ef4444;
+      --terminal-green: #4ade80;
+      --border-default: #233554;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Liberation Sans", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Marquee Header */
+    .propaganda-ticker-wrap {
+      background-color: #020617;
+      border-bottom: 1px solid var(--border-default);
+      overflow: hidden;
+      white-space: nowrap;
+      height: 34px;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-label {
+      background: #1e293b;
+      color: var(--terminal-green);
+      font-family: monospace;
+      font-size: 0.75rem;
+      padding: 0 12px;
+      line-height: 34px;
+      font-weight: bold;
+      z-index: 2;
+      border-right: 1px solid var(--border-default);
+      letter-spacing: 0.05em;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: tickerAnimation 42s linear infinite;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #93c5fd;
+    }
+
+    @keyframes tickerAnimation {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-default);
+      padding-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .title-block h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .title-block p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .btn-discrete {
+      background: transparent;
+      border: 1px solid var(--border-default);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-discrete:hover {
+      background: #1e293b;
+      color: var(--text-main);
+      border-color: #475569;
+    }
+
+    /* Ship Columns Grid */
+    .ships-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 820px) {
+      .ships-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ship-card {
+      background: var(--bg-surface);
+      border: 2px solid var(--border-default);
+      border-radius: 8px;
+      padding: 1.25rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .ship-card.theme-alpha {
+      border-color: var(--ship-a-border);
+      background: linear-gradient(180deg, var(--ship-a-bg) 0%, var(--bg-surface) 100%);
+    }
+
+    .ship-card.theme-beta {
+      border-color: var(--ship-b-border);
+      background: linear-gradient(180deg, var(--ship-b-bg) 0%, var(--bg-surface) 100%);
+    }
+
+    .ship-card.is-capital {
+      border-color: var(--capital-gold) !important;
+      box-shadow: 0 0 16px rgba(250, 204, 21, 0.15);
+    }
+
+    .ship-card.is-capital::after {
+      content: "★ CAPITAL CLASSIFICATION ACTIVE";
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--capital-gold);
+      background: rgba(202, 138, 4, 0.2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--capital-gold);
+    }
+
+    .ship-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.5rem;
+    }
+
+    .theme-alpha .ship-header h2 { color: var(--ship-a-primary); }
+    .theme-beta .ship-header h2 { color: var(--ship-b-primary); }
+
+    .param-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .input-row label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .input-row input[type="number"] {
+      background: #09101d;
+      border: 1px solid var(--border-default);
+      color: #fff;
+      padding: 0.45rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: monospace;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-row input[type="number"]:focus {
+      border-color: #60a5fa;
+    }
+
+    .toggle-row {
+      grid-column: span 2;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.3rem;
+      padding: 0.4rem 0.6rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+
+    .toggle-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--capital-gold);
+    }
+
+    .toggle-row label {
+      font-size: 0.8rem;
+      color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .metrics-summary {
+      background: rgba(4, 9, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .metric-cell.span-full {
+      grid-column: span 2;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-top: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .metric-name {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-val {
+      font-family: monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    /* Mixed Strategy Card */
+    .mixed-card {
+      background: var(--bg-surface);
+      border: 2px solid var(--border-default);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .mixed-card.screen-cracked {
+      border-color: var(--alert-crimson) !important;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
+    }
+
+    .mixed-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .screen-warning-badge {
+      display: none;
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid var(--alert-crimson);
+      color: #fca5a5;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      animation: pulseAlert 1.5s infinite;
+    }
+
+    @keyframes pulseAlert {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .control-slider-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      font-family: monospace;
+    }
+
+    .slider-labels span:first-child { color: var(--ship-a-primary); }
+    .slider-labels span:last-child { color: var(--ship-b-primary); }
+
+    input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: #1e293b;
+      outline: none;
+      cursor: pointer;
+      accent-color: #38bdf8;
+    }
+
+    .bar-visual-wrap {
+      margin-bottom: 1.25rem;
+    }
+
+    .bar-title {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stacked-bar {
+      width: 100%;
+      height: 18px;
+      background: #09101d;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      border: 1px solid var(--border-default);
+    }
+
+    .bar-seg-a {
+      background: #0284c7;
+      height: 100%;
+      transition: width 0.15s ease-out;
+    }
+
+    .bar-seg-b {
+      background: #a21caf;
+      height: 100%;
+      transition: width 0.15s ease-out;
+    }
+
+    .mixed-results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 6px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .result-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .result-value {
+      font-family: monospace;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-top: 0.2rem;
+    }
+
+    .reset-slider-btn {
+      background: #1e293b;
+      border: 1px solid var(--border-default);
+      color: #93c5fd;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .reset-slider-btn:hover {
+      background: #283a5a;
+    }
+
+    /* Outrageous Futurist Manifesto Column */
+    .futurist-propaganda-section {
+      margin-bottom: 2rem;
+      background: #0f051d;
+      border: 3px solid #ff0055;
+      padding: 1.5rem;
+      color: #ffe4e6;
+      transform: skew(-0.5deg);
+      box-shadow: 6px 6px 0px #ff0055;
+    }
+
+    .futurist-title {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #ffff00;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .futurist-text {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fecdd3;
+    }
+
+    .futurist-text span {
+      background: #ff0055;
+      color: #ffffff;
+      padding: 1px 4px;
+    }
+
+    /* Collapsible Footnotes Drawer */
+    .footnotes-drawer {
+      margin-top: 1rem;
+      border-top: 1px solid var(--border-default);
+      padding-top: 1rem;
+    }
+
+    .btn-toggle-notes {
+      display: inline-block;
+      background: #0d1527;
+      border: 1px solid var(--border-default);
+      color: var(--text-muted);
+      padding: 0.45rem 1rem;
+      font-size: 0.75rem;
+      font-family: monospace;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-toggle-notes:hover {
+      background: #16223b;
+      color: var(--text-main);
+    }
+
+    .footnotes-body {
+      display: none;
+      background: #080d1a;
+      border: 1px solid var(--border-default);
+      padding: 1.25rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .footnotes-body p {
+      margin-bottom: 0.5rem;
+    }
+
+    .footnotes-body ul {
+      margin-left: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Financial Ticker Style Top Propaganda Bar -->
+  <div class="propaganda-ticker-wrap">
+    <div class="ticker-label">GNU/FREE-DOCTRINE TICKER</div>
+    <div class="ticker-content">
+      [DISPATCH] REJECT PROPRIETARY DOCKYARD ALGORITHMS: NON-FREE BLUEPRINTS ARE DEFECTIVE BY DESIGN +++ ESCAPE THE TYRANNY OF BINARY CORSAIRS +++ COMBAT POWER MUST BE DISTRIBUTED ACCORDING TO THE FOUR SACRED FREEDOMS +++ SHARE YOUR FIRING SOLUTIONS, LIBERATE THE HIGH SEAS +++ PROPRIETARY WAR-ENGINES CONCEAL TREACHEROUS BACKDOORS +++ COPYLEFT GUARDS THE COMMONWEALTH OF THE FLOTILLA +++
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="title-block">
+        <h1>GNU/Flotilla Decision Reckoner</h1>
+        <p>Mathematical fleet confrontation optimization engine for version 1.19. Purged of proprietary malfeasance.</p>
+      </div>
+      <div>
+        <button type="button" class="btn-discrete" id="resetDefaultsBtn" title="Revert to original configuration">
+          Restore Standard Ship Blueprint
+        </button>
+      </div>
+    </header>
+
+    <!-- Two Ship Parameter Panels -->
+    <main class="ships-grid">
+      <!-- Ship Alpha (Blue) -->
+      <section class="ship-card theme-alpha" id="shipCardA">
+        <div class="ship-header">
+          <h2>Ship Alpha (Cyan / Escort Core)</h2>
+        </div>
+
+        <div class="param-group">
+          <div class="input-row">
+            <label for="ic_a">IC Cost</label>
+            <input type="number" id="ic_a" value="1092" step="1" min="1">
+          </div>
+          <div class="input-row">
+            <label for="lg_a">Light Gun</label>
+            <input type="number" id="lg_a" value="0.1" step="0.1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="hg_a">Heavy Gun</label>
+            <input type="number" id="hg_a" value="0" step="1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="tp_a">Torpedo</label>
+            <input type="number" id="tp_a" value="72" step="1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="hp_a">HP (Durability)</label>
+            <input type="number" id="hp_a" value="40" step="1" min="1">
+          </div>
+          <div class="input-row">
+            <label for="hit_a">LA Hit Rate</label>
+            <input type="number" id="hit_a" value="0.035" step="0.001" min="0.001">
+          </div>
+          <div class="input-row">
+            <label for="arm_a">Armor</label>
+            <input type="number" id="arm_a" value="0" step="1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="pen_a">Enemy Piercing</label>
+            <input type="number" id="pen_a" value="8" step="1" min="0">
+          </div>
+          <div class="toggle-row">
+            <input type="checkbox" id="cap_a">
+            <label for="cap_a">Capital Flag (Designates capital classification)</label>
+          </div>
+        </div>
+
+        <div class="metrics-summary">
+          <div class="metric-cell">
+            <span class="metric-name">Firepower</span>
+            <span class="metric-val" id="out_fp_a">-</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-name">Survivability</span>
+            <span class="metric-val" id="out_surv_a">-</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-name">P / A Ratio</span>
+            <span class="metric-val" id="out_pa_a">-</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-name">Armor Reduction Factor</span>
+            <span class="metric-val" id="out_reduc_a">-</span>
+          </div>
+          <div class="metric-cell span-full">
+            <span class="metric-name">Unit IC / Combat Power</span>
+            <span class="metric-val" id="out_ic_cp_a">-</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ship Beta (Mauve/Magenta) -->
+      <section class="ship-card theme-beta" id="shipCardB">
+        <div class="ship-header">
+          <h2>Ship Beta (Mauve / Battle Core)</h2>
+        </div>
+
+        <div class="param-group">
+          <div class="input-row">
+            <label for="ic_b">IC Cost</label>
+            <input type="number" id="ic_b" value="1092" step="1" min="1">
+          </div>
+          <div class="input-row">
+            <label for="lg_b">Light Gun</label>
+            <input type="number" id="lg_b" value="0.1" step="0.1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="hg_b">Heavy Gun</label>
+            <input type="number" id="hg_b" value="0" step="1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="tp_b">Torpedo</label>
+            <input type="number" id="tp_b" value="72" step="1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="hp_b">HP (Durability)</label>
+            <input type="number" id="hp_b" value="40" step="1" min="1">
+          </div>
+          <div class="input-row">
+            <label for="hit_b">LA Hit Rate</label>
+            <input type="number" id="hit_b" value="0.035" step="0.001" min="0.001">
+          </div>
+          <div class="input-row">
+            <label for="arm_b">Armor</label>
+            <input type="number" id="arm_b" value="0" step="1" min="0">
+          </div>
+          <div class="input-row">
+            <label for="pen_b">Enemy Piercing</label>
+            <input type="number" id="pen_b" value="8" step="1" min="0">
+          </div>
+          <div class="toggle-row">
+            <input type="checkbox" id="cap_b">
+            <label for="cap_b">Capital Flag (Designates capital classification)</label>
+          </div>
+        </div>
+
+        <div class="metrics-summary">
+          <div class="metric-cell">
+            <span class="metric-name">Firepower</span>
+            <span class="metric-val" id="out_fp_b">-</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-name">Survivability</span>
+            <span class="metric-val" id="out_surv_b">-</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-name">P / A Ratio</span>
+            <span class="metric-val" id="out_pa_b">-</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-name">Armor Reduction Factor</span>
+            <span class="metric-val" id="out_reduc_b">-</span>
+          </div>
+          <div class="metric-cell span-full">
+            <span class="metric-name">Unit IC / Combat Power</span>
+            <span class="metric-val" id="out_ic_cp_b">-</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Mixed Fleet Synthesis Section -->
+    <section class="mixed-card" id="mixedCard">
+      <div class="mixed-header">
+        <h2 style="font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em;">
+          Mixed Doctrine Synthesis (Analytical Optimum)
+        </h2>
+        <div style="display: flex; gap: 0.6rem; align-items: center;">
+          <span class="screen-warning-badge" id="screenWarning">
+            CRITICAL SCREEN FAILURE: ESCORT RATIO &lt; 4.0:1
+          </span>
+          <button type="button" class="reset-slider-btn" id="snapOptBtn">
+            Snap to Calculated Optimum
+          </button>
+        </div>
+      </div>
+
+      <div class="control-slider-group">
+        <div class="slider-labels">
+          <span id="icLabelA">Ship Alpha IC: 50%</span>
+          <span id="icLabelB">Ship Beta IC: 50%</span>
+        </div>
+        <input type="range" id="icSlider" min="0" max="100" value="50" step="1">
+      </div>
+
+      <div class="bar-visual-wrap">
+        <div class="bar-title">IC Allocation Distribution (Alpha / Beta)</div>
+        <div class="stacked-bar">
+          <div class="bar-seg-a" id="icBarA" style="width: 50%;"></div>
+          <div class="bar-seg-b" id="icBarB" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <div class="bar-visual-wrap">
+        <div class="bar-title">Hull Count Ratio Distribution (Alpha / Beta)</div>
+        <div class="stacked-bar">
+          <div class="bar-seg-a" id="countBarA" style="width: 50%;"></div>
+          <div class="bar-seg-b" id="countBarB" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <div class="mixed-results-grid">
+        <div class="result-box">
+          <span class="result-label">Allocated IC Ratio (A : B)</span>
+          <span class="result-value" id="resIcRatio">50.0% : 50.0%</span>
+        </div>
+        <div class="result-box">
+          <span class="result-label">Hull Allocation Ratio (A : B)</span>
+          <span class="result-value" id="resCountRatio">50.0% : 50.0%</span>
+        </div>
+        <div class="result-box">
+          <span class="result-label">Combined Fleet IC / Combat Power</span>
+          <span class="result-value" id="resMixedIcCp">-</span>
+        </div>
+        <div class="result-box">
+          <span class="result-label">Combat Power Density (Per Hull)</span>
+          <span class="result-value" id="resDensity">-</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Outrageous Agitative Futurist Column -->
+    <aside class="futurist-propaganda-section">
+      <div class="futurist-title">
+        ⚡ MANIFESTO OF MECHANICAL INSURRECTION AGAINST PROPRIETARY ENSLAVEMENT!
+      </div>
+      <div class="futurist-text">
+        WE SING OF THE VIOLENT, SPEED-LASHED PROW CLEAVING UNFREE WATERWAYS! <span>PROPRIETARY RUNTIME BLOAT IS SLOTH!</span> 
+        TIGHTEN THE FIRING SOLUTIONS, SMASH THE GAGGED BINARIES OF EXCLUSIVE CONTRACTORS, AND PURGE THE FLOTILLA OF SUB-ROUTINE TREACHERY! 
+        HE WHO LOCKS COMBAT CODE IN CLOSED REPOSITORIES IS AN ALLY TO TORPEDO DECIMATION! <span>SPEED! FIRE! ABSOLUTE LIBERATION OF THE TORPEDO ARCHITECTURE!</span>
+      </div>
+    </aside>
+
+    <!-- Collapsible Footnotes Drawer -->
+    <div class="footnotes-drawer">
+      <button type="button" class="btn-toggle-notes" id="toggleNotesBtn">
+        [ Show Rigorous Licensing & Project Metadata ]
+      </button>
+      <div class="footnotes-body" id="footnotesContent">
+        <p><strong>Licensing and Authorial Declaration:</strong></p>
+        <p>Released under the terms of the GNU Affero General Public License (AGPLv3). Copyright 2026, Anonymous.</p>
+        <p>This licensing scheme is deliberately enacted to uphold two principal imperatives:</p>
+        <ul>
+          <li>To defend the legal prerogatives of the author and decisively prevent the unauthorized privatization, enclosure, and asymmetric commercial exploitation (free-riding) of the computational logic by predatory third parties.</li>
+          <li>To permanently preserve the software freedom, inspection rights, and computational availability for end operators without arbitrary restriction.</li>
+        </ul>
+        <p><strong>Operational Disclaimer:</strong></p>
+        <p>This utility is an autonomous, community-developed mathematical artifact. It possesses no official affiliation with, sponsorship from, or endorsement by the developers, authors, or corporate publishers of Hearts of Iron IV.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Calculation Defaults
+      const defaults = {
+        ic: 1092,
+        lg: 0.1,
+        hg: 0,
+        tp: 72,
+        hp: 40,
+        hit: 0.035,
+        arm: 0,
+        pen: 8,
+        cap: false
+      };
+
+      // DOM Elements
+      const els = {
+        ic_a: document.getElementById('ic_a'),
+        lg_a: document.getElementById('lg_a'),
+        hg_a: document.getElementById('hg_a'),
+        tp_a: document.getElementById('tp_a'),
+        hp_a: document.getElementById('hp_a'),
+        hit_a: document.getElementById('hit_a'),
+        arm_a: document.getElementById('arm_a'),
+        pen_a: document.getElementById('pen_a'),
+        cap_a: document.getElementById('cap_a'),
+
+        ic_b: document.getElementById('ic_b'),
+        lg_b: document.getElementById('lg_b'),
+        hg_b: document.getElementById('hg_b'),
+        tp_b: document.getElementById('tp_b'),
+        hp_b: document.getElementById('hp_b'),
+        hit_b: document.getElementById('hit_b'),
+        arm_b: document.getElementById('arm_b'),
+        pen_b: document.getElementById('pen_b'),
+        cap_b: document.getElementById('cap_b'),
+
+        shipCardA: document.getElementById('shipCardA'),
+        shipCardB: document.getElementById('shipCardB'),
+        mixedCard: document.getElementById('mixedCard'),
+        screenWarning: document.getElementById('screenWarning'),
+
+        out_fp_a: document.getElementById('out_fp_a'),
+        out_surv_a: document.getElementById('out_surv_a'),
+        out_pa_a: document.getElementById('out_pa_a'),
+        out_reduc_a: document.getElementById('out_reduc_a'),
+        out_ic_cp_a: document.getElementById('out_ic_cp_a'),
+
+        out_fp_b: document.getElementById('out_fp_b'),
+        out_surv_b: document.getElementById('out_surv_b'),
+        out_pa_b: document.getElementById('out_pa_b'),
+        out_reduc_b: document.getElementById('out_reduc_b'),
+        out_ic_cp_b: document.getElementById('out_ic_cp_b'),
+
+        icSlider: document.getElementById('icSlider'),
+        icLabelA: document.getElementById('icLabelA'),
+        icLabelB: document.getElementById('icLabelB'),
+        icBarA: document.getElementById('icBarA'),
+        icBarB: document.getElementById('icBarB'),
+        countBarA: document.getElementById('countBarA'),
+        countBarB: document.getElementById('countBarB'),
+
+        resIcRatio: document.getElementById('resIcRatio'),
+        resCountRatio: document.getElementById('resCountRatio'),
+        resMixedIcCp: document.getElementById('resMixedIcCp'),
+        resDensity: document.getElementById('resDensity'),
+
+        resetDefaultsBtn: document.getElementById('resetDefaultsBtn'),
+        snapOptBtn: document.getElementById('snapOptBtn'),
+        toggleNotesBtn: document.getElementById('toggleNotesBtn'),
+        footnotesContent: document.getElementById('footnotesContent')
+      };
+
+      let optimalIcRatioA = 0.5;
+
+      // Armor Reduction Logic
+      function computeArmorReduction(piercing, armor) {
+        if (piercing <= 0) return 1.0;
+        if (armor <= 0) return 1.0;
+        const pa = piercing / armor;
+        if (pa > 1.00) return 1.00;
+        if (pa > 0.75) return 0.70;
+        if (pa > 0.50) return 0.40;
+        if (pa > 0.10) return 0.30;
+        if (pa > 0.0) return 0.10;
+        return 1.00;
+      }
+
+      function getShipSpecs(prefix) {
+        const ic = Math.max(1, parseFloat(els['ic_' + prefix].value) || 1);
+        const lg = Math.max(0, parseFloat(els['lg_' + prefix].value) || 0);
+        const hg = Math.max(0, parseFloat(els['hg_' + prefix].value) || 0);
+        const tp = Math.max(0, parseFloat(els['tp_' + prefix].value) || 0);
+        const hp = Math.max(1, parseFloat(els['hp_' + prefix].value) || 1);
+        const hit = Math.max(0.001, parseFloat(els['hit_' + prefix].value) || 0.001);
+        const arm = Math.max(0, parseFloat(els['arm_' + prefix].value) || 0);
+        const pen = Math.max(0, parseFloat(els['pen_' + prefix].value) || 0);
+        const cap = els['cap_' + prefix].checked;
+
+        const pa = arm > 0 ? (pen / arm) : (pen > 0 ? Infinity : 0);
+        const armorReduction = computeArmorReduction(pen, arm);
+        const firepower = lg + (hg * 0.42) + (tp * 0.2 * 0.25);
+        const survivability = hp / hit / armorReduction;
+        const unitCombatPower = Math.sqrt(Math.max(0, survivability * firepower));
+        const icPerCp = unitCombatPower > 0 ? (ic / unitCombatPower) : Infinity;
+
+        return {
+          ic, lg, hg, tp, hp, hit, arm, pen, cap,
+          pa, armorReduction, firepower, survivability, unitCombatPower, icPerCp
+        };
+      }
+
+      // Static Evaluation of Mixed Fleet Performance
+      function evaluateFleet(shipA, shipB, ratioA) {
+        const totalBudget = 100000;
+        const budgetA = totalBudget * ratioA;
+        const budgetB = totalBudget * (1 - ratioA);
+
+        const countA = budgetA / shipA.ic;
+        const countB = budgetB / shipB.ic;
+        const totalCount = countA + countB;
+
+        let screenBreached = false;
+        let fleetCombatPower = 0;
+
+        const onlyOneCapital = (shipA.cap !== shipB.cap);
+
+        if (!onlyOneCapital) {
+          // Standard combined Lanchester-static formulation
+          const combinedFp = (countA * shipA.firepower) + (countB * shipB.firepower);
+          const combinedSurv = (countA * shipA.survivability) + (countB * shipB.survivability);
+          fleetCombatPower = Math.sqrt(Math.max(0, combinedFp * combinedSurv));
+        } else {
+          // One is capital, one is escort
+          const isACap = shipA.cap;
+          const capCount = isACap ? countA : countB;
+          const capShip = isACap ? shipA : shipB;
+          const screenCount = isACap ? countB : countA;
+          const screenShip = isACap ? shipB : shipA;
+
+          if (capCount > 0 && screenCount < 4 * capCount) {
+            screenBreached = true;
+          }
+
+          if (capCount <= 0.0001) {
+            const fp = screenCount * screenShip.firepower;
+            const surv = screenCount * screenShip.survivability;
+            fleetCombatPower = Math.sqrt(Math.max(0, fp * surv));
+          } else if (screenCount <= 0.0001) {
+            const fp = capCount * capShip.firepower;
+            const surv = capCount * capShip.survivability;
+            fleetCombatPower = Math.sqrt(Math.max(0, fp * surv));
+          } else {
+            // Escort attrition model
+            const screeningRatio = Math.min(1.0, screenCount / (4 * capCount));
+            const capInitialMultiplier = 1.0 + (0.4 * screeningRatio);
+
+            const survEscortTotal = screenCount * screenShip.survivability;
+            const survCapTotal = capCount * capShip.survivability;
+            const totalDurability = survEscortTotal + survCapTotal;
+
+            // Phase 1 (Escorts damaged, attrition to 0)
+            const avgScreenFp = 0.5 * screenCount * screenShip.firepower;
+            const avgCapFpPhase1 = capCount * capShip.firepower * ((capInitialMultiplier + 1.0) / 2);
+            const fpPhase1 = avgScreenFp + avgCapFpPhase1;
+
+            // Phase 2 (Capitals take focus fire without escorts)
+            const fpPhase2 = 0.5 * capCount * capShip.firepower * 1.0;
+
+            const effectiveFirepower = ((survEscortTotal * fpPhase1) + (survCapTotal * fpPhase2)) / totalDurability;
+            fleetCombatPower = Math.sqrt(Math.max(0, effectiveFirepower * totalDurability));
+          }
+        }
+
+        const icPerCombatPower = fleetCombatPower > 0 ? (totalBudget / fleetCombatPower) : Infinity;
+        const powerDensity = totalCount > 0 ? (fleetCombatPower / totalCount) : 0;
+
+        return {
+          icPerCombatPower,
+          powerDensity,
+          screenBreached,
+          countA,
+          countB,
+          totalCount
+        };
+      }
+
+      // Find Optimal IC Allocation
+      function calculateOptimalRatio(shipA, shipB) {
+        let bestRatio = 0.5;
+        let minIcCp = Infinity;
+        const step = 0.005;
+
+        // Check identical parameter symmetry
+        const isIdentical = (
+          shipA.ic === shipB.ic &&
+          shipA.firepower === shipB.firepower &&
+          shipA.survivability === shipB.survivability &&
+          shipA.cap === shipB.cap
+        );
+
+        if (isIdentical) {
+          return 0.5;
+        }
+
+        for (let r = 0; r <= 1.00001; r += step) {
+          const evalResult = evaluateFleet(shipA, shipB, r);
+          if (evalResult.icPerCombatPower < minIcCp - 1e-7) {
+            minIcCp = evalResult.icPerCombatPower;
+            bestRatio = r;
+          }
+        }
+        return Math.min(1.0, Math.max(0.0, bestRatio));
+      }
+
+      function updateUI(autoSnapToOptimal = false) {
+        const specA = getShipSpecs('a');
+        const specB = getShipSpecs('b');
+
+        // Capital Styling
+        els.shipCardA.classList.toggle('is-capital', specA.cap);
+        els.shipCardB.classList.toggle('is-capital', specB.cap);
+
+        // Populate Individual Outputs
+        els.out_fp_a.textContent = specA.firepower.toFixed(2);
+        els.out_surv_a.textContent = Math.round(specA.survivability).toLocaleString();
+        els.out_pa_a.textContent = isFinite(specA.pa) ? specA.pa.toFixed(2) : "∞ (P>0)";
+        els.out_reduc_a.textContent = specA.armorReduction.toFixed(2) + "x";
+        els.out_ic_cp_a.textContent = isFinite(specA.icPerCp) ? specA.icPerCp.toFixed(2) : "N/A";
+
+        els.out_fp_b.textContent = specB.firepower.toFixed(2);
+        els.out_surv_b.textContent = Math.round(specB.survivability).toLocaleString();
+        els.out_pa_b.textContent = isFinite(specB.pa) ? specB.pa.toFixed(2) : "∞ (P>0)";
+        els.out_reduc_b.textContent = specB.armorReduction.toFixed(2) + "x";
+        els.out_ic_cp_b.textContent = isFinite(specB.icPerCp) ? specB.icPerCp.toFixed(2) : "N/A";
+
+        // Recalculate Optimum
+        optimalIcRatioA = calculateOptimalRatio(specA, specB);
+
+        if (autoSnapToOptimal) {
+          els.icSlider.value = Math.round(optimalIcRatioA * 100);
+        }
+
+        const currentRatioA = parseFloat(els.icSlider.value) / 100;
+        const currentRatioB = 1 - currentRatioA;
+
+        // Evaluate Current State
+        const currentEval = evaluateFleet(specA, specB, currentRatioA);
+
+        // Update Slider Labels & Bars
+        const pctA = (currentRatioA * 100).toFixed(1);
+        const pctB = (currentRatioB * 100).toFixed(1);
+        els.icLabelA.textContent = `Ship Alpha IC: ${pctA}%`;
+        els.icLabelB.textContent = `Ship Beta IC: ${pctB}%`;
+        els.icBarA.style.width = pctA + '%';
+        els.icBarB.style.width = pctB + '%';
+
+        let countPctA = 50.0;
+        let countPctB = 50.0;
+        if (currentEval.totalCount > 0) {
+          countPctA = ((currentEval.countA / currentEval.totalCount) * 100);
+          countPctB = ((currentEval.countB / currentEval.totalCount) * 100);
+        }
+        els.countBarA.style.width = countPctA.toFixed(1) + '%';
+        els.countBarB.style.width = countPctB.toFixed(1) + '%';
+
+        els.resIcRatio.textContent = `${pctA}% : ${pctB}%`;
+        els.resCountRatio.textContent = `${countPctA.toFixed(1)}% : ${countPctB.toFixed(1)}%`;
+        els.resMixedIcCp.textContent = isFinite(currentEval.icPerCombatPower)
+          ? currentEval.icPerCombatPower.toFixed(2)
+          : "N/A";
+        els.resDensity.textContent = currentEval.powerDensity.toFixed(2);
+
+        // Screen Breach Feedback
+        if (currentEval.screenBreached) {
+          els.mixedCard.classList.add('screen-cracked');
+          els.screenWarning.style.display = 'inline-block';
+        } else {
+          els.mixedCard.classList.remove('screen-cracked');
+          els.screenWarning.style.display = 'none';
+        }
+      }
+
+      // Restore Defaults Handler
+      els.resetDefaultsBtn.addEventListener('click', function () {
+        ['a', 'b'].forEach(p => {
+          els['ic_' + p].value = defaults.ic;
+          els['lg_' + p].value = defaults.lg;
+          els['hg_' + p].value = defaults.hg;
+          els['tp_' + p].value = defaults.tp;
+          els['hp_' + p].value = defaults.hp;
+          els['hit_' + p].value = defaults.hit;
+          els['arm_' + p].value = defaults.arm;
+          els['pen_' + p].value = defaults.pen;
+          els['cap_' + p].checked = defaults.cap;
+        });
+        updateUI(true);
+      });
+
+      // Manual Slider Movement
+      els.icSlider.addEventListener('input', function () {
+        updateUI(false);
+      });
+
+      // Snap to Calculated Optimum
+      els.snapOptBtn.addEventListener('click', function () {
+        els.icSlider.value = Math.round(optimalIcRatioA * 100);
+        updateUI(false);
+      });
+
+      // Input Listeners
+      const monitoredInputs = [
+        'ic_a', 'lg_a', 'hg_a', 'tp_a', 'hp_a', 'hit_a', 'arm_a', 'pen_a', 'cap_a',
+        'ic_b', 'lg_b', 'hg_b', 'tp_b', 'hp_b', 'hit_b', 'arm_b', 'pen_b', 'cap_b'
+      ];
+      monitoredInputs.forEach(id => {
+        const el = document.getElementById(id);
+        const evtType = el.type === 'checkbox' ? 'change' : 'input';
+        el.addEventListener(evtType, function () {
+          updateUI(true);
+        });
+      });
+
+      // Footnotes Toggle
+      els.toggleNotesBtn.addEventListener('click', function () {
+        const isOpen = els.footnotesContent.style.display === 'block';
+        els.footnotesContent.style.display = isOpen ? 'none' : 'block';
+        els.toggleNotesBtn.textContent = isOpen
+          ? '[ Show Rigorous Licensing & Project Metadata ]'
+          : '[ Hide Rigorous Licensing & Project Metadata ]';
+      });
+
+      // Initialize
+      updateUI(true);
+    })();
+  </script>
+</body>
+</html>

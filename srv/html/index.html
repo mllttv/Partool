@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combat Analysis</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --air: #38bdf8;
+      --sea: #f472b6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 640px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 540px) {
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .nav-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-card.air:hover {
+      border-color: var(--air);
+    }
+
+    .nav-card.sea:hover {
+      border-color: var(--sea);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Combat Analysis</h1>
+    <p class="subtitle">HoI4 Analytical Calculators</p>
+
+    <nav class="nav-grid">
+      <a href="./air2air.html" class="nav-card air">
+        <div class="card-icon">✈️</div>
+        <h2 class="card-title">Air Combat</h2>
+        <p class="card-desc">Aerial doctrine &amp; IC efficiency simulator</p>
+      </a>
+
+      <a href="./seabattle.html" class="nav-card sea">
+        <div class="card-icon">⚓</div>
+        <h2 class="card-title">Naval Battle</h2>
+        <p class="card-desc">Fleet composition &amp; strike dynamic reckoner</p>
+      </a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+# --- Rust & Cargo Build Artifacts ---
+/srv/Rust/target/
+**/target/
+**/*.rs.bk
+*.rmeta
+
+# --- Compiled Release Binaries ---
+/srv/main
+/srv/html/main.html
+/srv/html/static/*
+!/srv/html/static/.gitkeep
+/srv/tmp/
+
+# --- Environment & Local Secrets ---
+.env
+.env.local
+.env.*.local
+*.env
+
+# --- OS & Editor Specific Files ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-workspace
+
+# --- Logs & Temporary Files ---
+*.log
+tmp/
+
