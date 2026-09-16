@@ -15,7 +15,7 @@ ENV APP /srv
 WORKDIR $APP
 COPY --from=rust-builder $APP/Rust/target/release/main $APP/main
 COPY html/ $APP/html/
-COPY tmp/ $APP/tmp/
+COPY var/ $APP/var/
 
 EXPOSE 8080
 CMD bash -c "./main --host 0.0.0.0 --port 8080"

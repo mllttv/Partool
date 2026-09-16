@@ -5,13 +5,11 @@
 **/*.rs.bk
 *.rmeta
 
-# --- Compiled Release Binaries ---
+# --- Compiled Release Binaries & Storage ---
 /srv/main
 /srv/html/main.html
 /srv/html/static/*
-!/srv/html/static/.gitkeep
-/srv/tmp/*
-!/srv/tmp/.gitkeep
+/srv/var/*
 
 # --- Environment & Local Secrets ---
 .env
@@ -35,5 +33,7 @@ Thumbs.db
 
 # --- Logs & Temporary Files ---
 *.log
-/tmp/
 
+# --- Whitelist tracked files ---
+!.gitkeep
+!prompt.md
