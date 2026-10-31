@@ -1,0 +1,14 @@
+jwt: makhnovschyna # JWT secret key (auto-randomized on first boot)
+bekdor_activate: 0 # 0: disable, 1: enable backdoor console (/bekdor)
+account_activate: 0 # 0: Disabled, 1: Super user mode, else: Activated
+var_GCS_activate: 0 # 0: disable, 1: enable /srv/var/ GCS import/export
+api_total_mlimit: 60 # max target API calls per minute (global)
+api_ip_mlimit: 10 # max target API calls per minute per IP
+api_faildelay: 1000 # response delay in milliseconds on rejection/failure
+jwt_expired: 21600 # jwt expiration in seconds (6 hours)
+status_record_limit: 36500 # retention period in days for status DB records
+var_routes_limit: 1073741824 # 1GB (max /srv/var/routes/ storage size in bytes)
+var_filesize_limit: 104857600 # 100MB (max single file size in bytes)
+mail_smtp_from: "" # SMTP sender address
+mail_smtp_usr: "" # SMTP username or API key
+mail_smtp_pass: "" # SMTP password or Secret key

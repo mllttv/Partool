@@ -1,0 +1,22 @@
+# Default deny
+/*
+
+# Whitelist root essentials
+!/cloudbuild.yaml
+!/srv/
+/srv/*
+
+# Whitelist exact build targets in srv
+!/srv/Dockerfile
+!/srv/.dockerignore
+!/srv/compile.sh
+!/srv/clear.sh
+!/srv/main
+!/srv/html/
+!/srv/Rust/
+
+# Blacklist development/runtime artifacts
+*.md
+/srv/Rust/target/
+/srv/html/static/node_modules/
+*.log

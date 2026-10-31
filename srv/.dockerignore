@@ -1,2 +1,16 @@
-Rust/target
-.git
+# Default deny
+/*
+
+# Whitelist exact build targets
+!/Dockerfile
+!/compile.sh
+!/clear.sh
+!/main
+!/html/
+!/Rust/
+
+# Blacklist development/runtime artifacts
+*.md
+/Rust/target/
+/html/static/node_modules/
+*.log

@@ -4,12 +4,28 @@
 **/target/
 **/*.rs.bk
 *.rmeta
+key
 
 # --- Compiled Release Binaries & Storage ---
 /srv/main
 /srv/html/main.html
+/srv/html/pkg/
 /srv/html/static/*
+!/srv/html/static/package*.json
 /srv/var/*
+/srv/tmp/*
+
+# --- Node.js & Frontend Build Artifacts ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.next/
+.nuxt/
+dist/
+.vite/
+*.tsbuildinfo
 
 # --- Environment & Local Secrets ---
 .env
@@ -34,6 +50,19 @@ Thumbs.db
 # --- Logs & Temporary Files ---
 *.log
 
+# --- Terraform & Secrets ---
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+cloudbuild.yaml
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
 # --- Whitelist tracked files ---
 !.gitkeep
-!prompt.md

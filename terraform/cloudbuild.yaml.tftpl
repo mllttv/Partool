@@ -1,0 +1,58 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    env:
+      - 'DOCKER_BUILDKIT=1'
+    args:
+      - build
+      - --build-arg
+      - BUILD_MODE=prebuilt
+      - -t
+      - ${region}-docker.pkg.dev/${project_id}/${app_name}/${app_name}:${image_tag}
+      - .
+    dir: srv
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${region}-docker.pkg.dev/${project_id}/${app_name}/${app_name}:${image_tag}
+
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - run
+      - deploy
+      - ${app_name}
+      - --image
+      - ${region}-docker.pkg.dev/${project_id}/${app_name}/${app_name}:${image_tag}
+      - --region
+      - ${region}
+      - --max-instances
+      - '1'
+      - --execution-environment
+      - gen2
+
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gcloud run revisions list \
+          --service=${app_name} \
+          --region=${region} \
+          --sort-by="~metadata.creationTimestamp" \
+          --format="value(metadata.name)" \
+          | sed 1d \
+          | xargs -r -I {} gcloud run revisions delete {} --region=${region} --quiet || true
+
+        gcloud artifacts docker images list ${region}-docker.pkg.dev/${project_id}/${app_name}/${app_name} \
+          --sort-by="~CREATE_TIME" \
+          --format="value(DIGEST)" \
+          | sed 1d \
+          | xargs -r -I {} gcloud artifacts docker images delete "${region}-docker.pkg.dev/${project_id}/${app_name}/${app_name}@{}" --delete-tags --quiet || true
+
+        gcloud storage rm "gs://${project_id}_cloudbuild/source/*" --quiet || true
+
+timeout: '1800s'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_STANDARD_2'

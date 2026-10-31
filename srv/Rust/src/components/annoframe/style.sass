@@ -1,0 +1,262 @@
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace
+$border: #30363d
+$bg-dark: #0d1117
+
+.anno-container
+  display: flex
+  flex-direction: column
+  width: 100%
+  flex: 1 1 auto
+  position: relative
+  box-sizing: border-box
+
+.anno-upper
+  display: flex
+  flex-direction: row
+  width: 100%
+  flex: 1 1 auto
+  position: relative
+
+.anno-main
+  flex: 1 1 auto
+  min-width: 0
+  box-sizing: border-box
+
+.anno-sidebar
+  width: 0
+  max-width: 0
+  opacity: 0
+  overflow: hidden
+  display: flex
+  flex-direction: column
+  background: $bg-dark
+  border-left: 0 solid $border
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease
+  box-sizing: border-box
+  flex-shrink: 0
+  &.active
+    width: 160px
+    max-width: 160px
+    opacity: 1
+    border-left: 2px solid $border
+    position: sticky
+    top: 56px
+    align-self: flex-start
+    height: calc(100vh - 56px)
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4)
+
+.anno-container:has(.anno-bottombar.active) .anno-sidebar.active
+  height: calc(100vh - 56px - 100px)
+
+.anno-sidebar-graphic-pane
+  flex: 0 0 auto
+  width: 100%
+  max-height: 120px
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 4px
+  overflow: hidden
+  box-sizing: border-box
+  border-bottom: 1px solid $border
+  background: #161b22
+
+.anno-sidebar-img
+  max-width: 100%
+  max-height: 100%
+  object-fit: contain
+
+.anno-desc-pane
+  flex: 1 1 auto
+  padding: 10px 12px
+  overflow: hidden
+  text-overflow: clip
+  color: #c9d1d9
+  font-family: $font-mono
+  font-size: 11px
+  line-height: 1.4
+  white-space: pre-wrap
+
+.anno-sidebar-nav
+  flex: 0 0 auto
+  width: 100%
+  padding: 8px
+  border-top: 1px solid $border
+  background: #161b22
+  display: flex
+  justify-content: center
+  box-sizing: border-box
+
+.anno-btn-group
+  display: flex
+  width: 100%
+  border-radius: 4px
+  overflow: hidden
+  border: 1px solid $border
+  background: $bg-dark
+
+.anno-btn
+  flex: 1 1 0
+  min-width: 0
+  padding: 5px 4px
+  background: #161b22
+  color: #c9d1d9
+  border: none
+  font-family: $font-mono
+  font-size: 11px
+  font-weight: 600
+  line-height: 1.4
+  text-align: center
+  cursor: pointer
+  user-select: none
+  white-space: nowrap
+  transition: background 0.15s ease, color 0.15s ease
+  &:hover:not(:disabled)
+    background: #21262d
+    color: #58a6ff
+  &:active:not(:disabled)
+    background: #30363d
+  &:disabled
+    opacity: 0.35
+    cursor: not-allowed
+    color: #8b949e
+
+.anno-btn-back
+  border-right: 1px solid $border
+
+.anno-btn-close
+  &:hover:not(:disabled)
+    color: #f85149
+
+.anno-bottombar
+  height: 0
+  max-height: 0
+  opacity: 0
+  overflow: hidden
+  display: flex
+  flex-direction: row
+  background: $bg-dark
+  border-top: 0 solid $border
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease
+  box-sizing: border-box
+  flex-shrink: 0
+  &.active
+    height: 100px
+    max-height: 100px
+    opacity: 1
+    border-top: 2px solid $border
+    position: sticky
+    bottom: 0
+    z-index: 1010
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4)
+    cursor: e-resize
+    user-select: none
+    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, border-color 0.2s ease
+    &:hover
+      border-top-color: rgba(0, 242, 254, 0.6)
+    &:active
+      filter: brightness(1.2)
+
+.anno-sub-pane
+  flex: 1 1 auto
+  min-width: 0
+  height: 100%
+  padding: 14px 20px
+  color: #58a6ff
+  font-family: $font-mono
+  font-size: 15px
+  font-weight: 600
+  line-height: 1.4
+  overflow: hidden
+  text-overflow: clip
+  white-space: pre-wrap
+
+.anno-sub-prefix
+  display: inline-block
+  margin-right: 0.5rem
+  color: #58a6ff
+  animation: anno-blink 1s infinite alternate
+
+.anno-advance-hint
+  display: inline-block
+  margin-left: 0.5rem
+  color: #58a6ff
+  animation: anno-bounce 0.8s infinite alternate
+  opacity: 0.8
+  font-size: 11px
+
+.anno-graphic-pane
+  flex: 0 0 160px
+  width: 160px
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 4px
+  border-left: 2px solid $border
+  background: #161b22
+  overflow: hidden
+  box-sizing: border-box
+
+.anno-graphic-img
+  max-width: 100%
+  max-height: 100%
+  object-fit: contain
+
+@keyframes anno-blink
+  0%
+    opacity: 0.3
+  100%
+    opacity: 1
+
+@keyframes anno-bounce
+  0%
+    transform: translateY(0)
+  100%
+    transform: translateY(3px)
+
+@media (orientation: portrait), (max-aspect-ratio: 1/1)
+  .anno-upper
+    flex-direction: column
+  .anno-sidebar.active,
+  .anno-container:has(.anno-bottombar.active) .anno-sidebar.active
+    width: 100%
+    max-width: 100%
+    height: 80px
+    max-height: 80px
+    position: sticky
+    bottom: 100px
+    top: auto
+    border-left: none
+    border-top: 2px solid $border
+    z-index: 1009
+    flex-direction: row
+    align-items: center
+  .anno-sidebar-graphic-pane
+    flex: 0 0 80px
+    width: 80px
+    height: 100%
+    max-height: 100%
+    border-bottom: none
+    border-right: 1px solid $border
+  .anno-desc-pane
+    padding: 8px 16px
+    font-size: 12px
+  .anno-sidebar-nav
+    flex: 0 0 auto
+    width: auto
+    height: 100%
+    padding: 0 12px
+    border-top: none
+    border-left: 1px solid $border
+    align-items: center
+    margin-left: auto
+  .anno-btn-group
+    width: auto
+  .anno-btn
+    flex: 0 0 auto
+    padding: 6px 10px
+    font-size: 12px
+  .anno-graphic-pane
+    flex: 0 0 100px
+    width: 100px

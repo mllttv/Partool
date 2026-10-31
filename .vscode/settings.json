@@ -3,9 +3,21 @@
     "editor.defaultFormatter": null
   },
   "[rust]": {
-    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
   },
   "rust-analyzer.linkedProjects": [
     "srv/Rust/Cargo.toml"
-  ]
+  ],
+  "rust-analyzer.rustfmt.overrideCommand": [
+    "sh",
+    "-c",
+    "leptosfmt --stdin -m 150 | rustfmt --edition=2024 --config max_width=180,use_small_heuristics=Max"
+  ],
+  "rust-analyzer.cargo.features": "all",
+  "rust-analyzer.procMacro.ignored": {
+    "leptos_macro": [
+      "server"
+    ]
+  }
 }

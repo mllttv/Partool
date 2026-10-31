@@ -1,0 +1,4 @@
+project_id = ""
+region     = ""
+app_name   = ""
+gcs_bucket = ""

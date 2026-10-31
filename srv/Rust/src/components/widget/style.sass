@@ -1,0 +1,115 @@
+// HTMLVM Cyberpunk SASS Accent Layer (Complementing Bootstrap 5)
+
+$bg-primary: #0a0d14
+$bg-card: rgba(18, 24, 38, 0.85)
+$bg-input: #0e1422
+$border: #222f46
+$accent: #00f2fe
+$accent-hover: #38bdf8
+$accent-glow: rgba(0, 242, 254, 0.25)
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace
+
+body
+  background-color: $bg-primary !important
+  color: #f1f5f9
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
+
+a
+  color: $accent
+  transition: color 0.2s ease
+  &:hover
+    color: $accent-hover
+
+// Cards with Cyberpunk Backdrop
+.card
+  background: $bg-card !important
+  border: 1px solid $border !important
+  backdrop-filter: blur(8px)
+  -webkit-backdrop-filter: blur(8px)
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37)
+
+.hover-lift
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease
+  &:hover
+    transform: translateY(-2px)
+    border-color: rgba(0, 242, 254, 0.5) !important
+    box-shadow: 0 10px 24px rgba(0, 242, 254, 0.15) !important
+
+.glass-card
+  background: rgba(14, 20, 32, 0.95) !important
+  border: 1px solid $border !important
+  backdrop-filter: blur(12px)
+  -webkit-backdrop-filter: blur(12px)
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6)
+
+.card-header
+  background: transparent !important
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important
+
+.card-sub
+  font-family: $font-mono
+  font-size: 12px
+  color: $accent
+
+// Custom Cyberpunk Accent Button
+.btn-accent
+  background-color: rgba(0, 242, 254, 0.15) !important
+  color: $accent !important
+  border: 1px solid rgba(0, 242, 254, 0.4) !important
+  font-weight: 600
+  letter-spacing: 0.5px
+  transition: all 0.2s ease
+  &:hover:not(:disabled)
+    background-color: rgba(0, 242, 254, 0.25) !important
+    border-color: $accent !important
+    box-shadow: 0 0 14px $accent-glow !important
+    color: #fff !important
+
+// Forms
+.form-control, .form-select
+  background-color: $bg-input !important
+  border-color: $border !important
+  color: #f1f5f9 !important
+  &:focus
+    border-color: $accent !important
+    box-shadow: 0 0 8px $accent-glow !important
+
+// Navbar Styling
+.navbar-htmlvm
+  background: rgba(10, 15, 29, 0.92) !important
+  backdrop-filter: blur(16px)
+  -webkit-backdrop-filter: blur(16px)
+  border-bottom: 1px solid $border
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5)
+
+// Badges
+.badge-core
+  background: rgba(0, 242, 254, 0.1) !important
+  color: $accent !important
+  border: 1px solid rgba(0, 242, 254, 0.3)
+
+.badge-guest
+  background: rgba(148, 163, 184, 0.1) !important
+  color: #94a3b8 !important
+  border: 1px solid rgba(148, 163, 184, 0.3)
+
+.badge-user
+  background: rgba(16, 185, 129, 0.1) !important
+  color: #10b981 !important
+  border: 1px solid rgba(16, 185, 129, 0.3)
+
+.badge-admin
+  background: rgba(245, 158, 11, 0.1) !important
+  color: #f59e0b !important
+  border: 1px solid rgba(245, 158, 11, 0.3)
+
+.badge-super
+  background: rgba(239, 68, 68, 0.1) !important
+  color: #ef4444 !important
+  border: 1px solid rgba(239, 68, 68, 0.3)
+
+.val-mono
+  font-family: $font-mono
+  font-size: 12px
+  color: $accent
+
