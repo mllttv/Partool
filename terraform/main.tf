@@ -62,9 +62,10 @@ resource "google_artifact_registry_repository" "repo" {
 
 # 3. Service account & permissions
 resource "google_service_account" "cloudrun_sa" {
-  account_id   = "${var.app_name}-sa"
-  display_name = "Service Account for ${var.app_name} Cloud Run"
-  depends_on   = [google_project_service.apis]
+  account_id                   = "${var.app_name}-sa"
+  display_name                 = "Service Account for ${var.app_name} Cloud Run"
+  create_ignore_already_exists = true
+  depends_on                   = [google_project_service.apis]
 }
 
 resource "google_storage_bucket_iam_member" "gcs_access" {
