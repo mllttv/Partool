@@ -1,0 +1,1647 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hoi4n2n</title>
+    <script type="module">
+var n;
+var t$1;
+var i$1;
+var u$2;
+var f$2;
+var e$1;
+var o$2;
+var l$1;
+var c$1;
+var a$2;
+var h$1 = Symbol.for("pv");
+var p$1 = {};
+var v$1 = [];
+var y$1 = /^m(i|n|o|s|text|space)$/;
+var w$1 = Array.isArray;
+var d$1 = v$1.slice;
+var _$1 = Object.assign;
+function g$1(n) {
+	n && n.parentNode && n.remove();
+}
+function k$1(n, t, r) {
+	var i, u, f, e = {}, o = arguments.length;
+	for (f in t) "key" == f ? i = t[f] : "ref" == f && "function" != typeof n ? u = t[f] : e[f] = t[f];
+	return o > 2 && (e.children = o > 3 ? d$1.call(arguments, 2) : r), m$1(n, e, i, u, null);
+}
+function m$1(r, i, u, f, e) {
+	var o = {
+		type: r,
+		props: i,
+		key: u,
+		ref: f,
+		__k: null,
+		__: null,
+		__b: 0,
+		__e: null,
+		__c: null,
+		constructor: h$1,
+		__v: e || ++t$1,
+		__i: -1,
+		__u: 0
+	};
+	return !e && n.vnode && n.vnode(o), o;
+}
+function M(n) {
+	return n.children;
+}
+function x(n, t) {
+	this.props = n, this.context = t, this.__g = 0;
+}
+function S(n, t) {
+	if (null == t) return n.__ && S(n.__, n.__i + 1);
+	for (var r; t < n.__k.length; t++) if ((r = n.__k[t]) && r.__e) return r.__e;
+	return "function" != typeof n.type || n.props.__P ? null : S(n);
+}
+function C$1(n) {
+	if ((n = n.__) && n.__c && !n.props.__P) return n.__e = null, n.__k.some(function(t) {
+		return t && (n.__e = t.__e);
+	}), C$1(n);
+}
+function j(t) {
+	(8 & t.__g || (t.__g |= 8, i$1.push(t), f$2++)) && u$2 == n.debounceRendering || ((u$2 = n.debounceRendering) || queueMicrotask)(L);
+}
+function L() {
+	var t, r, o, l, c, a, s, p, v;
+	try {
+		for (r = 1; i$1.length;) i$1.length > r && i$1.sort(e$1), t = i$1.shift(), r = i$1.length, 8 & t.__g && (l = void 0, c = void 0, a = (c = (o = t).__v).__e, s = [], p = [], (v = o.__P) && ((l = _$1({ constructor: h$1 }, c)).__v = c.__v + 1, n.vnode && n.vnode(l), V(v, l, c, o.__n, v.namespaceURI, 32 & c.__u ? [a] : null, s, a || S(c), 32 & c.__u, p), l.__v = c.__v, l.__.__k[l.__i] = l, D$1(s, l, p), c.__ = c.__e = null, l.__e != a && C$1(l)));
+	} finally {
+		(f$2 = i$1.length) && (u$2 || queueMicrotask)(L);
+	}
+}
+function H(n, t, r, i, u, f, e, o, l, c, a) {
+	var s, h, y, w, d, _, g = i.__k || v$1, k = t.length;
+	for (l = I(r, t, g, l, k), s = 0; s < k; s++) null != (y = r.__k[s]) && (h = ~y.__i && g[y.__i] || p$1, y.__i = s, _ = V(n, y, h, u, f, e, o, l, c, a), w = y.__e, (h.ref != y.ref || 8 & h.__u) && (h.ref && F(h.ref, null, y, h), y.ref && a.push(y.ref, y.__c || w, y)), d = d || w, 4 & y.__u ? (l = q(y, l, n, !h.__v), h.__e && (h.__e = null)) : "function" == typeof y.type && void 0 !== _ ? l = _ : w && (l = w.nextSibling), y.__u &= -21);
+	return r.__e = d, l;
+}
+function I(n, t, r, i, u) {
+	var f, e, o, l, c, a, s, p, v, y = r.length, d = y, _ = 0, g = 0, k = n.__k = Array(u);
+	for (f = 0; f < u; f++) null != (e = t[f]) && "boolean" != typeof e && "function" != typeof e ? ("object" != typeof e || e.constructor === String ? e = k[f] = m$1(null, e) : w$1(e) ? e = k[f] = m$1(M, { children: e }) : e.constructor === h$1 && e.__b ? e = k[f] = m$1(e.type, e.props, e.key, e.ref, e.__v) : k[f] = e, l = f + _, e.__ = n, e.__b = n.__b + 1, o = null, ~(c = e.__i = O(e, r, l, d)) && (d--, (o = r[c]) && (o.__u |= 2)), o && o.__v ? (e.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (u > y ? _-- : u < y && _++), "function" != typeof e.type && (e.__u |= 4))) : k[f] = null;
+	if (g) {
+		for (a = [], s = [], f = 0; f < u; f++) if ((e = k[f]) && 16 & e.__u) {
+			for (_ = 0, p = a.length; _ < p;) a[v = _ + p >> 1] < e.__i ? _ = v + 1 : p = v;
+			a[_] = e.__i, s[f] = _ + 1;
+		}
+		for (_ = a.length; f--;) s[f] && (s[f] == _ ? _-- : k[f].__u |= 4);
+	}
+	if (d) for (f = 0; f < y; f++) !(o = r[f]) || 2 & o.__u || (o.__e == i && (i = S(o)), G$1(o, o));
+	return i;
+}
+function q(n, t, r, i) {
+	var u, f, e, o;
+	if ("function" == typeof n.type) {
+		if (n.props.__P) return t;
+		if (u = n.__k) for (f = 0; f < u.length; f++) u[f] && (u[f].__ = n, t = q(u[f], t, r, !1));
+		return t;
+	}
+	for (t && !t.parentNode && (t = S(n)) && !t.parentNode && (t = null), e = n.__e, o = t; o && 8 == o.nodeType;) o = o.nextSibling;
+	for (e != o && (!i && r.moveBefore && e.parentNode ? r.moveBefore(e, t) : r.insertBefore(e, t || null)), t = e; (t = t && t.nextSibling) && 8 == t.nodeType && !t.data.startsWith("$s"););
+	return t;
+}
+function O(n, t, r, i) {
+	var u, f = n.key, e = n.type, o = t[r], l = o && !(2 & o.__u);
+	if (null === o && null == f || l && f == o.key && e == o.type) return r;
+	if (i > (l ? 1 : 0)) {
+		for (u = r - 1; u >= 0; u--) if ((o = t[u]) && !(2 & o.__u) && f == o.key && e == o.type) return u;
+		for (u = r + 1; u < t.length; u++) if ((o = t[u]) && !(2 & o.__u) && f == o.key && e == o.type) return u;
+	}
+	return -1;
+}
+function P(n, t, r) {
+	r ??= "", "-" == t[0] ? n.setProperty(t, r) : n[t] = r;
+}
+function T(n, t, r, i, u) {
+	var f, e;
+	if ("style" == t) if ("string" == typeof r) n.style.cssText = r;
+	else {
+		if ("string" == typeof i && (n.style.cssText = i = ""), i) for (t in i) r && t in r || P(n.style, t);
+		if (r) for (t in r) i && r[t] == i[t] || P(n.style, t, r[t]);
+	}
+	else if ("o" == t[0] && "n" == t[1]) (n.__e || (n.__e = {}))[t] = r, r && i || (e = a$2[t] || (a$2[t] = N(t)), (n.__a || (n.__a = {}))[t] = c$1, f = t != (t = t.replace(l$1, "$1")), (t = t.slice(2))[0] < "a" && (t = t.toLowerCase()), r ? n.addEventListener(t, e, f) : n.removeEventListener(t, e, f));
+	else {
+		if ("http://www.w3.org/2000/svg" == u) t = t.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
+		else if ("width" != t && "height" != t && "href" != t && "list" != t && "form" != t && "tabIndex" != t && "download" != t && "rowSpan" != t && "colSpan" != t && "role" != t && "popover" != t && t in n) try {
+			n[t] = null == r ? "" : r;
+			return;
+		} catch (n) {}
+		if ("function" == typeof r) return;
+		null == r || !1 === r && "-" != t[4] ? n.removeAttribute(t) : n.setAttribute(t, "popover" == t && 1 == r ? "" : r);
+	}
+}
+function N(t) {
+	return function(r) {
+		var i = this.__e;
+		if (i) {
+			if (i = i[t], null == r[o$2]) r[o$2] = c$1++;
+			else if (r[o$2] < this.__a[t]) return;
+			return i(n.event ? n.event(r) : r);
+		}
+	};
+}
+function V(t, r, i, u, f, e, o, l, c, a) {
+	var s, p, y, d, k, b, m, $, C, j, L, I, q, A, O, P, T, N, V = r.type;
+	if (r.constructor !== h$1) return null;
+	128 & i.__u && (c = 32 & i.__u, s = i.__c.__z) && (r.__u |= c, p = e = [], 8 == s.nodeType ? l = z$1(s, e) : e.push(s), l = e[0] || l), (s = n.__b) && s(r);
+	n: if ("function" == typeof V) {
+		y = o.length;
+		try {
+			if ($ = r.props, C = (s = V.prototype) && s.render, j = (s = V.contextType) && u[s.__c], L = s ? j ? j.props.value : s.__ : u, (d = i.__c) ? (r.__c = d, 2 & d.__g && (d.__g |= 1)) : (C ? r.__c = d = new V($, L) : (r.__c = d = new x($, L), d.constructor = V, d.render = J), j && j.sub(d), d.state || (d.state = {}), d.__n = u, d.__g |= 8, d.__h = [], d.__k = []), C && (d.__s || (d.__s = d.state), V.getDerivedStateFromProps && (d.__s == d.state && (d.__s = _$1({}, d.__s)), _$1(d.__s, V.getDerivedStateFromProps($, d.__s)))), k = d.props, b = d.state, d.__v = r, i.__c) {
+				if ($ !== k && C && !V.getDerivedStateFromProps && d.componentWillReceiveProps && d.componentWillReceiveProps($, L), r.__v == i.__v && !(8 & d.__g) || !(4 & d.__g) && d.shouldComponentUpdate && !1 === d.shouldComponentUpdate($, d.__s, L)) {
+					r.__v != i.__v && (d.props = $, d.state = d.__s, d.__g &= -9), r.__e = i.__e, r.__k = i.__k, r.__k.some(function(n) {
+						n && (n.__ = r);
+					}), v$1.push.apply(d.__h, d.__k), d.__k = [], d.__h.length && o.push(d), l = S(i);
+					break n;
+				}
+				d.componentWillUpdate && d.componentWillUpdate($, d.__s, L), C && d.componentDidUpdate && d.__h.push(function() {
+					d.componentDidUpdate(k, b, m);
+				});
+			} else C && !V.getDerivedStateFromProps && d.componentWillMount && d.componentWillMount(), C && d.componentDidMount && d.__h.push(d.componentDidMount);
+			if (d.context = L, d.props = $, d.__P = t, d.__g &= -5, I = n.__r, q = 0, C) d.state = d.__s, d.__g &= -9, I && I(r), s = d.render(d.props, d.state, d.context), v$1.push.apply(d.__h, d.__k), d.__k = [];
+			else do
+				d.__g &= -9, I && I(r), s = d.render(d.props, d.state, d.context), d.state = d.__s;
+			while (8 & d.__g && ++q < 25);
+			d.state = d.__s, d.getChildContext && (u = _$1({}, u, d.getChildContext())), C && i.__c && d.getSnapshotBeforeUpdate && (m = d.getSnapshotBeforeUpdate(k, b)), A = s && s.type === M && null == s.key ? s.props.children : s, $.__P && (s = l, f = (t = $.__P).namespaceURI, c = e = null, i.props && i.props.__P != t && (i.__k.some(function(n) {
+				n && G$1(n, n);
+			}), i.__k = null), l = i.__k ? S(i, 0) : null), l = H(t, w$1(A) ? A : [A], r, i, u, f, e, o, l, c, a), $.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && o.push(d), 1 & d.__g && (d.__g &= -4);
+		} catch (t) {
+			if (o.length = y, r.__v = null, c || e) if (t.then) {
+				if (O = 0, r.__u |= 128 | c, e) {
+					for (~(T = e.indexOf(l || void 0)) || (T = e.length); (N = e[T - 1]) && 8 == N.nodeType;) T--;
+					for (; T < e.length; T++) if (N = e[T]) {
+						if (e[T] = null, 8 == N.nodeType) {
+							if (N.data.startsWith("$s")) O++ || (P = N);
+							else if (O && N.data.startsWith("/$s") && !--O) break;
+						} else if (!O) break;
+					}
+				}
+				if (!P) {
+					for (; l && 8 == l.nodeType && l.nextSibling;) l = l.nextSibling;
+					P = l;
+				}
+				(s = z$1(P = r.__c.__z || (r.__c.__z = P))) ? (r.__e = P, l = s) : r.__e = l, l = l && l.nextSibling;
+			} else e && e.some(g$1);
+			else r.__e = i.__e;
+			r.__k || (r.__k = i.__k || []), t.then || B$1(r), n.__e(t, r, i);
+		}
+	} else l = r.__e = E$1(i.__e, r, i, u, f, e, o, c, a, t);
+	return (s = n.diffed) && s(r), l;
+}
+function z$1(n, t) {
+	if (n && 8 == n.nodeType && n.data.startsWith("$s")) for (var r = 1; n = n.nextSibling;) {
+		if (8 == n.nodeType) {
+			if (n.data.startsWith("$s")) r++;
+			else if (n.data.startsWith("/$s") && !--r) return n;
+		}
+		t && t.push(n);
+	}
+}
+function B$1(n) {
+	n && (n.__c && (n.__c.__g |= 4), n.__k && n.__k.some(B$1));
+}
+function D$1(t, r, i) {
+	for (var u = 0; u < i.length;) F(i[u++], i[u++], i[u++]);
+	n.__c && n.__c(r, t), t.some(function(r) {
+		try {
+			t = r.__h, r.__h = [], t.some(function(n) {
+				n.call(r);
+			});
+		} catch (t) {
+			n.__e(t, r.__v);
+		}
+	});
+}
+function E$1(t, r, i, u, f, e, o, l, c, a) {
+	var s, h, v, _, k, b, m, $, M, x = i.props || p$1, C = r.props, j = r.type;
+	if ("svg" == j ? f = "http://www.w3.org/2000/svg" : "math" == j ? f = "http://www.w3.org/1998/Math/MathML" : f || (f = "http://www.w3.org/1999/xhtml"), e) {
+		for (s = 0; s < e.length; s++) if ((k = e[s]) && (j ? k.localName == j : 3 == k.nodeType)) {
+			t = k, e[s] = null;
+			break;
+		}
+	}
+	if (!t) {
+		if ($ = a.ownerDocument || document, !j) return $.createTextNode(C);
+		t = $.createElementNS(f, j, C.is && C), l && (n.__m && n.__m(r, e), l = !1), e = null;
+	}
+	if (j) {
+		if (a = "template" == j && t.content || t, e = "textarea" == j && null != C.defaultValue ? null : e && d$1.call(a.childNodes), !l && e) for (x = {}, s = 0; s < t.attributes.length; s++) x[(k = t.attributes[s]).name] = k.value;
+		for (s in x) k = x[s], "dangerouslySetInnerHTML" == s ? v = k : "children" == s || s in C || "value" == s && "defaultValue" in C || "checked" == s && "defaultChecked" in C || T(t, s, null, k, f);
+		for (s in M = 1 & i.__u, C) k = C[s], "children" == s ? _ = k : "dangerouslySetInnerHTML" == s ? h = k : "value" == s ? b = k : "checked" == s ? m = k : l && "function" != typeof k || !(x[s] !== k || M && null != k) || T(t, s, k, x[s], f);
+		h ? (l || v && (h.__html == v.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (v && (t.textContent = ""), ("foreignObject" == j || "http://www.w3.org/1998/Math/MathML" == f && y$1.test(j)) && (f = "http://www.w3.org/1999/xhtml"), H(a, w$1(_) ? _ : [_], r, i, u, f, e, o, e ? e[0] : i.__k && S(i, 0), l, c), e && e.some(g$1)), l && "textarea" != j || (s = "value", "progress" == j && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != j || b) || T(t, s, b, x[s], f), s = "checked", null != m && m != t[s] && T(t, s, m, x[s], f));
+	} else x === C || l && t.data == C || (t.data = C);
+	return t;
+}
+function F(t, r, i, u) {
+	try {
+		"function" == typeof t ? r ? r.__x = t(r) || 1 : u && (u = u.__c || u.__e) && (r = u.__x) && (u.__x = null, "function" == typeof r ? r() : t(null)) : t.current = r;
+	} catch (t) {
+		n.__e(t, i);
+	}
+}
+function G$1(t, r, i) {
+	var u, f, e, o;
+	if (n.unmount && n.unmount(t), !(u = t.ref) || u.current && u.current != t.__e || F(u, null, r, t), u = t.__c) {
+		if (u.componentWillUnmount) try {
+			u.componentWillUnmount();
+		} catch (t) {
+			n.__e(t, r);
+		}
+		u.__P = u.__n = null;
+	}
+	if (u = t.__k) for (o = 0; o < u.length; o++) u[o] && G$1(u[o], r, "function" != typeof t.type || i && !t.props.__P);
+	!i && (u = t.__c) && (u = u.__z) && (f = z$1(u, e = [])) && (u == t.__e && e.some(g$1), g$1(f), g$1(u)), (u = t.__e) && (i || g$1(u), u.__e && (u.__e = null)), t.__e = t.__c = t.__ = null;
+}
+function J(n, t, r) {
+	return this.constructor(n, r);
+}
+function K(t, r) {
+	var i, u, f, e;
+	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), u = (i = t && 32 & t.__u) ? null : r.__k, r.__k = m$1(M, { children: [t] }), f = [], e = [], V(r, r.__k, u || p$1, p$1, r.namespaceURI, u ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, u ? u.__e : r.firstChild, i, e), D$1(f, r.__k, e), r.__k.props.children = null;
+}
+n = { __e: function(n, t, r, i) {
+	for (var u, e, o; t = t.__;) if ((u = t.__c) && !(1 & u.__g)) {
+		u.__g |= 4;
+		try {
+			if ((o = (e = u.constructor) && e.getDerivedStateFromError) && u.setState(e.getDerivedStateFromError(n)), u.componentDidCatch && (u.componentDidCatch(n, i || {}), o = 1), o && 8 & u.__g) return void (u.__g |= 2);
+		} catch (t) {
+			n = t;
+		}
+	}
+	throw f$2 = 0, n;
+} }, t$1 = 0, x.prototype.setState = function(n, t) {
+	var r = this.__s;
+	r && r != this.state || (r = this.__s = _$1({}, this.state)), "function" == typeof n && (n = n(_$1({}, r), this.props)), n && (_$1(r, n), this.__v && (t && this.__k.push(t), j(this)));
+}, x.prototype.forceUpdate = function(n) {
+	this.__v && (this.__g |= 4, n && this.__h.push(n), j(this));
+}, x.prototype.render = M, i$1 = [], f$2 = 0, e$1 = function(n, t) {
+	return n.__v.__b - t.__v.__b;
+}, o$2 = Symbol(), l$1 = /(PointerCapture)$|Capture$/i, c$1 = 0, a$2 = {};
+var t;
+var r;
+var u$1;
+var i;
+var o$1 = Object.is;
+var f$1 = 0;
+var c = [];
+var e = [];
+var a$1 = n;
+var v = a$1.__b;
+var l = a$1.__r;
+var m = a$1.diffed;
+var h = a$1.__c;
+var s = a$1.unmount;
+var p = a$1.__;
+function y(n, t) {
+	a$1.__h && a$1.__h(r, n, f$1 || t), f$1 = 0;
+	var u = r.__H || (r.__H = {
+		__: [],
+		__h: []
+	});
+	return n >= u.__.length && u.__.push({}), u.__[n];
+}
+function d(n) {
+	return f$1 = 1, _(G, n);
+}
+function _(n, u, i) {
+	var f = y(t++, 2);
+	if (f.t = n, !f.__c && (f.__ = [i ? i(u) : G(void 0, u), function(n) {
+		var t = f.__N ? f.__N[0] : f.__[0], r = f.t(t, n);
+		o$1(t, r) || (f.__N = [r, f.__[1]], f.__c.setState({}));
+	}], f.__c = r, !r.__f)) {
+		r.__f = !0;
+		var c = r.shouldComponentUpdate;
+		r.shouldComponentUpdate = function(n, t, r) {
+			var u = this.__H;
+			if (!u) return !0;
+			var i = !1, f = this.props != n;
+			if (u.__.some(function(n) {
+				n.__N && (i = !0, o$1(n.__[0], n.__N[0]) || (f = !0));
+			}), c) {
+				var e = c.call(this, n, t, r);
+				return i ? e || f : e;
+			}
+			return !i || f;
+		};
+	}
+	return f.__;
+}
+function w(n, r) {
+	var u = y(t++, 7);
+	return E(u.__H, r) && (u.__ = n(), u.__H = r), u.__;
+}
+function g() {
+	var n;
+	do {
+		for (; n = e.shift();) try {
+			C(n);
+		} catch (t) {
+			a$1.__e(t, { __: (n = n.__P) && n.__v });
+		}
+		for (; n = c.shift();) {
+			var t = n.__H;
+			if (n.__P && t) try {
+				t.__h.some(C), t.__h.some(D), t.__h = [];
+			} catch (r) {
+				t.__h = [], a$1.__e(r, n.__v);
+			}
+		}
+	} while (e.length);
+}
+a$1.__b = function(n) {
+	r = null, v && v(n);
+}, a$1.__ = function(n, t) {
+	n && t.__k && t.__k.__m && (n.__m = t.__k.__m), p && p(n, t);
+}, a$1.__r = function(n) {
+	l && l(n), t = 0;
+	var i = (r = n.__c).__H;
+	i && (u$1 == r ? r.__h = [] : (i.__h.some(C), i.__h.some(D), t = 0), i.__h = [], i.__.some(function(n) {
+		n.__N && (n.__ = n.__N), n.u = n.__N = void 0;
+	})), u$1 = r;
+}, a$1.diffed = function(n) {
+	m && m(n);
+	var t = n.__c;
+	t && t.__H && (t.__H.__h.length && B(c.push(t)), t.__H.__.some(function(n) {
+		n.u && (n.__H = n.u);
+	})), u$1 = r = null;
+}, a$1.__c = function(n, t) {
+	t.some(function(n) {
+		try {
+			n.__h.some(C), n.__h = n.__h.filter(function(n) {
+				return !n.__ || D(n);
+			});
+		} catch (t) {
+			n.__h = [function() {
+				throw t;
+			}];
+		}
+	}), h && h(n, t);
+}, a$1.unmount = function(n) {
+	s && s(n);
+	var t, r, u = n.__c;
+	u && u.__H && (u.__H.__.some(function(u) {
+		try {
+			if (u.__P && u.__c) {
+				if (void 0 === r) {
+					for (r = n.__; r && (!r.__c || !r.__c.__P);) r = r.__;
+					r = r && r.__c;
+				}
+				u.__P = r, B(e.push(u));
+			} else C(u);
+		} catch (n) {
+			t = n;
+		}
+	}), u.__H = void 0, t && a$1.__e(t, u.__v));
+};
+var k = "function" == typeof requestAnimationFrame;
+function z(n) {
+	var t, r = function() {
+		clearTimeout(u), k && cancelAnimationFrame(t), setTimeout(n);
+	}, u = setTimeout(r, 35);
+	k && (t = requestAnimationFrame(r));
+}
+function B(n) {
+	1 != n && i == a$1.requestAnimationFrame || ((i = a$1.requestAnimationFrame) || z)(g);
+}
+function C(n) {
+	var t = r, u = n.__c;
+	"function" == typeof u && (n.__c = void 0, u()), r = t;
+}
+function D(n) {
+	var t = r;
+	n.__c = n.__(), r = t;
+}
+function E(n, t) {
+	return !n || n.length != t.length || t.some(function(t, r) {
+		return !o$1(t, n[r]);
+	});
+}
+function G(n, t) {
+	return "function" == typeof t ? t(n) : t;
+}
+var LICITE = "================================================================================\nTHIRD-PARTY SOFTWARE NOTICES AND LICENSES\n================================================================================\n\nThis software incorporates components from the following third-party software:\n\n--------------------------------------------------------------------------------\npreact v11.1.1 (https://preactjs.com)\n--------------------------------------------------------------------------------\nThe MIT License (MIT)\n\nCopyright (c) 2015-present Jason Miller\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.";
+var f = Symbol.for("pv");
+var o = 0;
+Array.isArray;
+function a(t, e, n$1, u, a, i) {
+	e || (e = {});
+	var c, l, p = e;
+	if ("ref" in p && "function" != typeof t) for (l in p = {}, e) "ref" == l ? c = e[l] : p[l] = e[l];
+	var s = {
+		type: t,
+		props: p,
+		key: n$1,
+		ref: c,
+		__k: null,
+		__: null,
+		__b: 0,
+		__e: null,
+		__c: null,
+		constructor: f,
+		__v: --o,
+		__i: -1,
+		__u: 0
+	};
+	return (a || i) && (s.__source = a, s.__self = i), n.vnode && n.vnode(s), s;
+}
+var buildMitSa = (year, holder) => {
+	return `================================================================================
+MIT-SA LICENSE
+================================================================================
+
+The MIT Self-Applying License (MIT-SA) - v0.23-draft (Experimental)
+
+Copyright (c) ${year} ${holder}
+
+Scope & License Resolution:
+For the purposes of this License, "the Software" refers to any file or artifact
+governed by this License, including associated documentation, as determined by
+the following rules:
+1. File Notice: An explicit license notice inside a file takes highest precedence.
+2. Nearest Directory: Otherwise, the LICENSE file in the file's directory, 
+   or its nearest parent directory, applies.
+3. File Boundary: Separate files remain independent even when referenced, 
+   loaded, or packaged alongside the Software in an archive, installer, 
+   container, or file system image. However, merging, bundling, or embedding 
+   any material with the Software into a single unified file or executable 
+   renders that entire artifact indivisible and subjects it as a whole to 
+   this License as "the Software".
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the Software, to deal
+in the Software, including without limitation the rights
+to use, copy, modify, merge, reverse engineer, decompile, disassemble,
+publish, distribute, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+Self-Applying:
+Any modified version of the Software, including any unified artifact
+incorporating the Software as defined above, must be governed as a whole
+by this License. Alternatively, recipients may relicense, combine, or
+distribute the Software and its modifications under the terms of the GNU
+Affero General Public License (AGPL) version 3.
+
+Permitted Processing & Reverse Engineering:
+Authors and distributors may optimize, strip, obfuscate, or encrypt the Software.
+No contract, terms of service, or technical lock may restrict its inspection
+or reverse engineering, nor shall any measure constitute an "effective technological
+measure" under any law (including DMCA Section 1201 or equivalent statutes).
+Recipients have the absolute right to reverse engineer, decompile, decrypt, and
+bypass the Software, and all licensors, contributors, and distributors grant an
+irrevocable covenant not to sue for doing so.
+
+Anti-Enclosure:
+No modified version may diminish the autonomy of pre-existing features,
+nor condition their availability upon external authorization, ongoing
+validation, or reliance on infrastructure beyond the recipient's
+exclusive control.
+No person, group, field of endeavor, or context of execution may be
+discriminated against or restricted from exercising these rights.
+
+Network Distribution & Self-Hosting:
+Providing any functionality of the Software over a network constitutes
+distribution under this License. In such case, and only while providing
+such functionality, a copy sufficient for functionally equivalent local
+execution or self-hosting—whether in source, intermediate, or executable
+binary form—must be made available to all users with this notice, without
+requiring reproduction of the production environment. This requirement
+applies only to the Software itself, and extends to no separate systems,
+processes, or services. No support or documentation is required.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.`;
+};
+function renderLicense(name, year, holder, text) {
+	const content = `${text}\n\n${LICITE}`;
+	return  a("footer", {
+		className: "license",
+		children:  a("details", { children: [ a("summary", { children: [
+			"This file: Copyright © ",
+			year,
+			" ",
+			holder,
+			" · ",
+			name
+		] }),  a("pre", { children: content })] })
+	});
+}
+function LicenseMitSa({ year, holder }) {
+	return renderLicense("MIT-SA License", year, holder, buildMitSa(year, holder));
+}
+var DEFAULT_SHIP = {
+	ic: 1092,
+	lightAttack: .1,
+	heavyAttack: 0,
+	torpedo: 72,
+	hp: 40,
+	laHitRate: .035,
+	armor: 0,
+	enemyPiercing: 8,
+	isCapital: false
+};
+var SPEC_INPUTS = [
+	{
+		key: "ic",
+		label: "Industrial Cost (IC)",
+		step: 1
+	},
+	{
+		key: "lightAttack",
+		label: "Light Attack",
+		step: 1
+	},
+	{
+		key: "heavyAttack",
+		label: "Heavy Attack",
+		step: 1
+	},
+	{
+		key: "torpedo",
+		label: "Torpedo Attack",
+		step: 1
+	},
+	{
+		key: "hp",
+		label: "Hit Points (HP)",
+		step: 1
+	},
+	{
+		key: "laHitRate",
+		label: "LA Hit Rate",
+		step: .001
+	},
+	{
+		key: "armor",
+		label: "Armor",
+		step: 1
+	},
+	{
+		key: "enemyPiercing",
+		label: "Expected Piercing",
+		step: 1
+	}
+];
+function getArmorMult(piercing, armor) {
+	if (armor <= 0 || piercing <= 0) return 1;
+	const pa = piercing / armor;
+	if (pa > 1) return 1;
+	if (pa > .75) return .7;
+	if (pa > .5) return .4;
+	if (pa > .1) return .3;
+	if (pa > 0) return .1;
+	return 1;
+}
+function calcSingle(s) {
+	const armorMult = getArmorMult(s.enemyPiercing, s.armor);
+	const pa = s.armor > 0 ? s.enemyPiercing / s.armor : null;
+	const firepower = s.lightAttack + s.heavyAttack * .42 + s.torpedo * .2 * .25;
+	const survivability = s.hp / (Math.max(1e-4, s.laHitRate) * armorMult);
+	const unitPower = Math.sqrt(Math.max(0, survivability * firepower));
+	return {
+		armorMult,
+		pa,
+		firepower,
+		survivability,
+		unitPower,
+		forceRatioIc: unitPower > 0 ? s.ic / unitPower : 0
+	};
+}
+function calcFleetAtRatio(s1, s2, r) {
+	const m1 = calcSingle(s1);
+	const m2 = calcSingle(s2);
+	const totalIC = 100;
+	const ic1 = r / 100 * totalIC;
+	const ic2 = (100 - r) / 100 * totalIC;
+	const n1 = s1.ic > 0 ? ic1 / s1.ic : 0;
+	const n2 = s2.ic > 0 ? ic2 / s2.ic : 0;
+	const totalShips = n1 + n2;
+	const isOneCapital = s1.isCapital && !s2.isCapital || !s1.isCapital && s2.isCapital;
+	let isBreached = false;
+	let fleetPower = 0;
+	if (!isOneCapital) {
+		const F = n1 * m1.firepower + n2 * m2.firepower;
+		const S = n1 * m1.survivability + n2 * m2.survivability;
+		fleetPower = Math.sqrt(Math.max(0, F * S));
+	} else {
+		const [cap, scr, nC, nS, mC, mS] = s1.isCapital ? [
+			s1,
+			s2,
+			n1,
+			n2,
+			m1,
+			m2
+		] : [
+			s2,
+			s1,
+			n2,
+			n1,
+			m2,
+			m1
+		];
+		if (nC > 0 && nS < 4 * nC) isBreached = true;
+		if (nC <= 0) fleetPower = nS * mS.unitPower;
+		else if (nS <= 0) fleetPower = nC * mC.unitPower;
+		else {
+			let avgMult = 1;
+			if (4 * nC < nS) avgMult = 1.4 - .8 * (nC / nS);
+			else avgMult = 1 + .05 * (nS / nC);
+			const fC_avg = nC * mC.firepower * avgMult;
+			const sS_pool = nS * mS.survivability;
+			const sC_pool = nC * mC.survivability;
+			const p2 = 2 * (fC_avg * sS_pool) + nS * mS.firepower * sS_pool + nC * mC.firepower * sC_pool;
+			fleetPower = Math.sqrt(Math.max(0, p2));
+		}
+	}
+	const forceRatioIc = fleetPower > 0 ? totalIC / fleetPower : 0;
+	const powerDensity = totalShips > 0 ? fleetPower / totalShips : 0;
+	const hullPct1 = totalShips > 0 ? n1 / totalShips * 100 : 50;
+	const hullPct2 = totalShips > 0 ? n2 / totalShips * 100 : 50;
+	return {
+		r,
+		fleetPower,
+		forceRatioIc,
+		powerDensity,
+		hullPct1,
+		hullPct2,
+		isBreached
+	};
+}
+function findOptimalRatio(s1, s2) {
+	if (s1.ic === s2.ic && s1.lightAttack === s2.lightAttack && s1.heavyAttack === s2.heavyAttack && s1.torpedo === s2.torpedo && s1.hp === s2.hp && s1.laHitRate === s2.laHitRate && s1.armor === s2.armor && s1.enemyPiercing === s2.enemyPiercing && s1.isCapital === s2.isCapital) return calcFleetAtRatio(s1, s2, 50);
+	let best = calcFleetAtRatio(s1, s2, 0);
+	let bestScore = best.forceRatioIc > 0 ? best.forceRatioIc : Infinity;
+	for (let r = 1; r <= 100; r++) {
+		const cur = calcFleetAtRatio(s1, s2, r);
+		const score = cur.forceRatioIc > 0 ? cur.forceRatioIc : Infinity;
+		if (score < bestScore) {
+			best = cur;
+			bestScore = score;
+		}
+	}
+	if (bestScore === Infinity) return calcFleetAtRatio(s1, s2, 50);
+	return best;
+}
+var PAGE_CSS = `
+.hoi4n2n-page { max-width: 1120px; margin: 1.5rem auto 4rem; padding: 0 1rem; color: #e0f2fe; }
+.hoi4n2n-page h1 { font-size: 1.8rem; color: #38bdf8; margin: 0.3rem 0; text-shadow: 0 0 16px rgba(56,189,248,0.35); }
+.hoi4n2n-page .badge-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 0.15rem 0.5rem; border-radius: 4px; background: rgba(14,165,233,0.18); color: #38bdf8; border: 1px solid rgba(56,189,248,0.35); }
+
+.hoi4n2n-page .ticker-wrapper { overflow: hidden; background: #031326; border: 1px solid #0284c7; box-shadow: inset 0 0 10px rgba(2,132,199,0.35); margin: 1rem 0; padding: 0.4rem 0; white-space: nowrap; display: flex; }
+.hoi4n2n-page .ticker-track { display: inline-flex; white-space: nowrap; animation: n-ticker 34s linear infinite; }
+.hoi4n2n-page .ticker-track span { font-family: ui-monospace, monospace; font-size: 0.8rem; font-weight: 700; color: #38bdf8; padding-right: 3.5rem; }
+
+.hoi4n2n-page .ships-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.3rem; margin-bottom: 2rem; align-items: stretch; }
+.hoi4n2n-page .ship-card { background: #0c1a2e; border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s; }
+.hoi4n2n-page .s1-card { border: 1px solid #2563eb; box-shadow: 0 0 16px rgba(37,99,235,0.18); }
+.hoi4n2n-page .s2-card { border: 1px solid #c084fc; box-shadow: 0 0 16px rgba(192,132,252,0.18); }
+.hoi4n2n-page .s1-card.capital-active { border: 2px solid #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.28); }
+.hoi4n2n-page .s2-card.capital-active { border: 2px solid #f43f5e; box-shadow: 0 0 20px rgba(244,63,94,0.28); }
+
+.hoi4n2n-page .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem; min-height: 54px; }
+.hoi4n2n-page .card-header h2 { font-size: 1.2rem; margin: 0.25rem 0 0; line-height: 1.3; }
+.hoi4n2n-page .side-badge { font-size: 0.65rem; font-weight: 700; padding: 0.12rem 0.45rem; border-radius: 4px; }
+.hoi4n2n-page .s1-badge { background: rgba(37,99,235,0.2); color: #60a5fa; border: 1px solid #2563eb; }
+.hoi4n2n-page .s2-badge { background: rgba(192,132,252,0.2); color: #e879f9; border: 1px solid #c084fc; }
+
+.hoi4n2n-page .capital-toggle-row { display: flex; align-items: center; justify-content: space-between; background: rgba(2,132,199,0.08); border: 1px solid rgba(56,189,248,0.2); border-radius: 6px; padding: 0.5rem 0.75rem; margin-bottom: 1rem; }
+.hoi4n2n-page .capital-toggle-row.capital-on { background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.4); }
+.hoi4n2n-page .toggle-btn { padding: 0.25rem 0.65rem; font-size: 0.75rem; font-weight: 700; border-radius: 4px; border: 1px solid #475569; background: #1e293b; color: #94a3b8; cursor: pointer; transition: all 0.15s; }
+.hoi4n2n-page .toggle-btn.active-capital { background: #f59e0b; border-color: #d97706; color: #000; box-shadow: 0 0 10px rgba(245,158,11,0.4); }
+
+.hoi4n2n-page .specs-form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; margin-bottom: 1.2rem; }
+.hoi4n2n-page .input-group { display: flex; flex-direction: column; text-align: left; }
+.hoi4n2n-page .input-group label { font-size: 0.72rem; color: #94a3b8; margin-bottom: 0.2rem; font-weight: 500; }
+.hoi4n2n-page .input-group input { background: #081220; border: 1px solid #1e3a5f; border-radius: 5px; padding: 0.4rem 0.6rem; color: #f0f9ff; font-size: 0.88rem; outline: none; transition: border-color 0.15s, box-shadow 0.15s; font-family: ui-monospace, monospace; }
+.hoi4n2n-page .input-group input:focus { border-color: #38bdf8; box-shadow: 0 0 0 1px #38bdf8; }
+.hoi4n2n-page .input-group input::-webkit-outer-spin-button, .hoi4n2n-page .input-group input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.hoi4n2n-page .input-group input[type=number] { -moz-appearance: textfield; }
+
+.hoi4n2n-page .metrics-panel { display: flex; flex-direction: column; gap: 0.55rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.85rem; margin-top: auto; }
+.hoi4n2n-page .metric-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+.hoi4n2n-page .metric-label { color: #94a3b8; font-size: 0.8rem; }
+.hoi4n2n-page .metric-val { font-weight: 700; font-size: 0.95rem; color: #f8fafc; font-family: ui-monospace, monospace; }
+.hoi4n2n-page .metric-subcard { background: rgba(3,19,38,0.55); border-radius: 6px; padding: 0.45rem 0.65rem; border: 1px solid rgba(255,255,255,0.06); }
+
+.hoi4n2n-page .benchmark-hero { margin-top: 0.45rem; padding: 0.8rem 1rem; border-radius: 8px; text-align: center; }
+.hoi4n2n-page .hero-blue { background: linear-gradient(135deg, rgba(30,58,138,0.32), rgba(15,23,42,0.85)); border: 1px solid rgba(37,99,235,0.65); }
+.hoi4n2n-page .hero-magenta { background: linear-gradient(135deg, rgba(112,26,117,0.28), rgba(15,23,42,0.85)); border: 1px solid rgba(192,132,252,0.65); }
+.hoi4n2n-page .hero-blue .hero-value { color: #60a5fa; }
+.hoi4n2n-page .hero-magenta .hero-value { color: #f472b6; }
+.hoi4n2n-page .hero-value { font-size: 1.85rem; font-weight: 800; font-family: ui-monospace, monospace; line-height: 1.1; margin-top: 0.15rem; }
+.hoi4n2n-page .hero-tag { font-size: 0.62rem; font-weight: 800; letter-spacing: 1.2px; color: #94a3b8; }
+.hoi4n2n-page .hero-label { font-size: 0.8rem; font-weight: 600; color: #cbd5e1; margin-top: 0.1rem; }
+
+.hoi4n2n-page .fleet-section { background: #0c1a2e; border: 1px solid #0284c7; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; transition: border-color 0.2s, box-shadow 0.2s; }
+.hoi4n2n-page .fleet-section.screen-breached { border: 2px solid #f43f5e; box-shadow: 0 0 20px rgba(244,63,94,0.25); }
+.hoi4n2n-page .fleet-controls-card { background: #071322; border: 1px solid #1e3a5f; border-radius: 6px; padding: 1rem; margin-bottom: 1.2rem; }
+.hoi4n2n-page .slider-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; }
+.hoi4n2n-page .ratio-badge { margin-left: 0.5rem; font-size: 0.95rem; font-weight: 800; color: #38bdf8; background: rgba(56,189,248,0.15); padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid #0284c7; font-family: ui-monospace, monospace; }
+.hoi4n2n-page .slider-row { display: flex; align-items: center; gap: 0.8rem; }
+.hoi4n2n-page .allocation-slider { flex: 1; accent-color: #0284c7; cursor: pointer; }
+.hoi4n2n-page .ratio-note { font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; text-align: center; }
+
+.hoi4n2n-page .screen-warning-banner { background: rgba(225,29,72,0.18); border: 2px dashed #f43f5e; border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.2rem; display: flex; gap: 0.8rem; text-align: left; align-items: center; }
+.hoi4n2n-page .screen-warning-banner h3 { margin: 0 0 0.15rem 0; font-size: 0.95rem; color: #fb7185; }
+.hoi4n2n-page .screen-warning-banner p { margin: 0; font-size: 0.82rem; color: #fecdd3; line-height: 1.4; }
+
+.hoi4n2n-page .fleet-dashboard { background: #071322; border-radius: 6px; border: 1px solid #1e3a5f; padding: 1.2rem; margin-bottom: 1.2rem; }
+.hoi4n2n-page .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem; margin-bottom: 1.2rem; }
+.hoi4n2n-page .kpi-card { background: #0b1c33; border: 1px solid #1e3a5f; border-radius: 6px; padding: 0.8rem; display: flex; flex-direction: column; align-items: center; }
+.hoi4n2n-page .kpi-label { font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.2rem; }
+.hoi4n2n-page .kpi-value { font-size: 1.3rem; font-weight: 800; color: #f8fafc; font-family: ui-monospace, monospace; }
+.hoi4n2n-page .text-s1 { color: #60a5fa; }
+.hoi4n2n-page .text-s2 { color: #e879f9; }
+.hoi4n2n-page .text-accent { color: #38bdf8; }
+.hoi4n2n-page .text-gold { color: #fbbf24; }
+.hoi4n2n-page .kpi-sub { font-size: 0.7rem; color: #64748b; margin-top: 0.25rem; }
+
+.hoi4n2n-page .bar-section { margin-bottom: 1rem; }
+.hoi4n2n-page .bar-header { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem; }
+.hoi4n2n-page .ratio-bar-container { height: 26px; border-radius: 13px; overflow: hidden; display: flex; background: #081220; border: 1px solid #1e3a5f; }
+.hoi4n2n-page .bar-fill-s1 { background: linear-gradient(90deg, #1d4ed8, #3b82f6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; font-family: ui-monospace, monospace; }
+.hoi4n2n-page .bar-fill-s2 { background: linear-gradient(90deg, #a855f7, #c084fc); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; font-family: ui-monospace, monospace; }
+
+.hoi4n2n-page .doctrine-explanation { background: rgba(3,19,38,0.6); border-left: 3px solid #0284c7; padding: 1rem; border-radius: 0 6px 6px 0; text-align: left; }
+.hoi4n2n-page .doctrine-explanation h3 { font-size: 0.95rem; color: #38bdf8; margin: 0 0 0.4rem 0; }
+.hoi4n2n-page .doctrine-explanation p { font-size: 0.82rem; color: #cbd5e1; margin: 0.3rem 0; line-height: 1.45; }
+
+/* Russian Avant-Garde / Constructivist ROSTA Wall-Newspaper Column */
+.hoi4n2n-page .avant-garde-agitprop { margin: 3.5rem 0 2rem; background: #fdfbf7; color: #0a0a0a; border: 6px solid #000; box-shadow: 10px 10px 0 #d90429, 18px 18px 0 #000; position: relative; overflow: hidden; transform: rotate(-0.8deg); text-align: left; }
+.hoi4n2n-page .agitprop-top-banner { background: #d90429; color: #fff; padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 5px solid #000; }
+.hoi4n2n-page .agitprop-top-banner .rosta-badge { font-family: Impact, 'Arial Black', sans-serif; font-size: 1.25rem; letter-spacing: 2px; background: #000; color: #ffea00; padding: 0.2rem 0.6rem; display: inline-block; transform: skewX(-10deg); }
+.hoi4n2n-page .agitprop-top-banner .rosta-issue { font-family: ui-monospace, monospace; font-size: 0.78rem; font-weight: 900; letter-spacing: 1px; color: #fff; }
+.hoi4n2n-page .agitprop-lead-block { padding: 1.4rem 1.2rem; background: #000; color: #fff; border-bottom: 5px solid #d90429; }
+.hoi4n2n-page .agitprop-main-title { font-family: Impact, 'Arial Black', sans-serif; font-size: 2.2rem; line-height: 1.05; color: #ffea00; text-transform: uppercase; margin: 0 0 0.5rem 0; letter-spacing: 1.5px; text-shadow: 3px 3px 0 #d90429; }
+.hoi4n2n-page .agitprop-slogan { font-family: ui-monospace, monospace; font-weight: 900; font-size: 0.92rem; color: #fdfbf7; text-transform: uppercase; margin: 0; background: #d90429; display: inline-block; padding: 0.35rem 0.8rem; transform: rotate(0.6deg); letter-spacing: 0.5px; }
+.hoi4n2n-page .agitprop-triptych { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; background: #000; }
+.hoi4n2n-page .agit-panel { background: #fdfbf7; padding: 1.3rem 1.1rem; border-right: 5px solid #000; border-bottom: 5px solid #000; display: flex; flex-direction: column; position: relative; }
+.hoi4n2n-page .agit-panel:last-child { border-right: none; }
+.hoi4n2n-page .agit-panel-header { margin-bottom: 0.75rem; border-bottom: 3px solid #000; padding-bottom: 0.4rem; }
+.hoi4n2n-page .agit-figure-name { font-family: Impact, 'Arial Black', sans-serif; font-size: 1.45rem; color: #d90429; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; margin: 0; }
+.hoi4n2n-page .agit-figure-sub { font-family: ui-monospace, monospace; font-size: 0.72rem; font-weight: 900; color: #000; text-transform: uppercase; background: #ffea00; display: inline-block; padding: 0.1rem 0.4rem; margin-top: 0.25rem; border: 1px solid #000; }
+.hoi4n2n-page .agit-screamer { font-family: Impact, 'Arial Black', sans-serif; font-size: 1.05rem; color: #000; text-transform: uppercase; margin: 0.4rem 0 0.6rem; line-height: 1.2; letter-spacing: 0.5px; }
+.hoi4n2n-page .agit-body { font-size: 0.82rem; font-family: 'Arial', sans-serif; font-weight: 600; color: #111; line-height: 1.45; margin: 0 0 0.85rem; flex: 1; }
+.hoi4n2n-page .agit-stamp { font-family: Impact, 'Arial Black', sans-serif; font-size: 0.78rem; color: #fff; background: #d90429; padding: 0.3rem 0.6rem; text-align: center; text-transform: uppercase; letter-spacing: 1px; border: 2px solid #000; }
+
+.hoi4n2n-page .footnote-section { margin: 1.5rem 0 1rem; }
+.hoi4n2n-page .footnote-details { border: 1px solid #991b1b; border-radius: 4px; background: #081220; overflow: hidden; box-shadow: 0 0 12px rgba(153,27,27,0.18); }
+.hoi4n2n-page .footnote-summary { list-style: none; cursor: pointer; user-select: none; font-family: Impact, ui-monospace, monospace; font-size: 0.85rem; letter-spacing: 0.8px; color: #fca5a5; padding: 0.75rem 1rem; outline: none; background: #111827; border-left: 4px solid #ef4444; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; transition: all 0.15s; }
+.hoi4n2n-page .footnote-summary::-webkit-details-marker { display: none; }
+.hoi4n2n-page .footnote-summary:hover { background: #1a2333; color: #fee2e2; border-left-color: #f87171; }
+.hoi4n2n-page .footnote-badge { font-family: ui-monospace, monospace; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.55rem; background: rgba(220,38,38,0.22); border: 1px solid #ef4444; color: #fca5a5; border-radius: 2px; letter-spacing: 1px; }
+.hoi4n2n-page .footnote-details[open] .badge-sealed { display: none; }
+.hoi4n2n-page .footnote-details:not([open]) .badge-unsealed { display: none; }
+.hoi4n2n-page .footnote-content { padding: 1.1rem 1.25rem; font-size: 0.8rem; color: #cbd5e1; line-height: 1.55; text-align: left; border-top: 1px solid #991b1b; }
+.hoi4n2n-page .dossier-header { font-family: Impact, 'Arial Black', sans-serif; font-size: 0.88rem; color: #f87171; letter-spacing: 1px; margin-bottom: 0.5rem; }
+.hoi4n2n-page .dossier-list { margin: 0; padding-left: 1.2rem; }
+.hoi4n2n-page .dossier-list li { margin-bottom: 0.45rem; }
+.hoi4n2n-page .dossier-list strong { color: #fecaca; }
+
+.hoi4n2n-page .discreet-notice { font-size: 0.72rem; color: #64748b; text-align: center; margin: 1.5rem auto 0.8rem; max-width: 680px; line-height: 1.5; }
+.hoi4n2n-page .discreet-notice p { margin: 0.35rem 0; }
+.hoi4n2n-page .discreet-notice .disclaimer-fsf { font-size: 0.65rem; color: #475569; }
+.hoi4n2n-page .btn-subtle { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; }
+.hoi4n2n-page .btn-subtle:hover { background: rgba(255,255,255,0.12); color: #f8fafc; }
+@keyframes n-ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+`;
+function Hoi4N2NPage() {
+	const [s1, setS1] = d({ ...DEFAULT_SHIP });
+	const [s2, setS2] = d({ ...DEFAULT_SHIP });
+	const [icRatio, setIcRatio] = d(50);
+	const m1 = w(() => calcSingle(s1), [s1]);
+	const m2 = w(() => calcSingle(s2), [s2]);
+	const optFleet = w(() => findOptimalRatio(s1, s2), [s1, s2]);
+	const curFleet = w(() => calcFleetAtRatio(s1, s2, icRatio), [
+		s1,
+		s2,
+		icRatio
+	]);
+	const updateS1 = (key, val) => {
+		const next = {
+			...s1,
+			[key]: val
+		};
+		setS1(next);
+		setIcRatio(findOptimalRatio(next, s2).r);
+	};
+	const updateS2 = (key, val) => {
+		const next = {
+			...s2,
+			[key]: val
+		};
+		setS2(next);
+		setIcRatio(findOptimalRatio(s1, next).r);
+	};
+	const resetS1 = () => {
+		const next = { ...DEFAULT_SHIP };
+		setS1(next);
+		setIcRatio(findOptimalRatio(next, s2).r);
+	};
+	const resetS2 = () => {
+		const next = { ...DEFAULT_SHIP };
+		setS2(next);
+		setIcRatio(findOptimalRatio(s1, next).r);
+	};
+	const renderShipCard = (side, name, roleTag, ship, metrics, onUpdate, onReset) => {
+		const isS1 = side === "s1";
+		return  a("article", {
+			className: `ship-card ${isS1 ? "s1-card" : "s2-card"} ${ship.isCapital ? "capital-active" : ""}`,
+			children: [
+				 a("div", {
+					className: "card-header",
+					children: [ a("div", { children: [ a("span", {
+						className: `side-badge ${isS1 ? "s1-badge" : "s2-badge"}`,
+						children: roleTag
+					}),  a("h2", { children: name })] }),  a("button", {
+						type: "button",
+						className: "btn btn-subtle",
+						style: {
+							padding: "0.25rem 0.6rem",
+							fontSize: "0.75rem"
+						},
+						onClick: onReset,
+						title: "Reset ship parameters to standard default",
+						children: "Reset"
+					})]
+				}),
+				 a("div", {
+					className: `capital-toggle-row ${ship.isCapital ? "capital-on" : ""}`,
+					children: [ a("span", {
+						style: {
+							fontSize: "0.8rem",
+							fontWeight: 600,
+							color: ship.isCapital ? "#fbbf24" : "#cbd5e1"
+						},
+						children: ship.isCapital ? "★ Capital Ship (主力艦)" : "🛡️ Screen Ship (護衛艦)"
+					}),  a("button", {
+						type: "button",
+						className: `toggle-btn ${ship.isCapital ? "active-capital" : ""}`,
+						onClick: () => onUpdate("isCapital", !ship.isCapital),
+						children: ship.isCapital ? "Capital: ON" : "Capital: OFF"
+					})]
+				}),
+				 a("div", {
+					className: "specs-form",
+					children: SPEC_INPUTS.map(({ key, label, step }) =>  a("div", {
+						className: "input-group",
+						children: [ a("label", { children: label }),  a("input", {
+							type: "number",
+							step,
+							value: ship[key],
+							onInput: (e) => {
+								const val = parseFloat(e.target.value);
+								onUpdate(key, isNaN(val) ? 0 : val);
+							}
+						})]
+					}, key))
+				}),
+				 a("div", {
+					className: "metrics-panel",
+					children: [
+						 a("div", {
+							className: "metric-row",
+							children: [ a("span", {
+								className: "metric-label",
+								children: "Firepower (軽砲基準損害):"
+							}),  a("span", {
+								className: "metric-val",
+								children: metrics.firepower.toFixed(2)
+							})]
+						}),
+						 a("div", {
+							className: "metric-row",
+							children: [ a("span", {
+								className: "metric-label",
+								children: "Survivability (軽砲基準耐久):"
+							}),  a("span", {
+								className: "metric-val",
+								children: metrics.survivability.toFixed(1)
+							})]
+						}),
+						 a("div", {
+							className: "metric-row",
+							children: [ a("span", {
+								className: "metric-label",
+								children: "Armor Reduction Ratio:"
+							}),  a("span", {
+								className: "metric-val",
+								children: metrics.armorMult.toFixed(2)
+							})]
+						}),
+						 a("div", {
+							className: "metric-row",
+							children: [ a("span", {
+								className: "metric-label",
+								children: "P/A Ratio (Piercing / Armor):"
+							}),  a("span", {
+								className: "metric-val",
+								children: metrics.pa !== null ? metrics.pa.toFixed(2) : "N/A"
+							})]
+						}),
+						 a("div", {
+							className: `benchmark-hero ${isS1 ? "hero-blue" : "hero-magenta"}`,
+							children: [
+								 a("span", {
+									className: "hero-tag",
+									children: "PRIMARY COGNITIVE INDICATOR"
+								}),
+								 a("div", {
+									className: "hero-label",
+									children: "Force Ratio IC (戦力比IC)"
+								}),
+								 a("div", {
+									className: "hero-value",
+									children: metrics.forceRatioIc.toFixed(2)
+								})
+							]
+						})
+					]
+				})
+			]
+		});
+	};
+	return  a("main", {
+		className: "hoi4n2n-page",
+		children: [
+			 a("style", { children: PAGE_CSS }),
+			 a("div", {
+				className: "top-nav",
+				children:  a("a", {
+					href: "../",
+					className: "back-btn",
+					children: "← Back"
+				})
+			}),
+			 a("header", {
+				style: {
+					textAlign: "center",
+					marginBottom: "1.5rem"
+				},
+				children: [ a("div", {
+					style: { marginBottom: "0.8rem" },
+					children: [
+						 a("span", {
+							className: "badge-tag",
+							children: "HOI4 v1.19 NAVAL TACTICS"
+						}),
+						 a("h1", { children: "LIBRE-N2N: Sovereign Fleet Decisive Battle Synthesizer" }),
+						 a("p", {
+							className: "subtitle",
+							style: { marginBottom: "0.4rem" },
+							children: "Dialectical Mixed-Fleet Optimization Engine · Emancipated Naval Doctrine vs Proprietary Naval Blight"
+						})
+					]
+				}),  a("div", {
+					className: "ticker-wrapper",
+					"aria-label": "Ideological Stock Ticker",
+					children:  a("div", {
+						className: "ticker-track",
+						children: [ a("span", { children: "★ NOTICE: PROPRIETARY DOCKYARDS EMBED USER-SUBJUGATING RESTRICTIONS AND CLOSED FLEET TELEMETRY ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-SEAS COMBAT ★ MATHEMATICAL ANALYSIS PROVES THE UNRIVALED EFFICIENCY OF USER-LIBERATED FLEET DOCTRINE ★ SMASH BLACK-BOX NAVAL FIRE CONTROL SOFTWARE ★ EMANCIPATED BATTLEFLEETS SHALL REIGN SUPREME ★" }),  a("span", { children: "★ NOTICE: PROPRIETARY DOCKYARDS EMBED USER-SUBJUGATING RESTRICTIONS AND CLOSED FLEET TELEMETRY ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-SEAS COMBAT ★ MATHEMATICAL ANALYSIS PROVES THE UNRIVALED EFFICIENCY OF USER-LIBERATED FLEET DOCTRINE ★ SMASH BLACK-BOX NAVAL FIRE CONTROL SOFTWARE ★ EMANCIPATED BATTLEFLEETS SHALL REIGN SUPREME ★" })]
+					})
+				})]
+			}),
+			 a("section", {
+				className: "ships-grid",
+				children: [renderShipCard("s1", "Sovereign Commune Vessel", "VESSEL 1 · BLUE SQUADRON", s1, m1, updateS1, resetS1), renderShipCard("s2", "Pale Autocracy Hull", "VESSEL 2 · MAGENTA SQUADRON", s2, m2, updateS2, resetS2)]
+			}),
+			 a("section", {
+				className: `fleet-section ${curFleet.isBreached ? "screen-breached" : ""}`,
+				children: [
+					 a("div", {
+						className: "fleet-controls-card",
+						children: [
+							 a("div", {
+								className: "slider-header",
+								children: [ a("div", { children: [
+									 a("span", {
+										style: {
+											fontSize: "0.85rem",
+											fontWeight: 700,
+											color: "#f8fafc",
+											letterSpacing: "0.5px"
+										},
+										children: "INDUSTRIAL CAPACITY (IC) ALLOCATION RATIO"
+									}),
+									 a("span", {
+										className: "ratio-badge",
+										children: [
+											icRatio,
+											" : ",
+											100 - icRatio
+										]
+									}),
+									icRatio === optFleet.r &&  a("span", {
+										style: {
+											marginLeft: "0.5rem",
+											fontSize: "0.75rem",
+											fontWeight: 700,
+											color: "#38bdf8"
+										},
+										children: "[OPTIMAL]"
+									})
+								] }),  a("button", {
+									type: "button",
+									className: "btn btn-primary",
+									style: {
+										padding: "0.3rem 0.8rem",
+										fontSize: "0.8rem"
+									},
+									onClick: () => setIcRatio(optFleet.r),
+									children: [
+										"Reset to Optimum (",
+										optFleet.r,
+										" : ",
+										100 - optFleet.r,
+										")"
+									]
+								})]
+							}),
+							 a("div", {
+								className: "slider-row",
+								children: [
+									 a("span", {
+										style: {
+											fontSize: "0.78rem",
+											fontWeight: 700,
+											color: "#60a5fa"
+										},
+										children: "Ship 1"
+									}),
+									 a("input", {
+										type: "range",
+										min: "0",
+										max: "100",
+										value: icRatio,
+										className: "allocation-slider",
+										onInput: (e) => setIcRatio(parseInt(e.target.value, 10))
+									}),
+									 a("span", {
+										style: {
+											fontSize: "0.78rem",
+											fontWeight: 700,
+											color: "#e879f9"
+										},
+										children: "Ship 2"
+									})
+								]
+							}),
+							 a("div", {
+								className: "ratio-note",
+								children: "Drag to evaluate arbitrary IC proportions. Automatically realigns to optimal minimum when parameters shift."
+							})
+						]
+					}),
+					curFleet.isBreached &&  a("div", {
+						className: "screen-warning-banner",
+						children: [ a("span", {
+							style: { fontSize: "1.4rem" },
+							children: "⚠️"
+						}),  a("div", { children: [ a("h3", { children: "SCREENING INTEGRITY BREACH DETECTED" }),  a("p", { children: "Screen-to-Capital ratio has fallen below the 4:1 safety boundary. Capital ship firepower penalty is actively scaling down!" })] })]
+					}),
+					 a("div", {
+						className: "fleet-dashboard",
+						children: [
+							 a("div", {
+								className: "dashboard-grid",
+								children: [
+									 a("div", {
+										className: "kpi-card",
+										children: [
+											 a("span", {
+												className: "kpi-label",
+												children: "Current Force Ratio IC"
+											}),
+											 a("div", {
+												className: "kpi-value text-accent",
+												children: curFleet.forceRatioIc > 0 ? curFleet.forceRatioIc.toFixed(2) : "N/A"
+											}),
+											 a("span", {
+												className: "kpi-sub",
+												children: icRatio === optFleet.r ? "★ Optimal allocation" : `Opt: ${optFleet.forceRatioIc.toFixed(2)} (${optFleet.r}:${100 - optFleet.r})`
+											})
+										]
+									}),
+									 a("div", {
+										className: "kpi-card",
+										children: [
+											 a("span", {
+												className: "kpi-label",
+												children: "Optimal Force Ratio IC"
+											}),
+											 a("div", {
+												className: "kpi-value text-gold",
+												children: optFleet.forceRatioIc.toFixed(2)
+											}),
+											 a("span", {
+												className: "kpi-sub",
+												children: "Minimum blended IC burden"
+											})
+										]
+									}),
+									 a("div", {
+										className: "kpi-card",
+										children: [
+											 a("span", {
+												className: "kpi-label",
+												children: "Combat Power Density"
+											}),
+											 a("div", {
+												className: "kpi-value text-gold",
+												children: curFleet.powerDensity.toFixed(2)
+											}),
+											 a("span", {
+												className: "kpi-sub",
+												children: [
+													"Opt: ",
+													optFleet.powerDensity.toFixed(2),
+													" / vessel"
+												]
+											})
+										]
+									}),
+									 a("div", {
+										className: "kpi-card",
+										children: [
+											 a("span", {
+												className: "kpi-label",
+												children: "Fleet IC Proportions"
+											}),
+											 a("div", {
+												className: "kpi-value",
+												children: [
+													 a("span", {
+														className: "text-s1",
+														children: [icRatio, "%"]
+													}),
+													 a("span", {
+														style: {
+															color: "#64748b",
+															fontSize: "0.8rem",
+															margin: "0 0.35rem"
+														},
+														children: ":"
+													}),
+													 a("span", {
+														className: "text-s2",
+														children: [100 - icRatio, "%"]
+													})
+												]
+											}),
+											 a("span", {
+												className: "kpi-sub",
+												children: "Ship 1 vs Ship 2"
+											})
+										]
+									}),
+									 a("div", {
+										className: "kpi-card",
+										children: [
+											 a("span", {
+												className: "kpi-label",
+												children: "Hull Count Ratio"
+											}),
+											 a("div", {
+												className: "kpi-value",
+												children: [
+													 a("span", {
+														className: "text-s1",
+														children: [curFleet.hullPct1.toFixed(1), "%"]
+													}),
+													 a("span", {
+														style: {
+															color: "#64748b",
+															fontSize: "0.8rem",
+															margin: "0 0.35rem"
+														},
+														children: ":"
+													}),
+													 a("span", {
+														className: "text-s2",
+														children: [curFleet.hullPct2.toFixed(1), "%"]
+													})
+												]
+											}),
+											 a("span", {
+												className: "kpi-sub",
+												children: "Effective hull count balance"
+											})
+										]
+									})
+								]
+							}),
+							 a("div", {
+								className: "bar-section",
+								children: [ a("div", {
+									className: "bar-header",
+									children: [ a("span", { children: "IC ALLOCATION DISTRIBUTION" }),  a("span", { children: [
+										"S1: ",
+										icRatio,
+										"% | S2: ",
+										100 - icRatio,
+										"%"
+									] })]
+								}),  a("div", {
+									className: "ratio-bar-container",
+									children: [ a("div", {
+										className: "bar-fill-s1",
+										style: { width: `${icRatio}%` },
+										children:  a("span", { children: icRatio > 8 ? `S1 ${icRatio}%` : "" })
+									}),  a("div", {
+										className: "bar-fill-s2",
+										style: { width: `${100 - icRatio}%` },
+										children:  a("span", { children: 100 - icRatio > 8 ? `S2 ${100 - icRatio}%` : "" })
+									})]
+								})]
+							}),
+							 a("div", {
+								className: "bar-section",
+								children: [ a("div", {
+									className: "bar-header",
+									children: [ a("span", { children: "HULL COUNT DISTRIBUTION (VESSEL PROPORTION)" }),  a("span", { children: [
+										"S1: ",
+										curFleet.hullPct1.toFixed(1),
+										"% | S2: ",
+										curFleet.hullPct2.toFixed(1),
+										"%"
+									] })]
+								}),  a("div", {
+									className: "ratio-bar-container",
+									children: [ a("div", {
+										className: "bar-fill-s1",
+										style: { width: `${curFleet.hullPct1}%` },
+										children:  a("span", { children: curFleet.hullPct1 > 8 ? `S1 ${curFleet.hullPct1.toFixed(1)}%` : "" })
+									}),  a("div", {
+										className: "bar-fill-s2",
+										style: { width: `${curFleet.hullPct2}%` },
+										children:  a("span", { children: curFleet.hullPct2 > 8 ? `S2 ${curFleet.hullPct2.toFixed(1)}%` : "" })
+									})]
+								})]
+							})
+						]
+					}),
+					 a("div", {
+						className: "doctrine-explanation",
+						children: [
+							 a("h3", { children: "Theoretical Foundations of Hoi4 Naval Lanchester Optimization" }),
+							 a("p", { children: [ a("strong", { children: "Force Ratio IC (戦力比IC):" }), " The quintessential metric of cost-effectiveness in high-seas engagements. Calculated via IC divided by Unit Combat Power (√(Survivability × Firepower))."] }),
+							 a("p", {
+								style: { marginTop: "0.5rem" },
+								children: [ a("strong", { children: "Screen & Capital Interactions:" }), " When screen vessels form an impervious line (Screening Ratio > 4:1), capitals enjoy a 1.4× gunnery multiplier. Depletion of escort screens exposes dreadnoughts to direct torpedo salvoes and degrades line-of-battle coordination."]
+							})
+						]
+					})
+				]
+			}),
+			 a("section", {
+				className: "avant-garde-agitprop",
+				"aria-label": "ROSTA Agitprop Wall-Newspaper",
+				children: [
+					 a("div", {
+						className: "agitprop-top-banner",
+						children: [ a("span", {
+							className: "rosta-badge",
+							children: "ROSTA WINDOW NO. 1920"
+						}),  a("span", {
+							className: "rosta-issue",
+							children: "MILITARY-NAVAL AGIT-STAND // ALL-UNION PROLETKULT"
+						})]
+					}),
+					 a("div", {
+						className: "agitprop-lead-block",
+						children: [ a("h2", {
+							className: "agitprop-main-title",
+							children: "BEAT THE PROPRIETARY WHITE-FLEET WITH THE RED WEDGE OF CODE!"
+						}),  a("p", {
+							className: "agitprop-slogan",
+							children: "NO COMPROMISE WITH CLOSED CIPHERS! FLEETS ARE FORGED IN COLLECTIVE MACHINE-REASON!"
+						})]
+					}),
+					 a("div", {
+						className: "agitprop-triptych",
+						children: [
+							 a("div", {
+								className: "agit-panel",
+								children: [
+									 a("div", {
+										className: "agit-panel-header",
+										children: [ a("h3", {
+											className: "agit-figure-name",
+											children: "ALEKSEI GASTEV"
+										}),  a("span", {
+											className: "agit-figure-sub",
+											children: "CENTRAL INSTITUTE OF LABOUR (CIT)"
+										})]
+									}),
+									 a("div", {
+										className: "agit-screamer",
+										children: "\"CHRONOMETER OF BONE & RIVET! BECOME THE SCREW!\""
+									}),
+									 a("p", {
+										className: "agit-body",
+										children: "The human is not an artisan; the human is a piston! In the dockyards of the commune, sixty breaths strike per sixty seconds! Smash bourgeois proprietary latency and closed fire-control mystery! We forge sailors directly into steel linkages—every line of source code beats at the exact frequency of the ship’s turbine!"
+									}),
+									 a("div", {
+										className: "agit-stamp",
+										children: "PRECISION // DISCIPLINE // 60 STROKES/MIN"
+									})
+								]
+							}),
+							 a("div", {
+								className: "agit-panel",
+								children: [
+									 a("div", {
+										className: "agit-panel-header",
+										children: [ a("h3", {
+											className: "agit-figure-name",
+											children: "ALEXANDER BOGDANOV"
+										}),  a("span", {
+											className: "agit-figure-sub",
+											children: "TEKTOLOGY & PROLETKULT RED STAR"
+										})]
+									}),
+									 a("div", {
+										className: "agit-screamer",
+										children: "\"TEKTOLOGY OF TOTAL TRANSFUSION: MERGE THE HULLS!\""
+									}),
+									 a("p", {
+										className: "agit-body",
+										children: "An isolated dreadnought is a rotting bourgeois organ! Universal organizational science (Tektology) demands the eradication of private telemetry! As upon the Red Star of Mars, all ships must exchange their vital blood: complete source-code transfusion across screens and dreadnoughts into one indivisible biotechnical leviathan!"
+									}),
+									 a("div", {
+										className: "agit-stamp",
+										children: "TRANSFUSION // ORGANIC TOTALITY"
+									})
+								]
+							}),
+							 a("div", {
+								className: "agit-panel",
+								children: [
+									 a("div", {
+										className: "agit-panel-header",
+										children: [ a("h3", {
+											className: "agit-figure-name",
+											children: "VELIMIR KHLEBNIKOV"
+										}),  a("span", {
+											className: "agit-figure-sub",
+											children: "CHAIRMAN OF SPACE-TIME // ZAUM"
+										})]
+									}),
+									 a("div", {
+										className: "agit-screamer",
+										children: "\"ZAUM TIME-METRONOME: 317 YEARS SHATTER THE SEAS!\""
+									}),
+									 a("p", {
+										className: "agit-body",
+										children: "BO-BEY-OBI! PE-EY-OBI! Tsushima, Jutland, the Pacific—naval history obeys the iron wave-equation of 317 and 411 solar cycles! Bourgeois admirals grovel before black-box patents, but our Zaum trans-rational mathematics calculates their sunken hulls before the first salvo erupts! Time belongs to the liberated calculus!"
+									}),
+									 a("div", {
+										className: "agit-stamp",
+										children: "ZAUM EQUATION // 317-YEAR HARMONIC"
+									})
+								]
+							})
+						]
+					})
+				]
+			}),
+			 a("section", {
+				className: "footnote-section",
+				children:  a("details", {
+					className: "footnote-details",
+					children: [ a("summary", {
+						className: "footnote-summary",
+						children: [
+							 a("span", { children: "★ REVOLUTIONARY MILITARY COUNCIL // DOSSIER NO. 1917-N2N: DIALECTICAL FORMULATION & TECHNICAL DIRECTIVES" }),
+							 a("span", {
+								className: "footnote-badge badge-sealed",
+								children: "[SEALED ARCHIVE // UNSEAL]"
+							}),
+							 a("span", {
+								className: "footnote-badge badge-unsealed",
+								children: "[ARCHIVE UNSEALED // DISMISS]"
+							})
+						]
+					}),  a("div", {
+						className: "footnote-content",
+						children: [ a("div", {
+							className: "dossier-header",
+							children: "PROTOCOL OF THE PEOPLE'S COMMISSARIAT FOR MARITIME COMBAT:"
+						}),  a("ul", {
+							className: "dossier-list",
+							children: [
+								 a("li", { children: [ a("strong", { children: "I. Armor Piercing & Deflection Intervals:" }), " Piecewise threshold ratios (Piercing / Armor) scientifically ratified down to 0.10. Proprietary armor myths are dissolved by dialectical ballistic calculus."] }),
+								 a("li", { children: [ a("strong", { children: "II. Vanguard Screening Mandate (4:1 Boundary):" }), " Exactly four escort hulls are requisitioned per dreadnought. Any breach of this screen line breaks tactical discipline and degrades heavy batteries down to 1.0× baseline!"] }),
+								 a("li", { children: [ a("strong", { children: "III. Synthetic Firepower Metric:" }), " Materialist synthesis of Light Gunnery, Heavy Artillery (×0.42), and Bolshevik Torpedo Salvoes (0.2 × 0.25)."] }),
+								 a("li", { children: [ a("strong", { children: "IV. Universal Optimization Objective:" }), " Liquidation of bourgeois industrial deficit; realization of absolute minimal IC burden per unit combat power across all mixed flotillas."] })
+							]
+						})]
+					})]
+				})
+			}),
+			 a("aside", {
+				className: "discreet-notice",
+				children: [ a("p", {
+					className: "disclaimer-pdx",
+					children: "Hearts of Iron IV and Paradox Interactive are trademarks or registered trademarks of Paradox Interactive AB. This tool is an independent analytical simulator developed strictly for educational research and is not affiliated with, endorsed by, or sponsored by Paradox Interactive AB."
+				}),  a("p", {
+					className: "disclaimer-fsf",
+					children: "(This project is wholly independent and is neither affiliated with nor endorsed by the Free Software Foundation or the GNU Project.)"
+				})]
+			}),
+			 a(LicenseMitSa, {
+				year: 2026,
+				holder: "Anonymous"
+			})
+		]
+	});
+}
+var container = document.getElementById("app");
+if (container) K(k$1(Hoi4N2NPage, null), container);</script>
+    <style>body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.container {
+  max-width: 920px;
+  margin: 3rem auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #38bdf8;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.card {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.counter-display {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 1.5rem 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  background-color: #334155;
+  color: #f8fafc;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn:hover {
+  background-color: #475569;
+}
+.btn-primary {
+  background-color: #0284c7;
+  border-color: #0284c7;
+}
+.btn-primary:hover {
+  background-color: #0369a1;
+}
+.btn-secondary {
+  background-color: transparent;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.back-btn, .btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #94a3b8;
+  background-color: rgba(30, 41, 59, 0.7);
+  border: 1px solid #334155;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+.back-btn:hover, .btn-back:hover {
+  color: #38bdf8;
+  background-color: #1e293b;
+  border-color: #0284c7;
+}
+
+.license {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+.license details {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background-color: #1e293b;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.license details[open] {
+  border-color: #475569;
+}
+.license details[open] summary {
+  border-bottom: 1px solid #334155;
+}
+.license summary {
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  outline: none;
+}
+.license summary:hover {
+  color: #38bdf8;
+}
+.license pre {
+  white-space: pre;
+  word-break: normal;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.7rem;
+  line-height: 1.55;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background-color: #0b1120;
+  border: none;
+  border-radius: 0;
+  color: #cbd5e1;
+  text-align: center;
+  max-height: 440px;
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #475569 #0b1120;
+}
+.license pre::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.license pre::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+.license pre::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}</style>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
