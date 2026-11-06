@@ -451,25 +451,32 @@ function a(t, e, n$1, u, a, i) {
 var buildMitSa = (year, holder) => {
 	return `================================================================================
 MIT-SA LICENSE
+SPDX-License-Identifier: LicenseRef-MIT-SA
 ================================================================================
 
-The MIT License - Self-Applying Variant (MIT-SA) - v0.30-draft
+The MIT License - Self-Applying Variant (MIT-SA) - v0.31-draft
 The author disclaims copyright to this license text.
 
 Copyright (c) ${year} ${holder}
 
 Scope & License Resolution:
-Under this License, each file constitutes a single, indivisible unit of
-"the Software", governed according to the following rules:
-1. File Notice: An explicit license notice inside a file takes highest precedence.
-2. Nearest Directory: Otherwise, the LICENSE file in the file's directory,
-   or its nearest parent directory, applies.
-3. File Boundary: Integrating, compiling, embedding, or bundling any material
-   with the Software into a single unified file renders that entire file
-   indivisible and subjects it as a whole to this License.
-   As an exception, aggregating distinct files within an archive, installer,
-   container, or file system image preserves individual file boundaries, and
-   the separate files contained therein remain independent.
+1. The Software: "The Software" refers to an indivisible unit embodied in a
+   single file, regardless of whether it is source code, an intermediate
+   representation, or a compiled binary. Except as provided in Section 2, any
+   material combined or integrated with the Software into a single file shall be
+   deemed an inseparable part thereof and governed as a whole by this License.
+2. The Archive: An "Archive"—whether embodied as a compressed package, an
+   executable binary, or otherwise—is the presence of, or the opportunity to
+   obtain, a directory structure and its constituent files. Each constituent
+   file remains an independent unit governed solely by its respective license.
+   As a safe harbor, any file whose format is inherently intended for
+   archiving distinct files shall be deemed an Archive, notwithstanding
+   encryption or technical restrictions on extraction.
+3. License Resolution: The license governing each individual file shall be
+   determined by the following order of precedence:
+   (a) File Notice: An explicit license notice within the file itself.
+   (b) Directory Notice: The LICENSE file located in the file's directory,
+       or in its closest ancestor directory containing such a file.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of the Software, to deal

@@ -442,6 +442,7 @@ function a(t, e, n$1, u, a, i) {
 var buildArr = (year, holder) => {
 	return `================================================================================
 ALL RIGHTS RESERVED
+SPDX-License-Identifier: NONE
 ================================================================================
 
 © ${year} ${holder}. All rights reserved.
@@ -506,7 +507,7 @@ var CONTENT = {
 	en: {
 		kicker: "MIT-SA Commentary",
 		title: "Explanation of MIT-SA",
-		subtitle: "Basic commentary on the Self-Applying MIT License (MIT-SA): genesis in generative AI development, the concept of \"the Software\", treatment of enclosure, and distribution rules.",
+		subtitle: "Basic commentary on the Self-Applying MIT License (MIT-SA): genesis in generative AI development, the concept of \"the Software\", the Archive exception, treatment of enclosure, and distribution rules.",
 		sec1Title: "1. Basic Overview",
 		sec1Text1: "MIT-SA (SPDX identifier: MIT-SA) is a license that modernizes the traditional MIT License by introducing Share-Alike (reciprocal sharing obligations). Pragmatically, it is most clearly understood as \"an AGPL-equivalent reciprocal license operable even within non-OSS and proprietary enclosure environments.\" While preserving the commercial freedom of the MIT License, it deters feature degradation and imposes an obligation to provide runnable binaries over a network.",
 		sec1Text2: "From the perspective of intellectual property defense, the license explicitly specifies regarding the copyright of the license text itself: \"The author disclaims copyright to this license text.\" By disclaiming economic copyright in the text, it completely eliminates copyright litigation and counterclaim risks surrounding copying or distributing the license text itself. Meanwhile, moral rights were not casually waived in order to maintain consistency with the inalienability of moral rights (the principle that they cannot be legally waived) under civil law systems (such as Japan and Europe), while securing a minimal defensive shield against identity misappropriation or improper attribution claims by third parties.",
@@ -552,28 +553,39 @@ var CONTENT = {
 				desc: "The UNIX philosophy of \"everything is a file.\" Abolishing class distinctions between aristocratic source code and commoner binary, treating them equally as a single file on the filesystem."
 			}
 		],
-		sec3Note: "While it is self-evident that Robespierre founded the Republic in accordance with the UNIX philosophy, under the Software, source code, intermediate representations, executable files, images, text, and audio are treated without distinction as equivalent \"binaries.\" However, since this would hinder file compression and archiving, an exception clause is provided so that when aggregating distinct files into archives (zip/tar), containers, or installers, file boundaries are preserved and each file maintains its independence.",
-		sec4Title: "4. Reverse Engineering Clause",
-		sec4Text: "Since objective \"source code\" does not exist, the only realistic way for a recipient to make modifications is binary analysis (reverse engineering). To make this effective, MIT-SA incorporates provisions that thoroughly neutralize intellectual property protection laws against it.",
+		sec3Note: "From this perspective, it can be understood that Robespierre republicanized in accordance with the UNIX philosophy. Under \"the Software\", source code, intermediate representations, executable files, images, text, and audio are treated without distinction as equivalent \"binaries.\" However, because treating all unified files as indivisible would impede standard compression and package distribution, MIT-SA explicitly establishes the concept of the \"Archive\" as an exception to reciprocal licensing infection.",
+		sec4Title: "4. The \"Archive\" Exception and Mitigation of License Infection",
+		sec4Lead: "From both an architectural and intellectual property perspective, executable binaries and compressed archives are essentially \"pickles\"—serialized, frozen representations of state. The distinction between an executable and an archive lies merely in whether the format is intended for direct execution or for decompression; conceptually, the two are by no means mutually exclusive.",
+		sec4DefTitle: "Defining an Archive by the Objective Fact of State Reproducibility",
+		sec4DefText: "Rather than relying on fragile format classifications, MIT-SA defines an Archive strictly by the objective fact that \"the original state can be reproduced.\" To operationalize this definition, the license establishes the following three criteria and safe-harbor mechanisms:",
 		sec4Points: [
+			"Preservation of Constituent Materials: A state in which all constituent ingredients of the binary objectively exist (via raw files, Infrastructure as Code [IaC] declarations, or equivalent specifications).",
+			"Actionable Opportunity for Restoration: A genuine, actionable opportunity provided to the recipient to restore and reconstruct the original state.",
+			"Format-Based Safe Harbor: A file format whose primary, bona fide objective is to provide recipients with the opportunity to restore the original state."
+		],
+		sec4InfectionTitle: "Preserving Composite Works and Development-Friendliness",
+		sec4InfectionText: "Under conventional reciprocal licensing regimes, compiling heterogeneous works with diverse licenses into a single executable binary inevitably triggers irreconcilable license conflicts, causing licensing failure. By treating server-side executable binaries as Archives, MIT-SA circumscribes overall reciprocal infection across the entire system, ensuring practical development-friendliness aligned with modern cloud infrastructure, multi-vendor integration, and containerization.",
+		sec5Title: "5. Reverse Engineering Clause",
+		sec5Text: "Since objective \"source code\" does not exist, the only realistic way for a recipient to make modifications is binary analysis (reverse engineering). To make this effective, MIT-SA incorporates provisions that thoroughly neutralize intellectual property protection laws against it.",
+		sec5Points: [
 			"Neutralization of statutory restrictions: Complete waiver of claims under DMCA Section 1201 (anti-circumvention of technical protection measures) and equivalent statutes worldwide (such as Article 30(1)(ii) of the Japanese Copyright Act).",
 			"Covenant Not to Sue: Granting an irrevocable covenant not to sue to recipients who disassemble, decompile, decrypt, or modify the binary.",
 			"Invalidation of restrictive terms: No private contract, terms of service (TOS), or technical measure may restrict analysis and modification."
 		],
-		sec5Title: "5. Anti-Enclosure Clause and Stance on Monetization",
-		sec5Text1: "MIT-SA is not an OSS-fundamentalist license. It explicitly affirms vendors adding proprietary features to achieve commercial enclosure and build monetization models, protecting vendor sovereignty.",
-		sec5Text2: "What the license forbids is \"degrading modifications that diminish the autonomy of pre-existing features (Retrograde Degradation).\" It prohibits modifications that condition previously locally autonomous functionality upon ongoing external server authentication, telemetry, or billing infrastructure. Pure additions of new features, or complete removals of features without external dependency substitutions, are freely permitted.",
-		sec6Title: "6. Distribution Provisions and Operational Scope",
-		sec6Text1: "Learning from the AGPL's trigger of \"modification,\" which provoked endless theological disputes over what constitutes modification, MIT-SA adopts the simple fact of \"providing functionality over a network\" as its sole distribution trigger. Crucially, this disclosure obligation applies \"only while providing such functionality.\" The moment a vendor discontinues the network functionality, the obligation to make the software accessible terminates simultaneously, shielding operators from perpetual disclosure liabilities and permitting practical lifecycle and exit strategies.",
-		sec6Comp1Title: "Production PET Exemption and Staging (IaC) Standards",
-		sec6Comp1Text: "Modern production clusters are state-dependent (PET operations), making complete reproduction unrealistic. MIT-SA explicitly exempts the obligation to reproduce the exact production environment, stipulating that providing staging-level (IaC standard) binaries capable of functionally equivalent local execution or self-hosting is sufficient.",
-		sec6Comp2Title: "Exemption from \"User Nursing\" vs. Vendor's Operational Maintenance Responsibility",
-		sec6Comp2Text: "MIT-SA explicitly exempts vendors from \"nursing\" such as hands-on user support or dedicated manual authoring, while intentionally omitting disclaimers regarding maintenance. MIT-SA merely disclaims warranties for the Software itself; vendors continuously bear full responsibility for the operation of their services and systems."
+		sec6Title: "6. Anti-Enclosure Clause and Stance on Monetization",
+		sec6Text1: "MIT-SA is not an OSS-fundamentalist license. It explicitly affirms vendors adding proprietary features to achieve commercial enclosure and build monetization models, protecting vendor sovereignty.",
+		sec6Text2: "What the license forbids is \"degrading modifications that diminish the autonomy of pre-existing features (Retrograde Degradation).\" It prohibits modifications that condition previously locally autonomous functionality upon ongoing external server authentication, telemetry, or billing infrastructure. Pure additions of new features, or complete removals of features without external dependency substitutions, are freely permitted.",
+		sec7Title: "7. Distribution Provisions and Operational Scope",
+		sec7Text1: "Learning from the AGPL's trigger of \"modification,\" which provoked endless theological disputes over what constitutes modification, MIT-SA adopts the simple fact of \"providing functionality over a network\" as its sole distribution trigger. Crucially, this disclosure obligation applies \"only while providing such functionality.\" The moment a vendor discontinues the network functionality, the obligation to make the software accessible terminates simultaneously, shielding operators from perpetual disclosure liabilities and permitting practical lifecycle and exit strategies.",
+		sec7Comp1Title: "Production PET Exemption and Staging (IaC) Standards",
+		sec7Comp1Text: "Modern production clusters are state-dependent (PET operations), making complete reproduction unrealistic. MIT-SA explicitly exempts the obligation to reproduce the exact production environment, stipulating that providing staging-level (IaC standard) binaries capable of functionally equivalent local execution or self-hosting is sufficient.",
+		sec7Comp2Title: "Exemption from \"User Nursing\" vs. Vendor's Operational Maintenance Responsibility",
+		sec7Comp2Text: "MIT-SA explicitly exempts vendors from \"nursing\" such as hands-on user support or dedicated manual authoring, while intentionally omitting disclaimers regarding maintenance. MIT-SA merely disclaims warranties for the Software itself; vendors continuously bear full responsibility for the operation of their services and systems."
 	},
 	ja: {
 		kicker: "MIT-SA 解説",
 		title: "MIT-SAの解説",
-		subtitle: "自己適用型MITライセンス（MIT-SA）の基本解説：生成AI開発における成立経緯、the Softwareの概念、囲い込みへの対応、および配布規定について",
+		subtitle: "自己適用型MITライセンス（MIT-SA）の基本解説：生成AI開発における成立経緯、the Softwareの概念、Archive例外、囲い込みへの対応、および配布規定について",
 		sec1Title: "1. 基本概説",
 		sec1Text1: "MIT-SA（SPDX規格名称: MIT-SA）は、伝統的なMITライセンスを近代化し、Share-Alike（相互共有義務）を導入したライセンスです。実務的な位置づけとしては、「非OSS・商用囲い込み環境でも運用可能なAGPL相当の相互性ライセンス」と解釈するのが最も明快です。MITが持つ商用利用の自由度を維持しつつ、機能劣化の抑止とネットワーク経由でのバイナリ供出義務を課します。",
 		sec1Text2: "知的財産の防衛的観点から、ライセンス条文自体の著作権について「The author disclaims copyright to this license text.」（本ライセンス条文の著作権を放棄する）と明記しています。条文の財産権を放棄することで、ライセンス文自体の複製や配布を巡る著作権紛争・反訴リスクを完全に遮断しています。一方で著作者人格権を安易に放棄（waiver）していないのは、大陸法系（日本や欧州等）における著作者人格権の一身専属性（法的に放棄不能である原則）との整合性を保ちつつ、第三者による名義冒用や不当な帰属主張に対する最低限の防衛盾を確保するためです。",
@@ -619,23 +631,34 @@ var CONTENT = {
 				desc: "UNIX哲学の「すべてはファイルである」。貴族的なソースコードと平民的なバイナリの身分差を撤廃し、ファイルシステム上の1ファイルとして平等に扱う。"
 			}
 		],
-		sec3Note: "ロベスピエールがUNIX哲学に従い建国したことは自明ですが、the Software ではソースコード、中間表現、実行ファイル、画像、テキスト、音声などを区別せず、すべて等価な「バイナリ」として扱います。ただし、それだとファイル圧縮やアーカイブに支障が出るため、アーカイブ（zip/tar）、コンテナ、インストーラ等への集約時はファイル境界を跨がず各ファイルが独立性を維持する例外条項を設けています。",
-		sec4Title: "4. リバース・エンジニアリング条項",
-		sec4Text: "客観的な「ソースコード」が存在しない以上、受領者が改変を行う唯一の現実的手段はバイナリ解析（リバースエンジニアリング）です。MIT-SAはこれを実効化するため、知財保護法制に対する徹底的な無力化条項を盛り込んでいます。",
+		sec3Note: "ここから、ロベスピエールがUNIX哲学に従い共和化したことが読み取れますが、the Software ではソースコード、中間表現、実行ファイル、画像、テキスト、音声などを区別せず、すべて等価な「バイナリ」として扱います。もっとも、すべてを不可分な単一バイナリとして扱うとファイルの圧縮やアーカイブ化に支障を来すため、MIT-SAでは後述の「Archive」概念をライセンス感染の例外として定立しています。",
+		sec4Title: "4. Archive（アーカイブ）例外とライセンス感染抑止",
+		sec4Lead: "技術的・知財法務的見地から分析すれば、実行バイナリも圧縮ファイルも、シリアライズされたデータ構造という意味において本質的には「pickle（直列化・凍結された実体）」に他なりません。両者の差異は直接実行されることを意図した形式か、復元されることを意図した形式かという主観的な利用目的に過ぎず、概念上排他的な関係にはありません。",
+		sec4DefTitle: "「元の状態を再現できる」という客観的事実による定義",
+		sec4DefText: "そこでMIT-SAは、ファイルフォーマットや拡張子という表層的な区分を排し、「元の状態を再現できる」という客観的事実をもってArchiveを定義しました。この定義を実効的に運用するため、以下の3段階の表現・救済措置を講じています：",
 		sec4Points: [
+			"構成要素の客観的現存：ファイル群やIaC（Infrastructure as Code）記述などにより、バイナリを構成する全ての材料が存在している状態。",
+			"実質的な復元機会の付与：受領者に対して、元の状態へと復元・再構成できる実質的な機会が担保されていること。",
+			"救済措置としての形式要件：「元の状態に復元できる機会」を提供することを目的として設計されたファイル形式（アーカイブ形式）。"
+		],
+		sec4InfectionTitle: "複合著作物の統合と開発親和性（Development-Friendly）の確保",
+		sec4InfectionText: "一般に共有義務（感染性）を伴うライセンスを運用する際、複数のライセンスや著作者による多様な著作物を単一の実行バイナリへとコンパイル・統合すると、ライセンス間の非互換性により法務上の破綻を招きます。MIT-SAはサーバー上で稼働する実行バイナリをArchiveとして取り扱うことを許容することで、全体への不可逆なライセンス感染を抑止し、現代の開発実務に即した高い開発親和性（Development-Friendly）を確立しています。",
+		sec5Title: "5. リバース・エンジニアリング条項",
+		sec5Text: "客観的な「ソースコード」が存在しない以上、受領者が改変を行う唯一の現実的手段はバイナリ解析（リバースエンジニアリング）です。MIT-SAはこれを実効化するため、知財保護法制に対する徹底的な無力化条項を盛り込んでいます。",
+		sec5Points: [
 			"著作権法規の無力化：米DMCA 1201条（技術的保護手段の回避禁止）および各国の同等法規（日本著作権法30条1項2号等）に基づく請求権の完全放棄。",
 			"不提訴誓約（Covenant Not to Sue）：逆アセンブル、逆コンパイル、復号、改変を行った受領者に対し、取消不能な不提訴誓約を付与。",
 			"利用規約の無効化：いかなる個別契約、利用規約（TOS）、技術的制限手段も、解析と改変を阻害することはできない。"
 		],
-		sec5Title: "5. 囲い込み条項と収益化への考え方",
-		sec5Text1: "MIT-SAはOSS原理主義のライセンスではありません。ベンダーが独自機能を付加して囲い込み、商用収益化モデルを構築すること自体を肯定し、その主権を保護します。",
-		sec5Text2: "ライセンスが禁じているのは「既存機能の自立性を奪う劣化改変（Retrograde Degradation）」です。これまでローカル環境で自律動作していた機能を、外部サーバーの継続的認証、テレメトリー、課金インフラに依存させる改変を禁止しています。純粋な新機能追加や、外部依存を伴わない機能削除は自由に認められます。",
-		sec6Title: "6. 配布規定と運用の範囲",
-		sec6Text1: "AGPLが「改変」をトリガーにしたことで改変該当性を巡る神学論争を招いた反省から、MIT-SAは「ネットワーク経由で機能を提供した事実」のみを単一の配布トリガーとします。さらに重要な実務的設計として、バイナリの供出義務は「その機能を提供している間のみ（and only while providing such functionality）」に限定されています。サービス提供を停止・撤退すれば供出義務も同時に終了するため、永続的なコード開示リスクを負うことなく、運用の実態に即した柔軟なライフサイクル管理を可能にしています。",
-		sec6Comp1Title: "本番環境のPET免責とステージング（IaC）準拠",
-		sec6Comp1Text: "近年の本番クラスタは状態依存的（PET運用）であり、完全な再現は非現実的です。MIT-SAは本番環境の完全再現義務を明確に免責し、機能的に等価なローカル実行・セルフホストが可能なステージング（IaC水準）のバイナリ供出で十分と規定しています。",
-		sec6Comp2Title: "「ユーザー介護」の免責 vs 「運用主体」の保守責任",
-		sec6Comp2Text: "MIT-SAはベンダーによる手厚いサポートや個別マニュアル作成などの「介護」を明示的に免責する一方、保守（maintenance）に関する免責は意図的に却下しています。MIT-SAが免責しているのは the Software 自体に過ぎず、ベンダーは常にサービスやシステム運用における全面的な責任を負うからです。"
+		sec6Title: "6. 囲い込み条項と収益化への考え方",
+		sec6Text1: "MIT-SAはOSS原理主義のライセンスではありません。ベンダーが独自機能を付加して囲い込み、商用収益化モデルを構築すること自体を肯定し、その主権を保護します。",
+		sec6Text2: "ライセンスが禁じているのは「既存機能の自立性を奪う劣化改変（Retrograde Degradation）」です。これまでローカル環境で自律動作していた機能を、外部サーバーの継続的認証、テレメトリー、課金インフラに依存させる改変を禁止しています。純粋な新機能追加や、外部依存を伴わない機能削除は自由に認められます。",
+		sec7Title: "7. 配布規定と運用の範囲",
+		sec7Text1: "AGPLが「改変」をトリガーにしたことで改変該当性を巡る神学論争を招いた反省から、MIT-SAは「ネットワーク経由で機能を提供した事実」のみを単一の配布トリガーとします。さらに重要な実務的設計として、バイナリの供出義務は「その機能を提供している間のみ（and only while providing such functionality）」に限定されています。サービス提供を停止・撤退すれば供出義務も同時に終了するため、永続的なコード開示リスクを負うことなく、運用の実態に即した柔軟なライフサイクル管理を可能にしています。",
+		sec7Comp1Title: "本番環境のPET免責とステージング（IaC）準拠",
+		sec7Comp1Text: "近年の本番クラスタは状態依存的（PET運用）であり、完全な再現は非現実的です。MIT-SAは本番環境の完全再現義務を明確に免責し、機能的に等価なローカル実行・セルフホストが可能なステージング（IaC水準）のバイナリ供出で十分と規定しています。",
+		sec7Comp2Title: "「ユーザー介護」の免責 vs 「運用主体」の保守責任",
+		sec7Comp2Text: "MIT-SAはベンダーによる手厚いサポートや個別マニュアル作成などの「介護」を明示的に免責する一方、保守（maintenance）に関する免責は意図的に却下しています。MIT-SAが免責しているのは the Software 自体に過ぎず、ベンダーは常にサービスやシステム運用における全面的な責任を負うからです。"
 	}
 };
 function ExplainMitSa() {
@@ -738,16 +761,20 @@ function ExplainMitSa() {
 				className: "section",
 				children: [
 					 a("h2", { children: t.sec4Title }),
-					 a("p", { children: t.sec4Text }),
-					 a("ul", { children: t.sec4Points.map((pt, i) =>  a("li", { children: pt }, i)) })
+					 a("p", { children: t.sec4Lead }),
+					 a("h3", { children: t.sec4DefTitle }),
+					 a("p", { children: t.sec4DefText }),
+					 a("ol", { children: t.sec4Points.map((pt, i) =>  a("li", { children: pt }, i)) }),
+					 a("h3", { children: t.sec4InfectionTitle }),
+					 a("p", { children: t.sec4InfectionText })
 				]
 			}),
 			 a("section", {
 				className: "section",
 				children: [
 					 a("h2", { children: t.sec5Title }),
-					 a("p", { children: t.sec5Text1 }),
-					 a("p", { children: t.sec5Text2 })
+					 a("p", { children: t.sec5Text }),
+					 a("ul", { children: t.sec5Points.map((pt, i) =>  a("li", { children: pt }, i)) })
 				]
 			}),
 			 a("section", {
@@ -755,10 +782,18 @@ function ExplainMitSa() {
 				children: [
 					 a("h2", { children: t.sec6Title }),
 					 a("p", { children: t.sec6Text1 }),
-					 a("h3", { children: t.sec6Comp1Title }),
-					 a("p", { children: t.sec6Comp1Text }),
-					 a("h3", { children: t.sec6Comp2Title }),
-					 a("p", { children: t.sec6Comp2Text })
+					 a("p", { children: t.sec6Text2 })
+				]
+			}),
+			 a("section", {
+				className: "section",
+				children: [
+					 a("h2", { children: t.sec7Title }),
+					 a("p", { children: t.sec7Text1 }),
+					 a("h3", { children: t.sec7Comp1Title }),
+					 a("p", { children: t.sec7Comp1Text }),
+					 a("h3", { children: t.sec7Comp2Title }),
+					 a("p", { children: t.sec7Comp2Text })
 				]
 			}),
 			 a(LicenseArr, {
