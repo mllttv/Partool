@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>explain_mitsa</title>
+    <script type="module">
+var n;
+var t$1;
+var i$1;
+var u$2;
+var f$2;
+var e$1;
+var o$2;
+var l$1;
+var c$1;
+var a$2;
+var h$1 = Symbol.for("pv");
+var p$1 = {};
+var v$1 = [];
+var y$1 = /^m(i|n|o|s|text|space)$/;
+var w = Array.isArray;
+var d$1 = v$1.slice;
+var _$1 = Object.assign;
+function g$1(n) {
+	n && n.parentNode && n.remove();
+}
+function k$1(n, t, r) {
+	var i, u, f, e = {}, o = arguments.length;
+	for (f in t) "key" == f ? i = t[f] : "ref" == f && "function" != typeof n ? u = t[f] : e[f] = t[f];
+	return o > 2 && (e.children = o > 3 ? d$1.call(arguments, 2) : r), m$1(n, e, i, u, null);
+}
+function m$1(r, i, u, f, e) {
+	var o = {
+		type: r,
+		props: i,
+		key: u,
+		ref: f,
+		__k: null,
+		__: null,
+		__b: 0,
+		__e: null,
+		__c: null,
+		constructor: h$1,
+		__v: e || ++t$1,
+		__i: -1,
+		__u: 0
+	};
+	return !e && n.vnode && n.vnode(o), o;
+}
+function M(n) {
+	return n.children;
+}
+function x(n, t) {
+	this.props = n, this.context = t, this.__g = 0;
+}
+function S(n, t) {
+	if (null == t) return n.__ && S(n.__, n.__i + 1);
+	for (var r; t < n.__k.length; t++) if ((r = n.__k[t]) && r.__e) return r.__e;
+	return "function" != typeof n.type || n.props.__P ? null : S(n);
+}
+function C$1(n) {
+	if ((n = n.__) && n.__c && !n.props.__P) return n.__e = null, n.__k.some(function(t) {
+		return t && (n.__e = t.__e);
+	}), C$1(n);
+}
+function j(t) {
+	(8 & t.__g || (t.__g |= 8, i$1.push(t), f$2++)) && u$2 == n.debounceRendering || ((u$2 = n.debounceRendering) || queueMicrotask)(L);
+}
+function L() {
+	var t, r, o, l, c, a, s, p, v;
+	try {
+		for (r = 1; i$1.length;) i$1.length > r && i$1.sort(e$1), t = i$1.shift(), r = i$1.length, 8 & t.__g && (l = void 0, c = void 0, a = (c = (o = t).__v).__e, s = [], p = [], (v = o.__P) && ((l = _$1({ constructor: h$1 }, c)).__v = c.__v + 1, n.vnode && n.vnode(l), V(v, l, c, o.__n, v.namespaceURI, 32 & c.__u ? [a] : null, s, a || S(c), 32 & c.__u, p), l.__v = c.__v, l.__.__k[l.__i] = l, D$1(s, l, p), c.__ = c.__e = null, l.__e != a && C$1(l)));
+	} finally {
+		(f$2 = i$1.length) && (u$2 || queueMicrotask)(L);
+	}
+}
+function H(n, t, r, i, u, f, e, o, l, c, a) {
+	var s, h, y, w, d, _, g = i.__k || v$1, k = t.length;
+	for (l = I(r, t, g, l, k), s = 0; s < k; s++) null != (y = r.__k[s]) && (h = ~y.__i && g[y.__i] || p$1, y.__i = s, _ = V(n, y, h, u, f, e, o, l, c, a), w = y.__e, (h.ref != y.ref || 8 & h.__u) && (h.ref && F(h.ref, null, y, h), y.ref && a.push(y.ref, y.__c || w, y)), d = d || w, 4 & y.__u ? (l = q(y, l, n, !h.__v), h.__e && (h.__e = null)) : "function" == typeof y.type && void 0 !== _ ? l = _ : w && (l = w.nextSibling), y.__u &= -21);
+	return r.__e = d, l;
+}
+function I(n, t, r, i, u) {
+	var f, e, o, l, c, a, s, p, v, y = r.length, d = y, _ = 0, g = 0, k = n.__k = Array(u);
+	for (f = 0; f < u; f++) null != (e = t[f]) && "boolean" != typeof e && "function" != typeof e ? ("object" != typeof e || e.constructor === String ? e = k[f] = m$1(null, e) : w(e) ? e = k[f] = m$1(M, { children: e }) : e.constructor === h$1 && e.__b ? e = k[f] = m$1(e.type, e.props, e.key, e.ref, e.__v) : k[f] = e, l = f + _, e.__ = n, e.__b = n.__b + 1, o = null, ~(c = e.__i = O(e, r, l, d)) && (d--, (o = r[c]) && (o.__u |= 2)), o && o.__v ? (e.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (u > y ? _-- : u < y && _++), "function" != typeof e.type && (e.__u |= 4))) : k[f] = null;
+	if (g) {
+		for (a = [], s = [], f = 0; f < u; f++) if ((e = k[f]) && 16 & e.__u) {
+			for (_ = 0, p = a.length; _ < p;) a[v = _ + p >> 1] < e.__i ? _ = v + 1 : p = v;
+			a[_] = e.__i, s[f] = _ + 1;
+		}
+		for (_ = a.length; f--;) s[f] && (s[f] == _ ? _-- : k[f].__u |= 4);
+	}
+	if (d) for (f = 0; f < y; f++) !(o = r[f]) || 2 & o.__u || (o.__e == i && (i = S(o)), G$1(o, o));
+	return i;
+}
+function q(n, t, r, i) {
+	var u, f, e, o;
+	if ("function" == typeof n.type) {
+		if (n.props.__P) return t;
+		if (u = n.__k) for (f = 0; f < u.length; f++) u[f] && (u[f].__ = n, t = q(u[f], t, r, !1));
+		return t;
+	}
+	for (t && !t.parentNode && (t = S(n)) && !t.parentNode && (t = null), e = n.__e, o = t; o && 8 == o.nodeType;) o = o.nextSibling;
+	for (e != o && (!i && r.moveBefore && e.parentNode ? r.moveBefore(e, t) : r.insertBefore(e, t || null)), t = e; (t = t && t.nextSibling) && 8 == t.nodeType && !t.data.startsWith("$s"););
+	return t;
+}
+function O(n, t, r, i) {
+	var u, f = n.key, e = n.type, o = t[r], l = o && !(2 & o.__u);
+	if (null === o && null == f || l && f == o.key && e == o.type) return r;
+	if (i > (l ? 1 : 0)) {
+		for (u = r - 1; u >= 0; u--) if ((o = t[u]) && !(2 & o.__u) && f == o.key && e == o.type) return u;
+		for (u = r + 1; u < t.length; u++) if ((o = t[u]) && !(2 & o.__u) && f == o.key && e == o.type) return u;
+	}
+	return -1;
+}
+function P(n, t, r) {
+	r ??= "", "-" == t[0] ? n.setProperty(t, r) : n[t] = r;
+}
+function T(n, t, r, i, u) {
+	var f, e;
+	if ("style" == t) if ("string" == typeof r) n.style.cssText = r;
+	else {
+		if ("string" == typeof i && (n.style.cssText = i = ""), i) for (t in i) r && t in r || P(n.style, t);
+		if (r) for (t in r) i && r[t] == i[t] || P(n.style, t, r[t]);
+	}
+	else if ("o" == t[0] && "n" == t[1]) (n.__e || (n.__e = {}))[t] = r, r && i || (e = a$2[t] || (a$2[t] = N(t)), (n.__a || (n.__a = {}))[t] = c$1, f = t != (t = t.replace(l$1, "$1")), (t = t.slice(2))[0] < "a" && (t = t.toLowerCase()), r ? n.addEventListener(t, e, f) : n.removeEventListener(t, e, f));
+	else {
+		if ("http://www.w3.org/2000/svg" == u) t = t.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
+		else if ("width" != t && "height" != t && "href" != t && "list" != t && "form" != t && "tabIndex" != t && "download" != t && "rowSpan" != t && "colSpan" != t && "role" != t && "popover" != t && t in n) try {
+			n[t] = null == r ? "" : r;
+			return;
+		} catch (n) {}
+		if ("function" == typeof r) return;
+		null == r || !1 === r && "-" != t[4] ? n.removeAttribute(t) : n.setAttribute(t, "popover" == t && 1 == r ? "" : r);
+	}
+}
+function N(t) {
+	return function(r) {
+		var i = this.__e;
+		if (i) {
+			if (i = i[t], null == r[o$2]) r[o$2] = c$1++;
+			else if (r[o$2] < this.__a[t]) return;
+			return i(n.event ? n.event(r) : r);
+		}
+	};
+}
+function V(t, r, i, u, f, e, o, l, c, a) {
+	var s, p, y, d, k, b, m, $, C, j, L, I, q, A, O, P, T, N, V = r.type;
+	if (r.constructor !== h$1) return null;
+	128 & i.__u && (c = 32 & i.__u, s = i.__c.__z) && (r.__u |= c, p = e = [], 8 == s.nodeType ? l = z$1(s, e) : e.push(s), l = e[0] || l), (s = n.__b) && s(r);
+	n: if ("function" == typeof V) {
+		y = o.length;
+		try {
+			if ($ = r.props, C = (s = V.prototype) && s.render, j = (s = V.contextType) && u[s.__c], L = s ? j ? j.props.value : s.__ : u, (d = i.__c) ? (r.__c = d, 2 & d.__g && (d.__g |= 1)) : (C ? r.__c = d = new V($, L) : (r.__c = d = new x($, L), d.constructor = V, d.render = J), j && j.sub(d), d.state || (d.state = {}), d.__n = u, d.__g |= 8, d.__h = [], d.__k = []), C && (d.__s || (d.__s = d.state), V.getDerivedStateFromProps && (d.__s == d.state && (d.__s = _$1({}, d.__s)), _$1(d.__s, V.getDerivedStateFromProps($, d.__s)))), k = d.props, b = d.state, d.__v = r, i.__c) {
+				if ($ !== k && C && !V.getDerivedStateFromProps && d.componentWillReceiveProps && d.componentWillReceiveProps($, L), r.__v == i.__v && !(8 & d.__g) || !(4 & d.__g) && d.shouldComponentUpdate && !1 === d.shouldComponentUpdate($, d.__s, L)) {
+					r.__v != i.__v && (d.props = $, d.state = d.__s, d.__g &= -9), r.__e = i.__e, r.__k = i.__k, r.__k.some(function(n) {
+						n && (n.__ = r);
+					}), v$1.push.apply(d.__h, d.__k), d.__k = [], d.__h.length && o.push(d), l = S(i);
+					break n;
+				}
+				d.componentWillUpdate && d.componentWillUpdate($, d.__s, L), C && d.componentDidUpdate && d.__h.push(function() {
+					d.componentDidUpdate(k, b, m);
+				});
+			} else C && !V.getDerivedStateFromProps && d.componentWillMount && d.componentWillMount(), C && d.componentDidMount && d.__h.push(d.componentDidMount);
+			if (d.context = L, d.props = $, d.__P = t, d.__g &= -5, I = n.__r, q = 0, C) d.state = d.__s, d.__g &= -9, I && I(r), s = d.render(d.props, d.state, d.context), v$1.push.apply(d.__h, d.__k), d.__k = [];
+			else do
+				d.__g &= -9, I && I(r), s = d.render(d.props, d.state, d.context), d.state = d.__s;
+			while (8 & d.__g && ++q < 25);
+			d.state = d.__s, d.getChildContext && (u = _$1({}, u, d.getChildContext())), C && i.__c && d.getSnapshotBeforeUpdate && (m = d.getSnapshotBeforeUpdate(k, b)), A = s && s.type === M && null == s.key ? s.props.children : s, $.__P && (s = l, f = (t = $.__P).namespaceURI, c = e = null, i.props && i.props.__P != t && (i.__k.some(function(n) {
+				n && G$1(n, n);
+			}), i.__k = null), l = i.__k ? S(i, 0) : null), l = H(t, w(A) ? A : [A], r, i, u, f, e, o, l, c, a), $.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && o.push(d), 1 & d.__g && (d.__g &= -4);
+		} catch (t) {
+			if (o.length = y, r.__v = null, c || e) if (t.then) {
+				if (O = 0, r.__u |= 128 | c, e) {
+					for (~(T = e.indexOf(l || void 0)) || (T = e.length); (N = e[T - 1]) && 8 == N.nodeType;) T--;
+					for (; T < e.length; T++) if (N = e[T]) {
+						if (e[T] = null, 8 == N.nodeType) {
+							if (N.data.startsWith("$s")) O++ || (P = N);
+							else if (O && N.data.startsWith("/$s") && !--O) break;
+						} else if (!O) break;
+					}
+				}
+				if (!P) {
+					for (; l && 8 == l.nodeType && l.nextSibling;) l = l.nextSibling;
+					P = l;
+				}
+				(s = z$1(P = r.__c.__z || (r.__c.__z = P))) ? (r.__e = P, l = s) : r.__e = l, l = l && l.nextSibling;
+			} else e && e.some(g$1);
+			else r.__e = i.__e;
+			r.__k || (r.__k = i.__k || []), t.then || B$1(r), n.__e(t, r, i);
+		}
+	} else l = r.__e = E(i.__e, r, i, u, f, e, o, c, a, t);
+	return (s = n.diffed) && s(r), l;
+}
+function z$1(n, t) {
+	if (n && 8 == n.nodeType && n.data.startsWith("$s")) for (var r = 1; n = n.nextSibling;) {
+		if (8 == n.nodeType) {
+			if (n.data.startsWith("$s")) r++;
+			else if (n.data.startsWith("/$s") && !--r) return n;
+		}
+		t && t.push(n);
+	}
+}
+function B$1(n) {
+	n && (n.__c && (n.__c.__g |= 4), n.__k && n.__k.some(B$1));
+}
+function D$1(t, r, i) {
+	for (var u = 0; u < i.length;) F(i[u++], i[u++], i[u++]);
+	n.__c && n.__c(r, t), t.some(function(r) {
+		try {
+			t = r.__h, r.__h = [], t.some(function(n) {
+				n.call(r);
+			});
+		} catch (t) {
+			n.__e(t, r.__v);
+		}
+	});
+}
+function E(t, r, i, u, f, e, o, l, c, a) {
+	var s, h, v, _, k, b, m, $, M, x = i.props || p$1, C = r.props, j = r.type;
+	if ("svg" == j ? f = "http://www.w3.org/2000/svg" : "math" == j ? f = "http://www.w3.org/1998/Math/MathML" : f || (f = "http://www.w3.org/1999/xhtml"), e) {
+		for (s = 0; s < e.length; s++) if ((k = e[s]) && (j ? k.localName == j : 3 == k.nodeType)) {
+			t = k, e[s] = null;
+			break;
+		}
+	}
+	if (!t) {
+		if ($ = a.ownerDocument || document, !j) return $.createTextNode(C);
+		t = $.createElementNS(f, j, C.is && C), l && (n.__m && n.__m(r, e), l = !1), e = null;
+	}
+	if (j) {
+		if (a = "template" == j && t.content || t, e = "textarea" == j && null != C.defaultValue ? null : e && d$1.call(a.childNodes), !l && e) for (x = {}, s = 0; s < t.attributes.length; s++) x[(k = t.attributes[s]).name] = k.value;
+		for (s in x) k = x[s], "dangerouslySetInnerHTML" == s ? v = k : "children" == s || s in C || "value" == s && "defaultValue" in C || "checked" == s && "defaultChecked" in C || T(t, s, null, k, f);
+		for (s in M = 1 & i.__u, C) k = C[s], "children" == s ? _ = k : "dangerouslySetInnerHTML" == s ? h = k : "value" == s ? b = k : "checked" == s ? m = k : l && "function" != typeof k || !(x[s] !== k || M && null != k) || T(t, s, k, x[s], f);
+		h ? (l || v && (h.__html == v.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (v && (t.textContent = ""), ("foreignObject" == j || "http://www.w3.org/1998/Math/MathML" == f && y$1.test(j)) && (f = "http://www.w3.org/1999/xhtml"), H(a, w(_) ? _ : [_], r, i, u, f, e, o, e ? e[0] : i.__k && S(i, 0), l, c), e && e.some(g$1)), l && "textarea" != j || (s = "value", "progress" == j && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != j || b) || T(t, s, b, x[s], f), s = "checked", null != m && m != t[s] && T(t, s, m, x[s], f));
+	} else x === C || l && t.data == C || (t.data = C);
+	return t;
+}
+function F(t, r, i, u) {
+	try {
+		"function" == typeof t ? r ? r.__x = t(r) || 1 : u && (u = u.__c || u.__e) && (r = u.__x) && (u.__x = null, "function" == typeof r ? r() : t(null)) : t.current = r;
+	} catch (t) {
+		n.__e(t, i);
+	}
+}
+function G$1(t, r, i) {
+	var u, f, e, o;
+	if (n.unmount && n.unmount(t), !(u = t.ref) || u.current && u.current != t.__e || F(u, null, r, t), u = t.__c) {
+		if (u.componentWillUnmount) try {
+			u.componentWillUnmount();
+		} catch (t) {
+			n.__e(t, r);
+		}
+		u.__P = u.__n = null;
+	}
+	if (u = t.__k) for (o = 0; o < u.length; o++) u[o] && G$1(u[o], r, "function" != typeof t.type || i && !t.props.__P);
+	!i && (u = t.__c) && (u = u.__z) && (f = z$1(u, e = [])) && (u == t.__e && e.some(g$1), g$1(f), g$1(u)), (u = t.__e) && (i || g$1(u), u.__e && (u.__e = null)), t.__e = t.__c = t.__ = null;
+}
+function J(n, t, r) {
+	return this.constructor(n, r);
+}
+function K(t, r) {
+	var i, u, f, e;
+	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), u = (i = t && 32 & t.__u) ? null : r.__k, r.__k = m$1(M, { children: [t] }), f = [], e = [], V(r, r.__k, u || p$1, p$1, r.namespaceURI, u ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, u ? u.__e : r.firstChild, i, e), D$1(f, r.__k, e), r.__k.props.children = null;
+}
+n = { __e: function(n, t, r, i) {
+	for (var u, e, o; t = t.__;) if ((u = t.__c) && !(1 & u.__g)) {
+		u.__g |= 4;
+		try {
+			if ((o = (e = u.constructor) && e.getDerivedStateFromError) && u.setState(e.getDerivedStateFromError(n)), u.componentDidCatch && (u.componentDidCatch(n, i || {}), o = 1), o && 8 & u.__g) return void (u.__g |= 2);
+		} catch (t) {
+			n = t;
+		}
+	}
+	throw f$2 = 0, n;
+} }, t$1 = 0, x.prototype.setState = function(n, t) {
+	var r = this.__s;
+	r && r != this.state || (r = this.__s = _$1({}, this.state)), "function" == typeof n && (n = n(_$1({}, r), this.props)), n && (_$1(r, n), this.__v && (t && this.__k.push(t), j(this)));
+}, x.prototype.forceUpdate = function(n) {
+	this.__v && (this.__g |= 4, n && this.__h.push(n), j(this));
+}, x.prototype.render = M, i$1 = [], f$2 = 0, e$1 = function(n, t) {
+	return n.__v.__b - t.__v.__b;
+}, o$2 = Symbol(), l$1 = /(PointerCapture)$|Capture$/i, c$1 = 0, a$2 = {};
+var t;
+var r;
+var u$1;
+var i;
+var o$1 = Object.is;
+var f$1 = 0;
+var c = [];
+var e = [];
+var a$1 = n;
+var v = a$1.__b;
+var l = a$1.__r;
+var m = a$1.diffed;
+var h = a$1.__c;
+var s = a$1.unmount;
+var p = a$1.__;
+function y(n, t) {
+	a$1.__h && a$1.__h(r, n, f$1 || t), f$1 = 0;
+	var u = r.__H || (r.__H = {
+		__: [],
+		__h: []
+	});
+	return n >= u.__.length && u.__.push({}), u.__[n];
+}
+function d(n) {
+	return f$1 = 1, _(G, n);
+}
+function _(n, u, i) {
+	var f = y(t++, 2);
+	if (f.t = n, !f.__c && (f.__ = [i ? i(u) : G(void 0, u), function(n) {
+		var t = f.__N ? f.__N[0] : f.__[0], r = f.t(t, n);
+		o$1(t, r) || (f.__N = [r, f.__[1]], f.__c.setState({}));
+	}], f.__c = r, !r.__f)) {
+		r.__f = !0;
+		var c = r.shouldComponentUpdate;
+		r.shouldComponentUpdate = function(n, t, r) {
+			var u = this.__H;
+			if (!u) return !0;
+			var i = !1, f = this.props != n;
+			if (u.__.some(function(n) {
+				n.__N && (i = !0, o$1(n.__[0], n.__N[0]) || (f = !0));
+			}), c) {
+				var e = c.call(this, n, t, r);
+				return i ? e || f : e;
+			}
+			return !i || f;
+		};
+	}
+	return f.__;
+}
+function g() {
+	var n;
+	do {
+		for (; n = e.shift();) try {
+			C(n);
+		} catch (t) {
+			a$1.__e(t, { __: (n = n.__P) && n.__v });
+		}
+		for (; n = c.shift();) {
+			var t = n.__H;
+			if (n.__P && t) try {
+				t.__h.some(C), t.__h.some(D), t.__h = [];
+			} catch (r) {
+				t.__h = [], a$1.__e(r, n.__v);
+			}
+		}
+	} while (e.length);
+}
+a$1.__b = function(n) {
+	r = null, v && v(n);
+}, a$1.__ = function(n, t) {
+	n && t.__k && t.__k.__m && (n.__m = t.__k.__m), p && p(n, t);
+}, a$1.__r = function(n) {
+	l && l(n), t = 0;
+	var i = (r = n.__c).__H;
+	i && (u$1 == r ? r.__h = [] : (i.__h.some(C), i.__h.some(D), t = 0), i.__h = [], i.__.some(function(n) {
+		n.__N && (n.__ = n.__N), n.u = n.__N = void 0;
+	})), u$1 = r;
+}, a$1.diffed = function(n) {
+	m && m(n);
+	var t = n.__c;
+	t && t.__H && (t.__H.__h.length && B(c.push(t)), t.__H.__.some(function(n) {
+		n.u && (n.__H = n.u);
+	})), u$1 = r = null;
+}, a$1.__c = function(n, t) {
+	t.some(function(n) {
+		try {
+			n.__h.some(C), n.__h = n.__h.filter(function(n) {
+				return !n.__ || D(n);
+			});
+		} catch (t) {
+			n.__h = [function() {
+				throw t;
+			}];
+		}
+	}), h && h(n, t);
+}, a$1.unmount = function(n) {
+	s && s(n);
+	var t, r, u = n.__c;
+	u && u.__H && (u.__H.__.some(function(u) {
+		try {
+			if (u.__P && u.__c) {
+				if (void 0 === r) {
+					for (r = n.__; r && (!r.__c || !r.__c.__P);) r = r.__;
+					r = r && r.__c;
+				}
+				u.__P = r, B(e.push(u));
+			} else C(u);
+		} catch (n) {
+			t = n;
+		}
+	}), u.__H = void 0, t && a$1.__e(t, u.__v));
+};
+var k = "function" == typeof requestAnimationFrame;
+function z(n) {
+	var t, r = function() {
+		clearTimeout(u), k && cancelAnimationFrame(t), setTimeout(n);
+	}, u = setTimeout(r, 35);
+	k && (t = requestAnimationFrame(r));
+}
+function B(n) {
+	1 != n && i == a$1.requestAnimationFrame || ((i = a$1.requestAnimationFrame) || z)(g);
+}
+function C(n) {
+	var t = r, u = n.__c;
+	"function" == typeof u && (n.__c = void 0, u()), r = t;
+}
+function D(n) {
+	var t = r;
+	n.__c = n.__(), r = t;
+}
+function G(n, t) {
+	return "function" == typeof t ? t(n) : t;
+}
+var LICITE = "================================================================================\nTHIRD-PARTY SOFTWARE NOTICES AND LICENSES\n================================================================================\n\nThis software incorporates components from the following third-party software:\n\n--------------------------------------------------------------------------------\npreact v11.1.1 (https://preactjs.com)\n--------------------------------------------------------------------------------\nThe MIT License (MIT)\n\nCopyright (c) 2015-present Jason Miller\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.";
+var f = Symbol.for("pv");
+var o = 0;
+Array.isArray;
+function a(t, e, n$1, u, a, i) {
+	e || (e = {});
+	var c, l, p = e;
+	if ("ref" in p && "function" != typeof t) for (l in p = {}, e) "ref" == l ? c = e[l] : p[l] = e[l];
+	var s = {
+		type: t,
+		props: p,
+		key: n$1,
+		ref: c,
+		__k: null,
+		__: null,
+		__b: 0,
+		__e: null,
+		__c: null,
+		constructor: f,
+		__v: --o,
+		__i: -1,
+		__u: 0
+	};
+	return (a || i) && (s.__source = a, s.__self = i), n.vnode && n.vnode(s), s;
+}
+var buildArr = (year, holder) => {
+	return `================================================================================
+ALL RIGHTS RESERVED
+================================================================================
+
+© ${year} ${holder}. All rights reserved.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.`;
+};
+function renderLicense(name, year, holder, text) {
+	const content = `${text}\n\n${LICITE}`;
+	return  a("footer", {
+		className: "license",
+		children:  a("details", { children: [ a("summary", { children: [
+			"This file: Copyright © ",
+			year,
+			" ",
+			holder,
+			" · ",
+			name
+		] }),  a("pre", { children: content })] })
+	});
+}
+function LicenseArr({ year, holder }) {
+	return renderLicense("All Rights Reserved", year, holder, buildArr(year, holder));
+}
+var PAGE_CSS = `
+body { background-color: #d8e4f0; color: #1e293b; }
+.explain-mitsa { max-width: 980px; margin: 1.5rem auto 4rem; padding: 0 1rem; color: #1e293b; text-align: left; }
+.explain-mitsa .nav-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.explain-mitsa .back-btn { background-color: #eaf1f8; border: 1px solid #b7cde2; color: #334155; }
+.explain-mitsa .back-btn:hover { background-color: #ffffff; border-color: #0284c7; color: #0284c7; }
+.explain-mitsa .lang-toggle { display: inline-flex; border: 1px solid #b7cde2; border-radius: 6px; overflow: hidden; background: #eaf1f8; }
+.explain-mitsa .lang-btn { background: transparent; border: none; color: #475569; padding: 0.35rem 0.85rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.explain-mitsa .lang-btn.active { background: #0284c7; color: #ffffff; }
+.explain-mitsa .hero { background: linear-gradient(135deg, #e4edf7 0%, #d5e5f5 100%); border: 1px solid #9ec3e5; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08); }
+.explain-mitsa .hero-kicker { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0369a1; margin-bottom: 0.5rem; }
+.explain-mitsa .hero h1 { font-size: 2rem; color: #0f2d59; margin: 0 0 0.8rem; line-height: 1.25; }
+.explain-mitsa .hero p { font-size: 1rem; color: #334155; line-height: 1.6; margin: 0; max-width: 820px; }
+.explain-mitsa .section { background: #eef4fb; border: 1px solid #bdd3ea; border-radius: 10px; padding: 1.75rem; margin-bottom: 1.75rem; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04); }
+.explain-mitsa .section h2 { font-size: 1.35rem; color: #0369a1; margin: 0 0 1rem; border-bottom: 1px solid #cbddeed9; padding-bottom: 0.5rem; }
+.explain-mitsa .section h3 { font-size: 1.05rem; color: #0f2d59; margin: 1.25rem 0 0.4rem; }
+.explain-mitsa .section p, .explain-mitsa .section li { font-size: 0.92rem; line-height: 1.68; color: #27374d; }
+.explain-mitsa .section ul, .explain-mitsa .section ol { padding-left: 1.4rem; margin: 0.6rem 0; }
+.explain-mitsa .quote-box { background: #dbe8f6; border-left: 4px solid #0284c7; padding: 0.85rem 1.15rem; margin: 1rem 0; border-radius: 0 6px 6px 0; font-family: ui-monospace, monospace; font-size: 0.84rem; color: #074770; }
+.explain-mitsa code { background-color: #dbe8f6; color: #0284c7; }
+.explain-mitsa .table-wrapper { overflow-x: auto; margin: 1.25rem 0; }
+.explain-mitsa table { width: 100%; border-collapse: collapse; font-size: 0.84rem; text-align: left; }
+.explain-mitsa th { background: #d6e4f3; color: #0f2d59; padding: 0.65rem 0.85rem; border: 1px solid #bad2eb; font-weight: 600; }
+.explain-mitsa td { padding: 0.65rem 0.85rem; border: 1px solid #bad2eb; color: #27374d; vertical-align: top; }
+.explain-mitsa tr:nth-child(even) { background: rgba(214, 228, 243, 0.35); }
+.explain-mitsa .license details { background-color: #eef4fb; border: 1px solid #bdd3ea; border-radius: 8px; }
+.explain-mitsa .license details[open] { border-color: #9ec3e5; }
+.explain-mitsa .license summary { color: #334155; }
+.explain-mitsa .license summary:hover { color: #0284c7; }
+.explain-mitsa .license pre { background-color: #dce7f3; color: #1e293b; border-top: 1px solid #bad2eb; }
+`;
+var CONTENT = {
+	en: {
+		kicker: "MIT-SA Commentary",
+		title: "Explanation of MIT-SA",
+		subtitle: "Basic commentary on the Self-Applying MIT License (MIT-SA): genesis in generative AI development, the concept of \"the Software\", treatment of enclosure, and distribution rules.",
+		sec1Title: "1. Basic Overview",
+		sec1Text1: "MIT-SA (SPDX identifier: MIT-SA) is a license that modernizes the traditional MIT License by introducing Share-Alike (reciprocal sharing obligations). Pragmatically, it is most clearly understood as \"an AGPL-equivalent reciprocal license operable even within non-OSS and proprietary enclosure environments.\" While preserving the commercial freedom of the MIT License, it deters feature degradation and imposes an obligation to provide runnable binaries over a network.",
+		sec1Text2: "From the perspective of intellectual property defense, the license explicitly specifies regarding the copyright of the license text itself: \"The author disclaims copyright to this license text.\" By disclaiming economic copyright in the text, it completely eliminates copyright litigation and counterclaim risks surrounding copying or distributing the license text itself. Meanwhile, moral rights were not casually waived in order to maintain consistency with the inalienability of moral rights (the principle that they cannot be legally waived) under civil law systems (such as Japan and Europe), while securing a minimal defensive shield against identity misappropriation or improper attribution claims by third parties.",
+		sec2Title: "2. Genesis and the Challenge of \"Source Code\"",
+		sec2Lead: "The emergence of MIT-SA stems from deep structural friction between classic copyleft theory, such as the AGPL, and modern VLM (Vision-Language Model) driven development practices.",
+		sec2Point1Title: "VLM-Driven Development and the Sole Trust Anchor (HTML)",
+		sec2Point1Text: "In the initial concept, a VLM directly edited a single HTML file to produce a self-contained browser-executable tool. At this time, the HTML running in the browser was itself the sole trust anchor (Single Source of Truth) and functioned as the objective \"source code.\"",
+		sec2Point2Title: "Introduction of Intermediate Representation (Preact/JSX)",
+		sec2Point2Text: "To address prompt capacity and inference limits, Preact was adopted as a component-oriented intermediate representation (IR). The pipeline expanded into multiple layers: \"VLM → Preact (intermediate representation) → Single HTML (source code).\"",
+		sec2Point3Title: "Two Fatal Problems Caused by the AGPL",
+		sec2Point3Text: "With this pipeline change, the definition of \"source code\" (the preferred form for making modifications) under conventional AGPL interpretation shifted unfairly from HTML to Preact code. This produced the following critical contradictions:",
+		sec2Fail1Label: "Subjective Drift of \"Source Code\":",
+		sec2Fail1Text: "The fact that inserting a single automated build step shifted the legal locus of \"source code\" proves that in modern machine-generation paradigms, the concept of \"source code\" is not an objective reality, but merely a subjective and fragile classification.",
+		sec2Fail2Label: "Confiscation of Unrelated Toolchains:",
+		sec2Fail2Text: "Traditional AGPL interpretation dismissed the HTML—the true self-contained trust anchor—as a mere \"intermediate binary,\" while unfairly attempting to confiscate the surrounding Preact build environment and toolchain code that had no direct functional relation to the HTML tool itself.",
+		sec2Conclusion: "As a result, the AGPL—which relies on \"disclosure of source code\" as its trigger—was deemed fundamentally broken, and MIT-SA was designed around the binary of the Software itself as the standard. However, because the AGPL imposes even more stringent and coercive sharing obligations, MIT-SA explicitly permits modified versions of the Software to be unilaterally relicensed under AGPLv3. This unilateral exit ramp preserves interoperability with strict copyleft ecosystems while preventing proprietary dilution under any weaker license.",
+		sec3Title: "3. The Concept of \"the Software\" and Constitutional Parallels",
+		sec3Text1: "MIT-SA thoroughly purifies the concept of \"the Software\" from the original MIT License. Its legal structure corresponds completely with the principle of Sentence 1, Article 1 of the Constitution of the French Fifth Republic: \"France is an indivisible, secular, democratic, and social Republic.\"",
+		tableHeaders: [
+			"Constitutional Element",
+			"MIT-SA Concept",
+			"Legal & Architectural Interpretation"
+		],
+		sec3Grid: [
+			{
+				key: "France (La France)",
+				sym: "the Software",
+				desc: "Software as a single legal sovereign entity, rather than disparate textual fragments."
+			},
+			{
+				key: "Indivisible (Indivisible)",
+				sym: "File Boundary",
+				desc: "Anything integrated into a single file by compiling, bundling, or embedding becomes indivisible, and the whole is governed as a single piece of software."
+			},
+			{
+				key: "Secular (Laïque)",
+				sym: "Binary-Oriented / Format-Agnostic",
+				desc: "Abolishing the \"religion\" of source-code supremacy. Treats all representations—AST, bytecode, images, audio, text—identically as equivalent binary data."
+			},
+			{
+				key: "Republic (République)",
+				sym: "Everything is a file",
+				desc: "The UNIX philosophy of \"everything is a file.\" Abolishing class distinctions between aristocratic source code and commoner binary, treating them equally as a single file on the filesystem."
+			}
+		],
+		sec3Note: "While it is self-evident that Robespierre founded the Republic in accordance with the UNIX philosophy, under the Software, source code, intermediate representations, executable files, images, text, and audio are treated without distinction as equivalent \"binaries.\" However, since this would hinder file compression and archiving, an exception clause is provided so that when aggregating distinct files into archives (zip/tar), containers, or installers, file boundaries are preserved and each file maintains its independence.",
+		sec4Title: "4. Reverse Engineering Clause",
+		sec4Text: "Since objective \"source code\" does not exist, the only realistic way for a recipient to make modifications is binary analysis (reverse engineering). To make this effective, MIT-SA incorporates provisions that thoroughly neutralize intellectual property protection laws against it.",
+		sec4Points: [
+			"Neutralization of statutory restrictions: Complete waiver of claims under DMCA Section 1201 (anti-circumvention of technical protection measures) and equivalent statutes worldwide (such as Article 30(1)(ii) of the Japanese Copyright Act).",
+			"Covenant Not to Sue: Granting an irrevocable covenant not to sue to recipients who disassemble, decompile, decrypt, or modify the binary.",
+			"Invalidation of restrictive terms: No private contract, terms of service (TOS), or technical measure may restrict analysis and modification."
+		],
+		sec5Title: "5. Anti-Enclosure Clause and Stance on Monetization",
+		sec5Text1: "MIT-SA is not an OSS-fundamentalist license. It explicitly affirms vendors adding proprietary features to achieve commercial enclosure and build monetization models, protecting vendor sovereignty.",
+		sec5Text2: "What the license forbids is \"degrading modifications that diminish the autonomy of pre-existing features (Retrograde Degradation).\" It prohibits modifications that condition previously locally autonomous functionality upon ongoing external server authentication, telemetry, or billing infrastructure. Pure additions of new features, or complete removals of features without external dependency substitutions, are freely permitted.",
+		sec6Title: "6. Distribution Provisions and Operational Scope",
+		sec6Text1: "Learning from the AGPL's trigger of \"modification,\" which provoked endless theological disputes over what constitutes modification, MIT-SA adopts the simple fact of \"providing functionality over a network\" as its sole distribution trigger. Crucially, this disclosure obligation applies \"only while providing such functionality.\" The moment a vendor discontinues the network functionality, the obligation to make the software accessible terminates simultaneously, shielding operators from perpetual disclosure liabilities and permitting practical lifecycle and exit strategies.",
+		sec6Comp1Title: "Production PET Exemption and Staging (IaC) Standards",
+		sec6Comp1Text: "Modern production clusters are state-dependent (PET operations), making complete reproduction unrealistic. MIT-SA explicitly exempts the obligation to reproduce the exact production environment, stipulating that providing staging-level (IaC standard) binaries capable of functionally equivalent local execution or self-hosting is sufficient.",
+		sec6Comp2Title: "Exemption from \"User Nursing\" vs. Vendor's Operational Maintenance Responsibility",
+		sec6Comp2Text: "MIT-SA explicitly exempts vendors from \"nursing\" such as hands-on user support or dedicated manual authoring, while intentionally omitting disclaimers regarding maintenance. MIT-SA merely disclaims warranties for the Software itself; vendors continuously bear full responsibility for the operation of their services and systems."
+	},
+	ja: {
+		kicker: "MIT-SA 解説",
+		title: "MIT-SAの解説",
+		subtitle: "自己適用型MITライセンス（MIT-SA）の基本解説：生成AI開発における成立経緯、the Softwareの概念、囲い込みへの対応、および配布規定について",
+		sec1Title: "1. 基本概説",
+		sec1Text1: "MIT-SA（SPDX規格名称: MIT-SA）は、伝統的なMITライセンスを近代化し、Share-Alike（相互共有義務）を導入したライセンスです。実務的な位置づけとしては、「非OSS・商用囲い込み環境でも運用可能なAGPL相当の相互性ライセンス」と解釈するのが最も明快です。MITが持つ商用利用の自由度を維持しつつ、機能劣化の抑止とネットワーク経由でのバイナリ供出義務を課します。",
+		sec1Text2: "知的財産の防衛的観点から、ライセンス条文自体の著作権について「The author disclaims copyright to this license text.」（本ライセンス条文の著作権を放棄する）と明記しています。条文の財産権を放棄することで、ライセンス文自体の複製や配布を巡る著作権紛争・反訴リスクを完全に遮断しています。一方で著作者人格権を安易に放棄（waiver）していないのは、大陸法系（日本や欧州等）における著作者人格権の一身専属性（法的に放棄不能である原則）との整合性を保ちつつ、第三者による名義冒用や不当な帰属主張に対する最低限の防衛盾を確保するためです。",
+		sec2Title: "2. 成り立ちと「ソースコード」の課題",
+		sec2Lead: "MIT-SAの成立は、AGPL等の古典的コピーレフト理論と、現代のVLM（Vision-Language Model）駆動型開発現場との間での深刻な構造的摩擦に起因しています。",
+		sec2Point1Title: "VLM駆動開発と唯一の信頼アンカー（HTML）",
+		sec2Point1Text: "当初の構想では、VLMが単一のHTMLファイルを直接編集し、自己完結したブラウザ稼働ツールを生成していました。このとき、ブラウザで動作するHTMLそのものが唯一の信頼アンカー（Single Source of Truth）であり、客観的な「ソースコード」として機能していました。",
+		sec2Point2Title: "中間表現（Preact/JSX）の導入",
+		sec2Point2Text: "プロンプト容量および推論の限界に対処するため、コンポーネント指向の中間表現（Intermediate Representation: IR）としてPreactを採用。パイプラインは「VLM → Preact（中間表現） → 単一HTML（ソースコード）」へと多層化しました。",
+		sec2Point3Title: "AGPLが引き起こした致命的な2つの問題",
+		sec2Point3Text: "このパイプライン変更に伴い、従来のAGPL解釈において「改変を行うための好ましい形式（ソースコード）」の定義がHTMLからPreactコードへと不当に移動しました。これにより以下の重大な矛盾が生じました：",
+		sec2Fail1Label: "「ソースコード」の主観的漂流：",
+		sec2Fail1Text: "単なる自動ビルド工程を一段挟んだだけで法的な「ソースコード」の所在が移動した事実は、現代の機械生成パラダイムにおいて「ソースコード」なる概念が客観的実体ではなく、主観的かつ脆弱な分類に過ぎないことを証明した。",
+		sec2Fail2Label: "無関係なツールチェーンの巻き上げ：",
+		sec2Fail2Text: "AGPLの伝統的解釈は、本来の自己完結的信頼アンカーであるHTMLを「単なる中間バイナリ」とみなして軽視する一方で、HTMLツールとは直接機能的関連のない周辺のPreactビルド環境やツールチェーンのコードまで不当に徴発しようとした。",
+		sec2Conclusion: "これにより「ソースコードの開示」をトリガーとするAGPLは破綻したと判断され、バイナリとしての the Software そのものを基準とするMIT-SAが設計されました。なお、AGPLはより過酷かつ強制的な共有義務を課す上位規範であるため、改変版に限りGNU AGPLv3への一方的な再ライセンス（コンバート）が例外として許容されています。この一方通行のエグジットを設けることで、より厳格なコピーレフト生態系との相互運用性を担保しつつ、無秩序な私有化を防止しています。",
+		sec3Title: "3. the Software の概念と憲法上の対比",
+		sec3Text1: "MIT-SAは、原初MITにおける「the Software」という概念を徹底的に純化しました。その法制構造はフランス第5共和国憲法第1条第1文「フランスは、不可分の、非宗教的、民主的かつ社会的な共和国である」の理念と完全に対応しています。",
+		tableHeaders: [
+			"憲法条文の要素",
+			"MIT-SAでの対応概念",
+			"法技術・構造的解釈"
+		],
+		sec3Grid: [
+			{
+				key: "フランス（La France）",
+				sym: "the Software",
+				desc: "バラバラなテキスト断片ではなく、単一の法的主権体としてのソフトウェア。"
+			},
+			{
+				key: "不可分（Indivisible）",
+				sym: "ファイル境界（File Boundary）",
+				desc: "コンパイル、バンドル、埋め込み等で1つのファイルに統合されたものは不可分であり、全体が単一ソフトウェアとして統治される。"
+			},
+			{
+				key: "非宗教的（Laïque）",
+				sym: "バイナリ志向・形式不問",
+				desc: "ソースコード至上主義という「宗教」を廃止。AST、バイトコード、画像、音声、テキスト等の表現形式を区別せず、すべて等価なバイナリデータとみなす。"
+			},
+			{
+				key: "共和国（République）",
+				sym: "Everything is a file",
+				desc: "UNIX哲学の「すべてはファイルである」。貴族的なソースコードと平民的なバイナリの身分差を撤廃し、ファイルシステム上の1ファイルとして平等に扱う。"
+			}
+		],
+		sec3Note: "ロベスピエールがUNIX哲学に従い建国したことは自明ですが、the Software ではソースコード、中間表現、実行ファイル、画像、テキスト、音声などを区別せず、すべて等価な「バイナリ」として扱います。ただし、それだとファイル圧縮やアーカイブに支障が出るため、アーカイブ（zip/tar）、コンテナ、インストーラ等への集約時はファイル境界を跨がず各ファイルが独立性を維持する例外条項を設けています。",
+		sec4Title: "4. リバース・エンジニアリング条項",
+		sec4Text: "客観的な「ソースコード」が存在しない以上、受領者が改変を行う唯一の現実的手段はバイナリ解析（リバースエンジニアリング）です。MIT-SAはこれを実効化するため、知財保護法制に対する徹底的な無力化条項を盛り込んでいます。",
+		sec4Points: [
+			"著作権法規の無力化：米DMCA 1201条（技術的保護手段の回避禁止）および各国の同等法規（日本著作権法30条1項2号等）に基づく請求権の完全放棄。",
+			"不提訴誓約（Covenant Not to Sue）：逆アセンブル、逆コンパイル、復号、改変を行った受領者に対し、取消不能な不提訴誓約を付与。",
+			"利用規約の無効化：いかなる個別契約、利用規約（TOS）、技術的制限手段も、解析と改変を阻害することはできない。"
+		],
+		sec5Title: "5. 囲い込み条項と収益化への考え方",
+		sec5Text1: "MIT-SAはOSS原理主義のライセンスではありません。ベンダーが独自機能を付加して囲い込み、商用収益化モデルを構築すること自体を肯定し、その主権を保護します。",
+		sec5Text2: "ライセンスが禁じているのは「既存機能の自立性を奪う劣化改変（Retrograde Degradation）」です。これまでローカル環境で自律動作していた機能を、外部サーバーの継続的認証、テレメトリー、課金インフラに依存させる改変を禁止しています。純粋な新機能追加や、外部依存を伴わない機能削除は自由に認められます。",
+		sec6Title: "6. 配布規定と運用の範囲",
+		sec6Text1: "AGPLが「改変」をトリガーにしたことで改変該当性を巡る神学論争を招いた反省から、MIT-SAは「ネットワーク経由で機能を提供した事実」のみを単一の配布トリガーとします。さらに重要な実務的設計として、バイナリの供出義務は「その機能を提供している間のみ（and only while providing such functionality）」に限定されています。サービス提供を停止・撤退すれば供出義務も同時に終了するため、永続的なコード開示リスクを負うことなく、運用の実態に即した柔軟なライフサイクル管理を可能にしています。",
+		sec6Comp1Title: "本番環境のPET免責とステージング（IaC）準拠",
+		sec6Comp1Text: "近年の本番クラスタは状態依存的（PET運用）であり、完全な再現は非現実的です。MIT-SAは本番環境の完全再現義務を明確に免責し、機能的に等価なローカル実行・セルフホストが可能なステージング（IaC水準）のバイナリ供出で十分と規定しています。",
+		sec6Comp2Title: "「ユーザー介護」の免責 vs 「運用主体」の保守責任",
+		sec6Comp2Text: "MIT-SAはベンダーによる手厚いサポートや個別マニュアル作成などの「介護」を明示的に免責する一方、保守（maintenance）に関する免責は意図的に却下しています。MIT-SAが免責しているのは the Software 自体に過ぎず、ベンダーは常にサービスやシステム運用における全面的な責任を負うからです。"
+	}
+};
+function ExplainMitSa() {
+	const [lang, setLang] = d("en");
+	const t = CONTENT[lang];
+	return  a("div", {
+		className: "explain-mitsa",
+		children: [
+			 a("style", { children: PAGE_CSS }),
+			 a("div", {
+				className: "nav-row",
+				children: [ a("div", {
+					className: "top-nav",
+					style: { margin: 0 },
+					children:  a("a", {
+						href: "../",
+						className: "back-btn",
+						children: "← Back"
+					})
+				}),  a("div", {
+					className: "lang-toggle",
+					children: [ a("button", {
+						className: `lang-btn ${lang === "en" ? "active" : ""}`,
+						onClick: () => setLang("en"),
+						children: "English"
+					}),  a("button", {
+						className: `lang-btn ${lang === "ja" ? "active" : ""}`,
+						onClick: () => setLang("ja"),
+						children: "日本語"
+					})]
+				})]
+			}),
+			 a("header", {
+				className: "hero",
+				children: [
+					 a("div", {
+						className: "hero-kicker",
+						children: t.kicker
+					}),
+					 a("h1", { children: t.title }),
+					 a("p", { children: t.subtitle })
+				]
+			}),
+			 a("section", {
+				className: "section",
+				children: [
+					 a("h2", { children: t.sec1Title }),
+					 a("p", { children: t.sec1Text1 }),
+					 a("div", {
+						className: "quote-box",
+						children: "The author disclaims copyright to this license text."
+					}),
+					 a("p", { children: t.sec1Text2 })
+				]
+			}),
+			 a("section", {
+				className: "section",
+				children: [
+					 a("h2", { children: t.sec2Title }),
+					 a("p", { children: t.sec2Lead }),
+					 a("h3", { children: t.sec2Point1Title }),
+					 a("p", { children: t.sec2Point1Text }),
+					 a("h3", { children: t.sec2Point2Title }),
+					 a("p", { children: t.sec2Point2Text }),
+					 a("h3", { children: t.sec2Point3Title }),
+					 a("p", { children: t.sec2Point3Text }),
+					 a("ol", { children: [ a("li", { children: [
+						 a("strong", { children: t.sec2Fail1Label }),
+						" ",
+						t.sec2Fail1Text
+					] }),  a("li", { children: [
+						 a("strong", { children: t.sec2Fail2Label }),
+						" ",
+						t.sec2Fail2Text
+					] })] }),
+					 a("p", { children: t.sec2Conclusion })
+				]
+			}),
+			 a("section", {
+				className: "section",
+				children: [
+					 a("h2", { children: t.sec3Title }),
+					 a("p", { children: t.sec3Text1 }),
+					 a("div", {
+						className: "table-wrapper",
+						children:  a("table", { children: [ a("thead", { children:  a("tr", { children: [
+							 a("th", { children: t.tableHeaders[0] }),
+							 a("th", { children: t.tableHeaders[1] }),
+							 a("th", { children: t.tableHeaders[2] })
+						] }) }),  a("tbody", { children: t.sec3Grid.map((row) =>  a("tr", { children: [
+							 a("td", { children:  a("strong", { children: row.key }) }),
+							 a("td", { children:  a("code", { children: row.sym }) }),
+							 a("td", { children: row.desc })
+						] }, row.key)) })] })
+					}),
+					 a("p", { children: t.sec3Note })
+				]
+			}),
+			 a("section", {
+				className: "section",
+				children: [
+					 a("h2", { children: t.sec4Title }),
+					 a("p", { children: t.sec4Text }),
+					 a("ul", { children: t.sec4Points.map((pt, i) =>  a("li", { children: pt }, i)) })
+				]
+			}),
+			 a("section", {
+				className: "section",
+				children: [
+					 a("h2", { children: t.sec5Title }),
+					 a("p", { children: t.sec5Text1 }),
+					 a("p", { children: t.sec5Text2 })
+				]
+			}),
+			 a("section", {
+				className: "section",
+				children: [
+					 a("h2", { children: t.sec6Title }),
+					 a("p", { children: t.sec6Text1 }),
+					 a("h3", { children: t.sec6Comp1Title }),
+					 a("p", { children: t.sec6Comp1Text }),
+					 a("h3", { children: t.sec6Comp2Title }),
+					 a("p", { children: t.sec6Comp2Text })
+				]
+			}),
+			 a(LicenseArr, {
+				year: 2026,
+				holder: "mllttv"
+			})
+		]
+	});
+}
+var container = document.getElementById("app");
+if (container) K(k$1(ExplainMitSa, null), container);</script>
+    <style>body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.container {
+  max-width: 920px;
+  margin: 3rem auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #38bdf8;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+code {
+  background-color: #1e293b;
+  color: #38bdf8;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.card {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.counter-display {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 1.5rem 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  background-color: #334155;
+  color: #f8fafc;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn:hover {
+  background-color: #475569;
+}
+.btn-primary {
+  background-color: #0284c7;
+  border-color: #0284c7;
+}
+.btn-primary:hover {
+  background-color: #0369a1;
+}
+.btn-secondary {
+  background-color: transparent;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.back-btn, .btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #94a3b8;
+  background-color: rgba(30, 41, 59, 0.7);
+  border: 1px solid #334155;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+.back-btn:hover, .btn-back:hover {
+  color: #38bdf8;
+  background-color: #1e293b;
+  border-color: #0284c7;
+}
+
+.license {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+.license details {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background-color: #1e293b;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.license details[open] {
+  border-color: #475569;
+}
+.license details[open] summary {
+  border-bottom: 1px solid #334155;
+}
+.license summary {
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  outline: none;
+}
+.license summary:hover {
+  color: #38bdf8;
+}
+.license pre {
+  white-space: pre;
+  word-break: normal;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.7rem;
+  line-height: 1.55;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background-color: #0b1120;
+  border: none;
+  border-radius: 0;
+  color: #cbd5e1;
+  text-align: center;
+  max-height: 440px;
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #475569 #0b1120;
+}
+.license pre::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.license pre::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+.license pre::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}</style>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
