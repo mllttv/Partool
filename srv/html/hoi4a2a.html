@@ -457,7 +457,7 @@ MIT-SA LICENSE
 SPDX-License-Identifier: LicenseRef-MIT-SA
 ================================================================================
 
-The MIT License - Self-Applying Variant (MIT-SA) - v0.36-draft
+The MIT License - Self-Applying Variant (MIT-SA) - v0.38-draft
 The author disclaims copyright to this license text.
 
 Copyright (c) ${year} ${holder}
@@ -482,8 +482,9 @@ copyright holder:
    or in its closest ancestor directory containing such a file.
 
 Self-Applying:
-Any modified version of the Software must be governed by this License,
-unless relicensed under the GNU Affero General Public License (AGPL) version 3.
+The Software and any modified version must be governed by this License, but may
+be relicensed under the GNU Affero General Public License (AGPL) version 3 in
+place of this License.
 In either case, no conflicting license notices may be added.
 
 Permitted Processing & Reverse Engineering:
@@ -521,6 +522,31 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
 };
+var buildSabotMitSa = (year, holder) => {
+	let text = buildMitSa(year, holder);
+	text += `\n\n--------------------------------------------------------------------------------
+NON-SOFTWARE ASSETS
+--------------------------------------------------------------------------------
+
+© ${year} ${holder}. All rights reserved.
+
+All images, audio, video, scenarios, characters, trademarks, and other
+creative or embedded assets in this work (the "Assets") are excluded from the
+Software, and all rights therein are reserved.
+
+As the sole exception, the Assets may be used and distributed strictly
+unmodified alongside the Software governed by the MIT-SA License, solely for
+its execution or hosting. No other use, extraction, or modification of the Assets
+is permitted.
+
+THIS WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THIS WORK OR THE USE THEREOF.`;
+	return text;
+};
 function renderLicense(name, year, holder, text) {
 	const content = `${text}\n\n${LICITE}`;
 	return  a("footer", {
@@ -535,8 +561,8 @@ function renderLicense(name, year, holder, text) {
 		] }),  a("pre", { children: content })] })
 	});
 }
-function LicenseMitSa({ year, holder }) {
-	return renderLicense("MIT-SA License", year, holder, buildMitSa(year, holder));
+function LicenseSabotMitSa({ year, holder }) {
+	return renderLicense("MIT-SA / All Rights Reserved", year, holder, buildSabotMitSa(year, holder));
 }
 var DEFAULT_SPECS = {
 	ic: 37.2,
@@ -1364,7 +1390,7 @@ function Hoi4A2APage() {
 					children: "(This project is wholly independent and is neither affiliated with nor endorsed by the Free Software Foundation or the GNU Project.)"
 				})]
 			}),
-			 a(LicenseMitSa, {
+			 a(LicenseSabotMitSa, {
 				year: 2026,
 				holder: "Anonymous"
 			})
