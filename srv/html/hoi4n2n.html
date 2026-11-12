@@ -522,31 +522,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
 };
-var buildSabotMitSa = (year, holder) => {
-	let text = buildMitSa(year, holder);
-	text += `\n\n--------------------------------------------------------------------------------
-NON-SOFTWARE ASSETS
---------------------------------------------------------------------------------
-
-© ${year} ${holder}. All rights reserved.
-
-All images, audio, video, scenarios, characters, trademarks, and other
-creative or embedded assets in this work (the "Assets") are excluded from the
-Software, and all rights therein are reserved.
-
-As the sole exception, the Assets may be used and distributed strictly
-unmodified alongside the Software governed by the MIT-SA License, solely for
-its execution or hosting. No other use, extraction, or modification of the Assets
-is permitted.
-
-THIS WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THIS WORK OR THE USE THEREOF.`;
-	return text;
-};
 function renderLicense(name, year, holder, text) {
 	const content = `${text}\n\n${LICITE}`;
 	return  a("footer", {
@@ -561,8 +536,8 @@ function renderLicense(name, year, holder, text) {
 		] }),  a("pre", { children: content })] })
 	});
 }
-function LicenseSabotMitSa({ year, holder }) {
-	return renderLicense("MIT-SA / All Rights Reserved", year, holder, buildSabotMitSa(year, holder));
+function LicenseMitSa({ year, holder }) {
+	return renderLicense("MIT-SA License", year, holder, buildMitSa(year, holder));
 }
 var DEFAULT_SHIP = {
 	ic: 1092,
@@ -1484,7 +1459,7 @@ function Hoi4N2NPage() {
 					children: "(This project is wholly independent and is neither affiliated with nor endorsed by the Free Software Foundation or the GNU Project.)"
 				})]
 			}),
-			 a(LicenseSabotMitSa, {
+			 a(LicenseMitSa, {
 				year: 2026,
 				holder: "Anonymous"
 			})
