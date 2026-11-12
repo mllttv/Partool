@@ -7,34 +7,34 @@
     <script type="module">
 var n;
 var t$1;
-var i$1;
 var u$2;
+var i$1;
 var f$2;
-var e$1;
 var o$2;
+var e$1;
 var l$1;
 var c$1;
 var a$2;
 var h$1 = Symbol.for("pv");
 var p$1 = {};
-var v$1 = [];
-var y$1 = /^m(i|n|o|s|text|space)$/;
+var y$1 = [];
+var v$1 = /^m(i|n|o|s|text|space)$/;
 var w = Array.isArray;
-var d$1 = v$1.slice;
+var d$1 = y$1.slice;
 var _$1 = Object.assign;
 function g$1(n) {
 	n && n.parentNode && n.remove();
 }
 function k$1(n, t, r) {
-	var i, u, f, e = {}, o = arguments.length;
-	for (f in t) "key" == f ? i = t[f] : "ref" == f && "function" != typeof n ? u = t[f] : e[f] = t[f];
-	return o > 2 && (e.children = o > 3 ? d$1.call(arguments, 2) : r), m$1(n, e, i, u, null);
+	var u, i, f, o = {}, e = arguments.length;
+	for (f in t) "key" == f ? u = t[f] : "ref" == f && "function" != typeof n ? i = t[f] : o[f] = t[f];
+	return e > 2 && (o.children = e > 3 ? d$1.call(arguments, 2) : r), m$1(n, o, u, i, null);
 }
-function m$1(r, i, u, f, e) {
-	var o = {
+function m$1(r, u, i, f, o) {
+	var e = {
 		type: r,
-		props: i,
-		key: u,
+		props: u,
+		key: i,
 		ref: f,
 		__k: null,
 		__: null,
@@ -42,13 +42,13 @@ function m$1(r, i, u, f, e) {
 		__e: null,
 		__c: null,
 		constructor: h$1,
-		__v: e || ++t$1,
+		__v: o || ++t$1,
 		__i: -1,
 		__u: 0
 	};
-	return !e && n.vnode && n.vnode(o), o;
+	return !o && n.vnode && n.vnode(e), e;
 }
-function M(n) {
+function $(n) {
 	return n.children;
 }
 function x(n, t) {
@@ -59,73 +59,76 @@ function S(n, t) {
 	for (var r; t < n.__k.length; t++) if ((r = n.__k[t]) && r.__e) return r.__e;
 	return "function" != typeof n.type || n.props.__P ? null : S(n);
 }
-function C$1(n) {
+function C$1(t) {
+	var r, u = t.__v, i = u.__e, f = [], o = [], e = t.__P;
+	e && ((r = _$1({ constructor: h$1 }, u)).__v = u.__v + 1, n.vnode && n.vnode(r), z$1(e, r, u, t.__n, e.namespaceURI, 32 & u.__u ? [i] : null, f, i || S(u), 32 & u.__u, o), r.__v = u.__v, r.__.__k[r.__i] = r, E(f, r, o), u.__ = u.__e = null, r.__e != i && j(r));
+}
+function j(n) {
 	if ((n = n.__) && n.__c && !n.props.__P) return n.__e = null, n.__k.some(function(t) {
 		return t && (n.__e = t.__e);
-	}), C$1(n);
+	}), j(n);
 }
-function j(t) {
-	(8 & t.__g || (t.__g |= 8, i$1.push(t), f$2++)) && u$2 == n.debounceRendering || ((u$2 = n.debounceRendering) || queueMicrotask)(L);
+function L(t) {
+	(8 & t.__g || (t.__g |= 8, u$2.push(t), f$2++)) && i$1 == n.debounceRendering || ((i$1 = n.debounceRendering) || queueMicrotask)(H);
 }
-function L() {
-	var t, r, o, l, c, a, s, p, v;
+function H() {
 	try {
-		for (r = 1; i$1.length;) i$1.length > r && i$1.sort(e$1), t = i$1.shift(), r = i$1.length, 8 & t.__g && (l = void 0, c = void 0, a = (c = (o = t).__v).__e, s = [], p = [], (v = o.__P) && ((l = _$1({ constructor: h$1 }, c)).__v = c.__v + 1, n.vnode && n.vnode(l), V(v, l, c, o.__n, v.namespaceURI, 32 & c.__u ? [a] : null, s, a || S(c), 32 & c.__u, p), l.__v = c.__v, l.__.__k[l.__i] = l, D$1(s, l, p), c.__ = c.__e = null, l.__e != a && C$1(l)));
+		for (var n, t = 1; u$2.length;) u$2.length > t && u$2.sort(o$2), n = u$2.shift(), t = u$2.length, 8 & n.__g && C$1(n);
 	} finally {
-		(f$2 = i$1.length) && (u$2 || queueMicrotask)(L);
+		(f$2 = u$2.length) && (i$1 || queueMicrotask)(H);
 	}
 }
-function H(n, t, r, i, u, f, e, o, l, c, a) {
-	var s, h, y, w, d, _, g = i.__k || v$1, k = t.length;
-	for (l = I(r, t, g, l, k), s = 0; s < k; s++) null != (y = r.__k[s]) && (h = ~y.__i && g[y.__i] || p$1, y.__i = s, _ = V(n, y, h, u, f, e, o, l, c, a), w = y.__e, (h.ref != y.ref || 8 & h.__u) && (h.ref && F(h.ref, null, y, h), y.ref && a.push(y.ref, y.__c || w, y)), d = d || w, 4 & y.__u ? (l = q(y, l, n, !h.__v), h.__e && (h.__e = null)) : "function" == typeof y.type && void 0 !== _ ? l = _ : w && (l = w.nextSibling), y.__u &= -21);
+function I(n, t, r, u, i, f, o, e, l, c, a) {
+	var s, h, v, w, d, _, g = u.__k || y$1, k = t.length;
+	for (l = q(r, t, g, l, k), s = 0; s < k; s++) null != (v = r.__k[s]) && (h = ~v.__i && g[v.__i] || p$1, v.__i = s, _ = z$1(n, v, h, i, f, o, e, l, c, a), w = v.__e, (h.ref != v.ref || 8 & h.__u) && (h.ref && G$1(h.ref, null, v, h), v.ref && a.push(v.ref, v.__c || w, v)), d = d || w, 4 & v.__u ? (l = A(v, l, n, !h.__v), h.__e && (h.__e = null)) : "function" == typeof v.type && void 0 !== _ ? l = _ : w && (l = w.nextSibling), v.__u &= -21);
 	return r.__e = d, l;
 }
-function I(n, t, r, i, u) {
-	var f, e, o, l, c, a, s, p, v, y = r.length, d = y, _ = 0, g = 0, k = n.__k = Array(u);
-	for (f = 0; f < u; f++) null != (e = t[f]) && "boolean" != typeof e && "function" != typeof e ? ("object" != typeof e || e.constructor === String ? e = k[f] = m$1(null, e) : w(e) ? e = k[f] = m$1(M, { children: e }) : e.constructor === h$1 && e.__b ? e = k[f] = m$1(e.type, e.props, e.key, e.ref, e.__v) : k[f] = e, l = f + _, e.__ = n, e.__b = n.__b + 1, o = null, ~(c = e.__i = O(e, r, l, d)) && (d--, (o = r[c]) && (o.__u |= 2)), o && o.__v ? (e.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (u > y ? _-- : u < y && _++), "function" != typeof e.type && (e.__u |= 4))) : k[f] = null;
+function q(n, t, r, u, i) {
+	var f, o, e, l, c, a, s, p, y, v = r.length, d = v, _ = 0, g = 0, k = n.__k = Array(i);
+	for (f = 0; f < i; f++) null != (o = t[f]) && "boolean" != typeof o && "function" != typeof o ? ("object" != typeof o || o.constructor === String ? o = k[f] = m$1(null, o) : w(o) ? o = k[f] = m$1($, { children: o }) : o.constructor === h$1 && o.__b ? o = k[f] = m$1(o.type, o.props, o.key, o.ref, o.__v) : k[f] = o, l = f + _, o.__ = n, o.__b = n.__b + 1, e = null, ~(c = o.__i = P(o, r, l, d)) && (d--, (e = r[c]) && (e.__u |= 2)), e && e.__v ? (o.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (i > v ? _-- : i < v && _++), "function" != typeof o.type && (o.__u |= 4))) : k[f] = null;
 	if (g) {
-		for (a = [], s = [], f = 0; f < u; f++) if ((e = k[f]) && 16 & e.__u) {
-			for (_ = 0, p = a.length; _ < p;) a[v = _ + p >> 1] < e.__i ? _ = v + 1 : p = v;
-			a[_] = e.__i, s[f] = _ + 1;
+		for (a = [], s = [], f = 0; f < i; f++) if ((o = k[f]) && 16 & o.__u) {
+			for (_ = 0, p = a.length; _ < p;) a[y = _ + p >> 1] < o.__i ? _ = y + 1 : p = y;
+			a[_] = o.__i, s[f] = _ + 1;
 		}
 		for (_ = a.length; f--;) s[f] && (s[f] == _ ? _-- : k[f].__u |= 4);
 	}
-	if (d) for (f = 0; f < y; f++) !(o = r[f]) || 2 & o.__u || (o.__e == i && (i = S(o)), G$1(o, o));
-	return i;
+	if (d) for (f = 0; f < v; f++) !(e = r[f]) || 2 & e.__u || (e.__e == u && (u = S(e)), J(e, e));
+	return u;
 }
-function q(n, t, r, i) {
-	var u, f, e, o;
+function A(n, t, r, u) {
+	var i, f, o, e;
 	if ("function" == typeof n.type) {
 		if (n.props.__P) return t;
-		if (u = n.__k) for (f = 0; f < u.length; f++) u[f] && (u[f].__ = n, t = q(u[f], t, r, !1));
+		if (i = n.__k) for (f = 0; f < i.length; f++) i[f] && (i[f].__ = n, t = A(i[f], t, r, !1));
 		return t;
 	}
-	for (t && !t.parentNode && (t = S(n)) && !t.parentNode && (t = null), e = n.__e, o = t; o && 8 == o.nodeType;) o = o.nextSibling;
-	for (e != o && (!i && r.moveBefore && e.parentNode ? r.moveBefore(e, t) : r.insertBefore(e, t || null)), t = e; (t = t && t.nextSibling) && 8 == t.nodeType && !t.data.startsWith("$s"););
+	for (t && !t.parentNode && (t = S(n)) && !t.parentNode && (t = null), o = n.__e, e = t; e && 8 == e.nodeType;) e = e.nextSibling;
+	for (o != e && (!u && r.moveBefore && o.parentNode ? r.moveBefore(o, t) : r.insertBefore(o, t || null)), t = o; (t = t && t.nextSibling) && 8 == t.nodeType && !t.data.startsWith("$s"););
 	return t;
 }
-function O(n, t, r, i) {
-	var u, f = n.key, e = n.type, o = t[r], l = o && !(2 & o.__u);
-	if (null === o && null == f || l && f == o.key && e == o.type) return r;
-	if (i > (l ? 1 : 0)) {
-		for (u = r - 1; u >= 0; u--) if ((o = t[u]) && !(2 & o.__u) && f == o.key && e == o.type) return u;
-		for (u = r + 1; u < t.length; u++) if ((o = t[u]) && !(2 & o.__u) && f == o.key && e == o.type) return u;
+function P(n, t, r, u) {
+	var i, f = n.key, o = n.type, e = t[r], l = e && !(2 & e.__u);
+	if (null === e && null == f || l && f == e.key && o == e.type) return r;
+	if (u > (l ? 1 : 0)) {
+		for (i = r - 1; i >= 0; i--) if ((e = t[i]) && !(2 & e.__u) && f == e.key && o == e.type) return i;
+		for (i = r + 1; i < t.length; i++) if ((e = t[i]) && !(2 & e.__u) && f == e.key && o == e.type) return i;
 	}
 	return -1;
 }
-function P(n, t, r) {
+function T(n, t, r) {
 	r ??= "", "-" == t[0] ? n.setProperty(t, r) : n[t] = r;
 }
-function T(n, t, r, i, u) {
-	var f, e;
+function N(n, t, r, u, i) {
+	var f, o;
 	if ("style" == t) if ("string" == typeof r) n.style.cssText = r;
 	else {
-		if ("string" == typeof i && (n.style.cssText = i = ""), i) for (t in i) r && t in r || P(n.style, t);
-		if (r) for (t in r) i && r[t] == i[t] || P(n.style, t, r[t]);
+		if ("string" == typeof u && (n.style.cssText = u = ""), u) for (t in u) r && t in r || T(n.style, t);
+		if (r) for (t in r) u && r[t] == u[t] || T(n.style, t, r[t]);
 	}
-	else if ("o" == t[0] && "n" == t[1]) (n.__e || (n.__e = {}))[t] = r, r && i || (e = a$2[t] || (a$2[t] = N(t)), (n.__a || (n.__a = {}))[t] = c$1, f = t != (t = t.replace(l$1, "$1")), (t = t.slice(2))[0] < "a" && (t = t.toLowerCase()), r ? n.addEventListener(t, e, f) : n.removeEventListener(t, e, f));
+	else if ("o" == t[0] && "n" == t[1]) "function" != typeof r && (r = null), "function" != typeof u && (u = null), (n.__e || (n.__e = {}))[t] = r, r && u || (o = a$2[t] || (a$2[t] = V(t)), (n.__a || (n.__a = {}))[t] = c$1, f = t != (t = t.replace(l$1, "$1")), (t = t.slice(2))[0] < "a" && (t = t.toLowerCase()), r ? n.addEventListener(t, o, f) : n.removeEventListener(t, o, f));
 	else {
-		if ("http://www.w3.org/2000/svg" == u) t = t.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
+		if ("http://www.w3.org/2000/svg" == i) t = t.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
 		else if ("width" != t && "height" != t && "href" != t && "list" != t && "form" != t && "tabIndex" != t && "download" != t && "rowSpan" != t && "colSpan" != t && "role" != t && "popover" != t && t in n) try {
 			n[t] = null == r ? "" : r;
 			return;
@@ -134,65 +137,65 @@ function T(n, t, r, i, u) {
 		null == r || !1 === r && "-" != t[4] ? n.removeAttribute(t) : n.setAttribute(t, "popover" == t && 1 == r ? "" : r);
 	}
 }
-function N(t) {
+function V(t) {
 	return function(r) {
-		var i = this.__e;
-		if (i) {
-			if (i = i[t], null == r[o$2]) r[o$2] = c$1++;
-			else if (r[o$2] < this.__a[t]) return;
-			return i(n.event ? n.event(r) : r);
+		var u = this.__e;
+		if (u) {
+			if (u = u[t], null == r[e$1]) r[e$1] = c$1++;
+			else if (r[e$1] < this.__a[t]) return;
+			return u(n.event ? n.event(r) : r);
 		}
 	};
 }
-function V(t, r, i, u, f, e, o, l, c, a) {
-	var s, p, y, d, k, b, m, $, C, j, L, I, q, A, O, P, T, N, V = r.type;
+function z$1(t, r, u, i, f, o, e, l, c, a) {
+	var s, p, v, d, k, b, m, M, C, j, L, H, q, A, O, P, T, N, V = r.type;
 	if (r.constructor !== h$1) return null;
-	128 & i.__u && (c = 32 & i.__u, s = i.__c.__z) && (r.__u |= c, p = e = [], 8 == s.nodeType ? l = z$1(s, e) : e.push(s), l = e[0] || l), (s = n.__b) && s(r);
+	128 & u.__u && (c = 32 & u.__u, s = u.__c.__z) && (r.__u |= c, p = o = [], 8 == s.nodeType ? l = B$1(s, o) : o.push(s), l = o[0] || l), (s = n.__b) && s(r);
 	n: if ("function" == typeof V) {
-		y = o.length;
+		v = e.length;
 		try {
-			if ($ = r.props, C = (s = V.prototype) && s.render, j = (s = V.contextType) && u[s.__c], L = s ? j ? j.props.value : s.__ : u, (d = i.__c) ? (r.__c = d, 2 & d.__g && (d.__g |= 1)) : (C ? r.__c = d = new V($, L) : (r.__c = d = new x($, L), d.constructor = V, d.render = J), j && j.sub(d), d.state || (d.state = {}), d.__n = u, d.__g |= 8, d.__h = [], d.__k = []), C && (d.__s || (d.__s = d.state), V.getDerivedStateFromProps && (d.__s == d.state && (d.__s = _$1({}, d.__s)), _$1(d.__s, V.getDerivedStateFromProps($, d.__s)))), k = d.props, b = d.state, d.__v = r, i.__c) {
-				if ($ !== k && C && !V.getDerivedStateFromProps && d.componentWillReceiveProps && d.componentWillReceiveProps($, L), r.__v == i.__v && !(8 & d.__g) || !(4 & d.__g) && d.shouldComponentUpdate && !1 === d.shouldComponentUpdate($, d.__s, L)) {
-					r.__v != i.__v && (d.props = $, d.state = d.__s, d.__g &= -9), r.__e = i.__e, r.__k = i.__k, r.__k.some(function(n) {
+			if (M = r.props, C = (s = V.prototype) && s.render, j = (s = V.contextType) && i[s.__c], L = s ? j ? j.props.value : s.__ : i, (d = u.__c) ? (r.__c = d, 2 & d.__g && (d.__g |= 1)) : (C ? r.__c = d = new V(M, L) : (r.__c = d = new x(M, L), d.constructor = V, d.render = K), j && j.sub(d), d.state || (d.state = {}), d.__n = i, d.__g |= 8, d.__h = [], d.__k = []), C && (d.__s || (d.__s = d.state), V.getDerivedStateFromProps && (d.__s == d.state && (d.__s = _$1({}, d.__s)), _$1(d.__s, V.getDerivedStateFromProps(M, d.__s)))), k = d.props, b = d.state, d.__v = r, u.__c) {
+				if (M !== k && C && !V.getDerivedStateFromProps && d.componentWillReceiveProps && d.componentWillReceiveProps(M, L), r.__v == u.__v && !(8 & d.__g) || !(4 & d.__g) && d.shouldComponentUpdate && !1 === d.shouldComponentUpdate(M, d.__s, L)) {
+					r.__v != u.__v && (d.props = M, d.state = d.__s, d.__g &= -9), r.__e = u.__e, r.__k = u.__k, r.__k.some(function(n) {
 						n && (n.__ = r);
-					}), v$1.push.apply(d.__h, d.__k), d.__k = [], d.__h.length && o.push(d), l = S(i);
+					}), y$1.push.apply(d.__h, d.__k), d.__k = [], d.__h.length && e.push(d), l = S(u);
 					break n;
 				}
-				d.componentWillUpdate && d.componentWillUpdate($, d.__s, L), C && d.componentDidUpdate && d.__h.push(function() {
+				d.componentWillUpdate && d.componentWillUpdate(M, d.__s, L), C && d.componentDidUpdate && d.__h.push(function() {
 					d.componentDidUpdate(k, b, m);
 				});
 			} else C && !V.getDerivedStateFromProps && d.componentWillMount && d.componentWillMount(), C && d.componentDidMount && d.__h.push(d.componentDidMount);
-			if (d.context = L, d.props = $, d.__P = t, d.__g &= -5, I = n.__r, q = 0, C) d.state = d.__s, d.__g &= -9, I && I(r), s = d.render(d.props, d.state, d.context), v$1.push.apply(d.__h, d.__k), d.__k = [];
-			else do
-				d.__g &= -9, I && I(r), s = d.render(d.props, d.state, d.context), d.state = d.__s;
+			d.context = L, d.props = M, d.__P = t, d.__g &= -5, H = n.__r, q = C ? 25 : 0;
+			do
+				d.__g &= -9, H && H(r), s = d.render(d.props, d.state = d.__s, d.context);
 			while (8 & d.__g && ++q < 25);
-			d.state = d.__s, d.getChildContext && (u = _$1({}, u, d.getChildContext())), C && i.__c && d.getSnapshotBeforeUpdate && (m = d.getSnapshotBeforeUpdate(k, b)), A = s && s.type === M && null == s.key ? s.props.children : s, $.__P && (s = l, f = (t = $.__P).namespaceURI, c = e = null, i.props && i.props.__P != t && (i.__k.some(function(n) {
-				n && G$1(n, n);
-			}), i.__k = null), l = i.__k ? S(i, 0) : null), l = H(t, w(A) ? A : [A], r, i, u, f, e, o, l, c, a), $.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && o.push(d), 1 & d.__g && (d.__g &= -4);
+			C && (y$1.push.apply(d.__h, d.__k), d.__k = []), d.state = d.__s, d.getChildContext && (i = _$1({}, i, d.getChildContext())), C && u.__c && d.getSnapshotBeforeUpdate && (m = d.getSnapshotBeforeUpdate(k, b)), A = s && s.type === $ && null == s.key ? s.props.children : s, M.__P && (s = l, f = (t = M.__P).namespaceURI, c = o = null, u.props && u.props.__P != t && (u.__k.some(function(n) {
+				n && J(n, n);
+			}), u.__k = null), l = u.__k ? S(u, 0) : null), l = I(t, w(A) ? A : [A], r, u, i, f, o, e, l, c, a), M.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && e.push(d), 1 & d.__g && (d.__g &= -4);
 		} catch (t) {
-			if (o.length = y, r.__v = null, c || e) if (t.then) {
-				if (O = 0, r.__u |= 128 | c, e) {
-					for (~(T = e.indexOf(l || void 0)) || (T = e.length); (N = e[T - 1]) && 8 == N.nodeType;) T--;
-					for (; T < e.length; T++) if (N = e[T]) {
-						if (e[T] = null, 8 == N.nodeType) {
-							if (N.data.startsWith("$s")) O++ || (P = N);
-							else if (O && N.data.startsWith("/$s") && !--O) break;
-						} else if (!O) break;
+			if (e.length = v, r.__v = null, c || o) if (t && t.then) {
+				if (r.__u |= 128 | c, o) {
+					for (~(T = o.indexOf(l || void 0)) || (T = o.length); (N = o[T - 1]) && 8 == N.nodeType;) T--;
+					for (; T < o.length; T++) if (N = o[T]) if (o[T] = null, O) {
+						if (N == P) break;
+					} else {
+						if (8 != N.nodeType) break;
+						N.data.startsWith("$s") && (P = B$1(O = N));
 					}
 				}
-				if (!P) {
+				if (!O) {
 					for (; l && 8 == l.nodeType && l.nextSibling;) l = l.nextSibling;
-					P = l;
+					O = l;
 				}
-				(s = z$1(P = r.__c.__z || (r.__c.__z = P))) ? (r.__e = P, l = s) : r.__e = l, l = l && l.nextSibling;
-			} else e && e.some(g$1);
-			else r.__e = i.__e;
-			r.__k || (r.__k = i.__k || []), t.then || B$1(r), n.__e(t, r, i);
+				(s = B$1(O = r.__c.__z || (r.__c.__z = O))) ? (r.__e = O, l = s) : r.__e = l, l = l && l.nextSibling;
+			} else o && o.some(g$1);
+			else r.__e = u.__e;
+			r.__k || (r.__k = u.__k || []), t && t.then || D$1(r), n.__e(t, r, u);
 		}
-	} else l = r.__e = E(i.__e, r, i, u, f, e, o, c, a, t);
+	} else l = r.__e = F(u.__e, r, u, i, f, o, e, c, a, t);
 	return (s = n.diffed) && s(r), l;
 }
-function z$1(n, t) {
+function B$1(n, t) {
 	if (n && 8 == n.nodeType && n.data.startsWith("$s")) for (var r = 1; n = n.nextSibling;) {
 		if (8 == n.nodeType) {
 			if (n.data.startsWith("$s")) r++;
@@ -201,11 +204,11 @@ function z$1(n, t) {
 		t && t.push(n);
 	}
 }
-function B$1(n) {
-	n && (n.__c && (n.__c.__g |= 4), n.__k && n.__k.some(B$1));
+function D$1(n) {
+	n && (n.__c && (n.__c.__g |= 4), n.__k && n.__k.some(D$1));
 }
-function D$1(t, r, i) {
-	for (var u = 0; u < i.length;) F(i[u++], i[u++], i[u++]);
+function E(t, r, u) {
+	for (var i = 0; i < u.length;) G$1(u[i++], u[i++], u[i++]);
 	n.__c && n.__c(r, t), t.some(function(r) {
 		try {
 			t = r.__h, r.__h = [], t.some(function(n) {
@@ -216,58 +219,58 @@ function D$1(t, r, i) {
 		}
 	});
 }
-function E(t, r, i, u, f, e, o, l, c, a) {
-	var s, h, v, _, k, b, m, $, M, x = i.props || p$1, C = r.props, j = r.type;
-	if ("svg" == j ? f = "http://www.w3.org/2000/svg" : "math" == j ? f = "http://www.w3.org/1998/Math/MathML" : f || (f = "http://www.w3.org/1999/xhtml"), e) {
-		for (s = 0; s < e.length; s++) if ((k = e[s]) && (j ? k.localName == j : 3 == k.nodeType)) {
-			t = k, e[s] = null;
+function F(t, r, u, i, f, o, e, l, c, a) {
+	var s, h, y, _, k, b, m, M, $ = u.props || p$1, x = r.props, C = r.type;
+	if ("svg" == C ? f = "http://www.w3.org/2000/svg" : "math" == C ? f = "http://www.w3.org/1998/Math/MathML" : f || (f = "http://www.w3.org/1999/xhtml"), o) {
+		for (s = 0; s < o.length; s++) if ((k = o[s]) && (C ? k.localName == C : 3 == k.nodeType)) {
+			t = k, o[s] = null;
 			break;
 		}
 	}
 	if (!t) {
-		if ($ = a.ownerDocument || document, !j) return $.createTextNode(C);
-		t = $.createElementNS(f, j, C.is && C), l && (n.__m && n.__m(r, e), l = !1), e = null;
+		if (M = a.ownerDocument || document, !C) return M.createTextNode(x);
+		t = M.createElementNS(f, C, x.is ? x : a), l && (n.__m && n.__m(r, o), l = !1), o = null;
 	}
-	if (j) {
-		if (a = "template" == j && t.content || t, e = "textarea" == j && null != C.defaultValue ? null : e && d$1.call(a.childNodes), !l && e) for (x = {}, s = 0; s < t.attributes.length; s++) x[(k = t.attributes[s]).name] = k.value;
-		for (s in x) k = x[s], "dangerouslySetInnerHTML" == s ? v = k : "children" == s || s in C || "value" == s && "defaultValue" in C || "checked" == s && "defaultChecked" in C || T(t, s, null, k, f);
-		for (s in M = 1 & i.__u, C) k = C[s], "children" == s ? _ = k : "dangerouslySetInnerHTML" == s ? h = k : "value" == s ? b = k : "checked" == s ? m = k : l && "function" != typeof k || !(x[s] !== k || M && null != k) || T(t, s, k, x[s], f);
-		h ? (l || v && (h.__html == v.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (v && (t.textContent = ""), ("foreignObject" == j || "http://www.w3.org/1998/Math/MathML" == f && y$1.test(j)) && (f = "http://www.w3.org/1999/xhtml"), H(a, w(_) ? _ : [_], r, i, u, f, e, o, e ? e[0] : i.__k && S(i, 0), l, c), e && e.some(g$1)), l && "textarea" != j || (s = "value", "progress" == j && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != j || b) || T(t, s, b, x[s], f), s = "checked", null != m && m != t[s] && T(t, s, m, x[s], f));
-	} else x === C || l && t.data == C || (t.data = C);
+	if (C) {
+		if (a = "template" == C && t.content || t, o = "textarea" == C && null != x.defaultValue ? null : o && d$1.call(a.childNodes), !l && o) for ($ = {}, s = 0; s < t.attributes.length; s++) $[(k = t.attributes[s]).name] = k.value;
+		for (s in $) k = $[s], "dangerouslySetInnerHTML" == s ? y = k : "children" == s || s in x || "value" == s && "defaultValue" in x || "checked" == s && "defaultChecked" in x || N(t, s, null, k, f);
+		for (s in x) k = x[s], "children" == s ? _ = k : "dangerouslySetInnerHTML" == s ? h = k : "value" == s ? b = k : "checked" == s ? m = k : l && "function" != typeof k || $[s] === k || N(t, s, k, $[s], f);
+		h ? (l || y && (h.__html == y.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (y && (t.textContent = ""), ("foreignObject" == C || "http://www.w3.org/1998/Math/MathML" == f && v$1.test(C)) && (f = "http://www.w3.org/1999/xhtml"), I(a, w(_) ? _ : [_], r, u, i, f, o, e, o ? o[0] : u.__k && S(u, 0), l, c), o && o.some(g$1)), l && "textarea" != C || (s = "value", "progress" == C && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != C || b) || N(t, s, b, $[s], f), s = "checked", null != m && m != t[s] && N(t, s, m, $[s], f));
+	} else $ === x || l && t.data == x || (t.data = x);
 	return t;
 }
-function F(t, r, i, u) {
+function G$1(t, r, u, i) {
 	try {
-		"function" == typeof t ? r ? r.__x = t(r) || 1 : u && (u = u.__c || u.__e) && (r = u.__x) && (u.__x = null, "function" == typeof r ? r() : t(null)) : t.current = r;
+		"function" == typeof t ? r ? r.__x = t(r) || 1 : i && (i = i.__c || i.__e) && (r = i.__x) && (i.__x = null, "function" == typeof r ? r() : t(null)) : t.current = r;
 	} catch (t) {
-		n.__e(t, i);
+		n.__e(t, u);
 	}
 }
-function G$1(t, r, i) {
-	var u, f, e, o;
-	if (n.unmount && n.unmount(t), !(u = t.ref) || u.current && u.current != t.__e || F(u, null, r, t), u = t.__c) {
-		if (u.componentWillUnmount) try {
-			u.componentWillUnmount();
+function J(t, r, u) {
+	var i, f, o, e;
+	if (n.unmount && n.unmount(t), !(i = t.ref) || i.current && i.current != t.__e || G$1(i, null, r, t), i = t.__c) {
+		if (i.componentWillUnmount) try {
+			i.componentWillUnmount();
 		} catch (t) {
 			n.__e(t, r);
 		}
-		u.__P = u.__n = null;
+		i.__P = i.__n = null;
 	}
-	if (u = t.__k) for (o = 0; o < u.length; o++) u[o] && G$1(u[o], r, "function" != typeof t.type || i && !t.props.__P);
-	!i && (u = t.__c) && (u = u.__z) && (f = z$1(u, e = [])) && (u == t.__e && e.some(g$1), g$1(f), g$1(u)), (u = t.__e) && (i || g$1(u), u.__e && (u.__e = null)), t.__e = t.__c = t.__ = null;
+	if (i = t.__k) for (e = 0; e < i.length; e++) i[e] && J(i[e], r, "function" != typeof t.type || u && !t.props.__P);
+	!u && (i = t.__c) && (i = i.__z) && (f = B$1(i, o = [])) && (i == t.__e && o.some(g$1), g$1(f), g$1(i)), u || g$1(t.__e), t.__e = t.__c = t.__ = null;
 }
-function J(n, t, r) {
+function K(n, t, r) {
 	return this.constructor(n, r);
 }
-function K(t, r) {
-	var i, u, f, e;
-	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), u = (i = t && 32 & t.__u) ? null : r.__k, r.__k = m$1(M, { children: [t] }), f = [], e = [], V(r, r.__k, u || p$1, p$1, r.namespaceURI, u ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, u ? u.__e : r.firstChild, i, e), D$1(f, r.__k, e), r.__k.props.children = null;
+function Q(t, r) {
+	var u, i, f, o;
+	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), i = (u = t && 32 & t.__u) ? null : r.__k, r.__k = m$1($, { children: [t] }), f = [], o = [], z$1(r, r.__k, i || p$1, p$1, r.namespaceURI, i ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, i ? i.__e : r.firstChild, u, o), E(f, r.__k, o), r.__k.props.children = null;
 }
-n = { __e: function(n, t, r, i) {
-	for (var u, e, o; t = t.__;) if ((u = t.__c) && !(1 & u.__g)) {
-		u.__g |= 4;
+n = { __e: function(n, t, r, u) {
+	for (var i, o, e; t = t.__;) if ((i = t.__c) && !(1 & i.__g)) {
+		i.__g |= 4;
 		try {
-			if ((o = (e = u.constructor) && e.getDerivedStateFromError) && u.setState(e.getDerivedStateFromError(n)), u.componentDidCatch && (u.componentDidCatch(n, i || {}), o = 1), o && 8 & u.__g) return void (u.__g |= 2);
+			if ((e = (o = i.constructor) && o.getDerivedStateFromError) && i.setState(o.getDerivedStateFromError(n)), i.componentDidCatch && (i.componentDidCatch(n, u || {}), e = 1), e && 8 & i.__g) return void (i.__g |= 2);
 		} catch (t) {
 			n = t;
 		}
@@ -275,12 +278,12 @@ n = { __e: function(n, t, r, i) {
 	throw f$2 = 0, n;
 } }, t$1 = 0, x.prototype.setState = function(n, t) {
 	var r = this.__s;
-	r && r != this.state || (r = this.__s = _$1({}, this.state)), "function" == typeof n && (n = n(_$1({}, r), this.props)), n && (_$1(r, n), this.__v && (t && this.__k.push(t), j(this)));
+	r && r != this.state || (r = this.__s = _$1({}, this.state)), "function" == typeof n && (n = n(_$1({}, r), this.props)), n && (_$1(r, n), this.__v && (t && this.__k.push(t), L(this)));
 }, x.prototype.forceUpdate = function(n) {
-	this.__v && (this.__g |= 4, n && this.__h.push(n), j(this));
-}, x.prototype.render = M, i$1 = [], f$2 = 0, e$1 = function(n, t) {
+	this.__v && (this.__g |= 4, n && this.__h.push(n), L(this));
+}, x.prototype.render = $, u$2 = [], f$2 = 0, o$2 = function(n, t) {
 	return n.__v.__b - t.__v.__b;
-}, o$2 = Symbol(), l$1 = /(PointerCapture)$|Capture$/i, c$1 = 0, a$2 = {};
+}, e$1 = Symbol(), l$1 = /(PointerCapture)$|Capture$/i, c$1 = 0, a$2 = {};
 var t;
 var r;
 var u$1;
@@ -310,7 +313,7 @@ function d(n) {
 function _(n, u, i) {
 	var f = y(t++, 2);
 	if (f.t = n, !f.__c && (f.__ = [i ? i(u) : G(void 0, u), function(n) {
-		var t = f.__N ? f.__N[0] : f.__[0], r = f.t(t, n);
+		var t = (f.__N || f.__)[0], r = f.t(t, n);
 		o$1(t, r) || (f.__N = [r, f.__[1]], f.__c.setState({}));
 	}], f.__c = r, !r.__f)) {
 		r.__f = !0;
@@ -414,7 +417,7 @@ function D(n) {
 function G(n, t) {
 	return "function" == typeof t ? t(n) : t;
 }
-var LICITE = "================================================================================\nTHIRD-PARTY SOFTWARE NOTICES AND LICENSES\n================================================================================\n\nThis software incorporates components from the following third-party software:\n\n--------------------------------------------------------------------------------\npreact v11.1.1 (https://preactjs.com)\n--------------------------------------------------------------------------------\nThe MIT License (MIT)\n\nCopyright (c) 2015-present Jason Miller\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.";
+var LICITE = "================================================================================\nTHIRD-PARTY SOFTWARE NOTICES AND LICENSES\n================================================================================\n\nThis software incorporates components from the following third-party software:\n\n--------------------------------------------------------------------------------\npreact v11.2.0 (https://preactjs.com)\n--------------------------------------------------------------------------------\nThe MIT License (MIT)\n\nCopyright (c) 2015-present Jason Miller\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.";
 var f = Symbol.for("pv");
 var o = 0;
 Array.isArray;
@@ -491,7 +494,9 @@ body { background-color: #d8e4f0; color: #1e293b; }
 .explain-mitsa .section p, .explain-mitsa .section li { font-size: 0.92rem; line-height: 1.68; color: #27374d; }
 .explain-mitsa .section ul, .explain-mitsa .section ol { padding-left: 1.4rem; margin: 0.6rem 0; }
 .explain-mitsa .quote-box { background: #dbe8f6; border-left: 4px solid #0284c7; padding: 0.85rem 1.15rem; margin: 1rem 0; border-radius: 0 6px 6px 0; font-family: ui-monospace, monospace; font-size: 0.84rem; color: #074770; }
-.explain-mitsa code { background-color: #dbe8f6; color: #0284c7; }
+.explain-mitsa .hierarchy-banner { display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 0.5rem; background: #d3e3f3; border: 1px solid #9dc3e6; border-radius: 6px; padding: 0.75rem 1rem; margin: 1rem 0; font-weight: 700; font-size: 0.95rem; color: #0c4a6e; }
+.explain-mitsa .hierarchy-arrow { color: #0284c7; font-weight: 900; }
+.explain-mitsa .hierarchy-threat { color: #b91c1c; }
 .explain-mitsa .table-wrapper { overflow-x: auto; margin: 1.25rem 0; }
 .explain-mitsa table { width: 100%; border-collapse: collapse; font-size: 0.84rem; text-align: left; }
 .explain-mitsa th { background: #d6e4f3; color: #0f2d59; padding: 0.65rem 0.85rem; border: 1px solid #bad2eb; font-weight: 600; }
@@ -505,160 +510,132 @@ body { background-color: #d8e4f0; color: #1e293b; }
 `;
 var CONTENT = {
 	en: {
-		kicker: "MIT-SA Commentary",
-		title: "Explanation of MIT-SA",
-		subtitle: "Basic commentary on the Self-Applying MIT License (MIT-SA): genesis in generative AI development, the concept of \"the Software\", the Archive exception, treatment of enclosure, and distribution rules.",
-		sec1Title: "1. Basic Overview",
-		sec1Text1: "MIT-SA (SPDX identifier: MIT-SA) is a license that modernizes the traditional MIT License by introducing Share-Alike (reciprocal sharing obligations). Pragmatically, it is most clearly understood as \"an AGPL-equivalent reciprocal license operable even within non-OSS and proprietary enclosure environments.\" While preserving the commercial freedom of the MIT License, it deters feature degradation and imposes an obligation to provide runnable binaries over a network.",
-		sec1Text2: "From the perspective of intellectual property defense, the license explicitly specifies regarding the copyright of the license text itself: \"The author disclaims copyright to this license text.\" By disclaiming economic copyright in the text, it completely eliminates copyright litigation and counterclaim risks surrounding copying or distributing the license text itself. Meanwhile, moral rights were not casually waived in order to maintain consistency with the inalienability of moral rights (the principle that they cannot be legally waived) under civil law systems (such as Japan and Europe), while securing a minimal defensive shield against identity misappropriation or improper attribution claims by third parties.",
-		sec2Title: "2. Genesis and the Challenge of \"Source Code\"",
-		sec2Lead: "The emergence of MIT-SA stems from deep structural friction between classic copyleft theory, such as the AGPL, and modern VLM (Vision-Language Model) driven development practices.",
-		sec2Point1Title: "VLM-Driven Development and the Sole Trust Anchor (HTML)",
-		sec2Point1Text: "In the initial concept, a VLM directly edited a single HTML file to produce a self-contained browser-executable tool. At this time, the HTML running in the browser was itself the sole trust anchor (Single Source of Truth) and functioned as the objective \"source code.\"",
-		sec2Point2Title: "Introduction of Intermediate Representation (Preact/JSX)",
-		sec2Point2Text: "To address prompt capacity and inference limits, Preact was adopted as a component-oriented intermediate representation (IR). The pipeline expanded into multiple layers: \"VLM → Preact (intermediate representation) → Single HTML (source code).\"",
-		sec2Point3Title: "Two Fatal Problems Caused by the AGPL",
-		sec2Point3Text: "With this pipeline change, the definition of \"source code\" (the preferred form for making modifications) under conventional AGPL interpretation shifted unfairly from HTML to Preact code. This produced the following critical contradictions:",
+		kicker: "Intellectual Property & Technology Transactions Analysis",
+		title: "Legal Structure & Practical Analysis of the MIT-SA License",
+		subtitle: "A structural analysis of the Self-Applying MIT License (MIT-SA): genesis under generative AI development, the subjective drift of \"source code\", foundational principles and power dynamics, localization of license contagion, reverse engineering clauses, the agency doctrine and enclosure provisions, and distribution provisions.",
+		sec1Title: "1. Basic Overview & Legal Positioning",
+		sec1P1: "The Self-Applying MIT License (SPDX formal designation: MIT-SA, or LicenseRef-MIT-SA) represents a targeted modernization of the classic permissive MIT License through the introduction of reciprocal Share-Alike (SA) provisions. Pragmatically, it is most accurately characterized as \"an AGPL-equivalent reciprocal covenant operable even within non-OSS and proprietary commercial environments.\"",
+		sec1P2: "While preserving the commercial flexibility inherent to MIT, MIT-SA deters functional degradation and mandates the provision of runnable binaries upon network distribution, thereby securing the primary author’s initiative and end-user availability.",
+		sec1Quote: "The author disclaims copyright to this license text.",
+		sec1P3: "From a defensive IP standpoint, the author explicitly states regarding the economic copyright of the license text itself: \"The author disclaims copyright to this license text.\" Explicitly disclaiming economic rights in the text completely blocks copyright disputes and counterclaim risks over reproducing or distributing the license wording. Meanwhile, moral rights (droit moral) are intentionally not waived so as to maintain legal coherence with the inalienability of moral rights in civil law jurisdictions (such as Japan and continental Europe), while securing a minimum defensive shield against identity misappropriation or improper attribution claims by third parties.",
+		sec2Title: "2. Genesis & The Locus of \"Source Code\"",
+		sec2Lead: "The genesis of MIT-SA stems from severe structural friction between classic copyleft jurisprudence (such as the AGPL) and modern Vision-Language Model (VLM)-driven development practices.",
+		sec2Sub1Title: "VLM-Driven Development & The Sole Trust Anchor (HTML)",
+		sec2Sub1Text: "In initial self-contained web tool development, a VLM directly edited a single HTML file to generate a tool running in the browser. At this stage, the browser-executable HTML itself was the sole trust anchor (Single Source of Truth) and functioned as the objective \"source code.\"",
+		sec2Sub2Title: "Introduction of Intermediate Representation (Preact/JSX)",
+		sec2Sub2Text: "To address prompt capacity and inference limits, Preact was adopted as a component-oriented Intermediate Representation (IR). The pipeline became multi-layered: \"VLM → Preact (Intermediate Representation) → Single HTML (Deliverable Software).\"",
+		sec2Sub3Title: "Two Structural Failures Triggered by the AGPL",
+		sec2Sub3Text: "Following this pipeline change, the definition of the \"preferred form for making modifications (source code)\" under conventional AGPL interpretation improperly shifted from the HTML to the Preact code. This gave rise to two critical contradictions:",
 		sec2Fail1Label: "Subjective Drift of \"Source Code\":",
-		sec2Fail1Text: "The fact that inserting a single automated build step shifted the legal locus of \"source code\" proves that in modern machine-generation paradigms, the concept of \"source code\" is not an objective reality, but merely a subjective and fragile classification.",
-		sec2Fail2Label: "Confiscation of Unrelated Toolchains:",
-		sec2Fail2Text: "Traditional AGPL interpretation dismissed the HTML—the true self-contained trust anchor—as a mere \"intermediate binary,\" while unfairly attempting to confiscate the surrounding Preact build environment and toolchain code that had no direct functional relation to the HTML tool itself.",
-		sec2Conclusion: "As a result, the AGPL—which relies on \"disclosure of source code\" as its trigger—was deemed fundamentally broken, and MIT-SA was designed around the binary of the Software itself as the standard. However, because the AGPL imposes even more stringent and coercive sharing obligations, MIT-SA explicitly permits modified versions of the Software to be unilaterally relicensed under AGPLv3. This unilateral exit ramp preserves interoperability with strict copyleft ecosystems while preventing proprietary dilution under any weaker license.",
-		sec3Title: "3. The Concept of \"the Software\" and Constitutional Parallels",
-		sec3Text1: "MIT-SA thoroughly purifies the concept of \"the Software\" from the original MIT License. Its legal structure corresponds completely with the principle of Sentence 1, Article 1 of the Constitution of the French Fifth Republic: \"France is an indivisible, secular, democratic, and social Republic.\"",
-		tableHeaders: [
-			"Constitutional Element",
-			"MIT-SA Concept",
-			"Legal & Architectural Interpretation"
+		sec2Fail1Text: "The fact that the legal locus of \"source code\" shifted merely by inserting a single automated build step proved that under modern machine-generation paradigms, the concept of \"source code\" is not an objective entity, but merely a subjective and fragile classification.",
+		sec2Fail2Label: "Expropriation of Unrelated Toolchains:",
+		sec2Fail2Text: "Traditional AGPL interpretation disregarded the HTML—the true self-contained trust anchor—as a \"mere intermediate binary,\" while improperly seeking to expropriate surrounding Preact build environments and toolchain code that had no direct functional nexus to the HTML tool itself.",
+		sec2Conclusion: "Consequently, the AGPL framework—which predicates its disclosure triggers on \"source code\"—was deemed structurally broken, and MIT-SA was designed around \"the Software\" itself as a deliverable binary.",
+		sec3Title: "3. Foundational Principles & Power Dynamics",
+		sec3Lead: "To reconcile the defense of the primary author’s sovereignty with the assurance of user availability, MIT-SA is built upon two foundational pillars:",
+		sec3Pillars: [{
+			title: "Principle 1. Defense of Primary Author Intellectual Property",
+			items: ["(a) Securing the Primary Author’s Absolute Initiative: Irrevocably reserving project governance and architectural decision-making authority to the primary author.", "(b) Prevention of IP Usurpation: Defending intellectual property against corporate free-riding, trademark and credit dilution, and external license contamination."]
+		}, {
+			title: "Principle 2. Assurance of User Availability",
+			items: ["(a) Protection from Enforcement by the Primary Author: Blocking the risk of the primary author retroactively and arbitrarily asserting rights to threaten users.", "(b) Preservation of Unfettered Freedom: Retaining the core MIT grant, \"To deal in the Software without restriction.\""]
+		}],
+		sec3PowerTitle: "Underlying Power Dynamics",
+		sec3HierarchyLead: "This license is designed upon the following explicit power hierarchy:",
+		sec3HierarchyAuthor: "Primary Author",
+		sec3HierarchyUser: "End User",
+		sec3HierarchyVendor: "Secondary Author / Vendor (Threat)",
+		sec3HierarchyDesc: "Within this dynamic, the primary author and the end user share a symbiotic relationship of aligned interests. Conversely, intervening secondary authors and commercial vendors are explicitly positioned as \"potential threats\" capable of inflicting retrograde degradation, enclosing intellectual property into private monopolies, or initiating legal action against users, and are therefore regulated by the license.",
+		sec4Title: "4. Localization of License Contagion & Scope of Application",
+		sec4Lead: "Unlike classic copyleft, which seeks to indiscriminately propagate sharing obligations across an entire organizational codebase, MIT-SA is engineered to localize license contagion and deter unintended viral expansion.",
+		sec4TargetTitle: "Intended Units of Application",
+		sec4TargetText: "MIT-SA is intended to be applied to self-contained units: distributed executable binaries, single-file HTML applications, or an entire project as a whole.",
+		sec4ContraTitle: "Non-Recommendation for Components & Shared Libraries",
+		sec4ContraText: "Adopting MIT-SA for individual UI components or shared libraries is explicitly discouraged. Imposing reciprocal sharing obligations on fine-grained modules creates excessive legal risk and friction when combining dependencies. At the component or library tier, existing standards such as public domain dedications (Unlicense), MIT, or GPLv2 should be adopted.",
+		sec5Title: "5. Reverse Engineering Clauses & Protection of Rights",
+		sec5Lead: "MIT-SA’s legal stance toward binary analysis (reverse engineering) is logically constructed from the primary author’s licensing election and legal doctrine:",
+		sec5R1Title: "Primary Author Intent & Estoppel",
+		sec5R1Text: "The moment the primary author selects an MIT-lineage license rather than \"All rights reserved,\" it is objectively self-evident that the author has no intention of initiating litigation over reverse engineering or code analysis.",
+		sec5R2Title: "Infringement Nature of Litigation by Secondary Authors",
+		sec5R2Text: "Under MIT-SA jurisprudence, for an intervening secondary author or commercial vendor to file suit against end users over analysis or modification acts permitted by the primary author is construed as a wrongful act that directly infringes upon both the primary author’s licensing intent and the legitimate rights of users.",
+		sec5ImmunitiesTitle: "Defense Mechanisms Built into the License Text",
+		sec5Immunities: [
+			"Waiver of Anti-Circumvention Claims: Complete waiver of claims under U.S. DMCA Section 1201 and equivalent international statutes (such as Article 30(1)(ii) of the Japanese Copyright Act).",
+			"Irrevocable Covenant Not to Sue: Grant of an irrevocable covenant not to sue any recipient who disassembles, decompiles, decrypts, or modifies the binary.",
+			"Invalidation of Terms of Service (TOS): Invalidation of any separate agreements, terms of service, or technical restriction measures that restrict a recipient’s rights to analyze or modify the software."
 		],
-		sec3Grid: [
-			{
-				key: "France (La France)",
-				sym: "the Software",
-				desc: "Software as a single legal sovereign entity, rather than disparate textual fragments."
-			},
-			{
-				key: "Indivisible (Indivisible)",
-				sym: "File Boundary",
-				desc: "Anything integrated into a single file by compiling, bundling, or embedding becomes indivisible, and the whole is governed as a single piece of software."
-			},
-			{
-				key: "Secular (Laïque)",
-				sym: "Binary-Oriented / Format-Agnostic",
-				desc: "Abolishing the \"religion\" of source-code supremacy. Treats all representations—AST, bytecode, images, audio, text—identically as equivalent binary data."
-			},
-			{
-				key: "Republic (République)",
-				sym: "Everything is a file",
-				desc: "The UNIX philosophy of \"everything is a file.\" Abolishing class distinctions between aristocratic source code and commoner binary, treating them equally as a single file on the filesystem."
-			}
-		],
-		sec3Note: "From this perspective, it can be understood that Robespierre republicanized in accordance with the UNIX philosophy. Under \"the Software\", source code, intermediate representations, executable files, images, text, and audio are treated without distinction as equivalent \"binaries.\" However, because treating all unified files as indivisible would impede standard compression and package distribution, MIT-SA explicitly establishes the concept of the \"Archive\" as an exception to reciprocal licensing infection.",
-		sec4Title: "4. The \"Archive\" Exception and Mitigation of License Infection",
-		sec4Lead: "From both an architectural and intellectual property perspective, executable binaries and compressed archives are essentially \"pickles\"—serialized, frozen representations of state. The distinction between an executable and an archive lies merely in whether the format is intended for direct execution or for decompression; conceptually, the two are by no means mutually exclusive.",
-		sec4DefTitle: "Defining an Archive by the Objective Fact of State Reproducibility",
-		sec4DefText: "Rather than relying on fragile format classifications, MIT-SA defines an Archive strictly by the objective fact that \"the original state can be reproduced.\" To operationalize this definition, the license establishes the following three criteria and safe-harbor mechanisms:",
-		sec4Points: [
-			"Preservation of Constituent Materials: A state in which all constituent ingredients of the binary objectively exist (via raw files, Infrastructure as Code [IaC] declarations, or equivalent specifications).",
-			"Actionable Opportunity for Restoration: A genuine, actionable opportunity provided to the recipient to restore and reconstruct the original state.",
-			"Format-Based Safe Harbor: A file format whose primary, bona fide objective is to provide recipients with the opportunity to restore the original state."
-		],
-		sec4InfectionTitle: "Preserving Composite Works and Development-Friendliness",
-		sec4InfectionText: "Under conventional reciprocal licensing regimes, compiling heterogeneous works with diverse licenses into a single executable binary inevitably triggers irreconcilable license conflicts, causing licensing failure. By treating server-side executable binaries as Archives, MIT-SA circumscribes overall reciprocal infection across the entire system, ensuring practical development-friendliness aligned with modern cloud infrastructure, multi-vendor integration, and containerization.",
-		sec5Title: "5. Reverse Engineering Clause",
-		sec5Text: "Since objective \"source code\" does not exist, the only realistic way for a recipient to make modifications is binary analysis (reverse engineering). To make this effective, MIT-SA incorporates provisions that thoroughly neutralize intellectual property protection laws against it.",
-		sec5Points: [
-			"Neutralization of statutory restrictions: Complete waiver of claims under DMCA Section 1201 (anti-circumvention of technical protection measures) and equivalent statutes worldwide (such as Article 30(1)(ii) of the Japanese Copyright Act).",
-			"Covenant Not to Sue: Granting an irrevocable covenant not to sue to recipients who disassemble, decompile, decrypt, or modify the binary.",
-			"Invalidation of restrictive terms: No private contract, terms of service (TOS), or technical measure may restrict analysis and modification."
-		],
-		sec6Title: "6. Anti-Enclosure Clause and Stance on Monetization",
-		sec6Text1: "MIT-SA is not an OSS-fundamentalist license. It explicitly affirms vendors adding proprietary features to achieve commercial enclosure and build monetization models, protecting vendor sovereignty.",
-		sec6Text2: "What the license forbids is \"degrading modifications that diminish the autonomy of pre-existing features (Retrograde Degradation).\" It prohibits modifications that condition previously locally autonomous functionality upon ongoing external server authentication, telemetry, or billing infrastructure. Pure additions of new features, or complete removals of features without external dependency substitutions, are freely permitted.",
-		sec7Title: "7. Distribution Provisions and Operational Scope",
-		sec7Text1: "Learning from the AGPL's trigger of \"modification,\" which provoked endless theological disputes over what constitutes modification, MIT-SA adopts the simple fact of \"providing functionality over a network\" as its sole distribution trigger. Crucially, this disclosure obligation applies \"only while providing such functionality.\" The moment a vendor discontinues the network functionality, the obligation to make the software accessible terminates simultaneously, shielding operators from perpetual disclosure liabilities and permitting practical lifecycle and exit strategies.",
-		sec7Comp1Title: "Production PET Exemption and Staging (IaC) Standards",
-		sec7Comp1Text: "Modern production clusters are state-dependent (PET operations), making complete reproduction unrealistic. MIT-SA explicitly exempts the obligation to reproduce the exact production environment, stipulating that providing staging-level (IaC standard) binaries capable of functionally equivalent local execution or self-hosting is sufficient.",
-		sec7Comp2Title: "Exemption from \"User Nursing\" vs. Vendor's Operational Maintenance Responsibility",
-		sec7Comp2Text: "MIT-SA explicitly exempts vendors from \"nursing\" such as hands-on user support or dedicated manual authoring, while intentionally omitting disclaimers regarding maintenance. MIT-SA merely disclaims warranties for the Software itself; vendors continuously bear full responsibility for the operation of their services and systems."
+		sec6Title: "6. The Agency Doctrine & Enclosure Provisions",
+		sec6P1: "Under MIT-SA jurisprudence, commercial vendors (secondary authors) are positioned as entities that undertake the distribution and circulation of the software as \"agents\" acting on behalf of the primary author. In consideration for performing this distribution function, vendors hold the legitimate authority to capture economic returns through proprietary modifications and the establishment of commercial monetization frameworks.",
+		sec6P2: "In practice, because maintaining server infrastructure and operating user support frameworks entail substantial capital expenditure and business risk, a vendor’s pursuit of profit is commercially and legally rational. Accordingly, the discretion to establish service terms and select target clientele (users) is guaranteed to each vendor as a legitimate exercise of commercial freedom.",
+		sec6P3: "Conversely, insofar as a vendor occupies the legal status of an agent acting on behalf of the primary author, introducing modifications that inflict functional degradation upon pre-existing capabilities is construed as an ultra vires act that infringes upon both the primary author’s interests and the end user’s legitimate rights of use. Grounded in this doctrine, the enclosure provisions of MIT-SA are structured to explicitly protect commercial monetization through proprietary feature additions and enclosure, while selectively regulating only retrograde degradation of pre-existing functionality.",
+		sec7Title: "7. Distribution Provisions",
+		sec7P1: "The distribution provisions are arguably where MIT-SA is stricter than the AGPL. Because the AGPL tied its disclosure obligations to \"modification,\" it triggered endless debates over what constitutes a derivative modification and invited free-riding. MIT-SA replaces this with a straightforward rule: if you distribute the software, you must provide a runnable binary.",
+		sec7P2: "At the same time, because live production environments typically operate as stateful \"pets\" with unreproducible configurations, the obligation to reproduce the production environment is explicitly disclaimed. The license contemplates providing a staging-grade environment, which imposes no undue burden on vendors within modern Infrastructure-as-Code (IaC) workflows.",
+		sec7P3: "Furthermore, while the license exempts vendors from \"nursing\" duties (such as hands-on user support), it deliberately rejects any disclaimer of maintenance responsibilities. MIT-SA disclaims warranties solely for \"the Software\" itself; it does not endorse unaccountability in a vendor's ongoing service delivery or operational infrastructure."
 	},
 	ja: {
-		kicker: "MIT-SA 解説",
-		title: "MIT-SAの解説",
-		subtitle: "自己適用型MITライセンス（MIT-SA）の基本解説：生成AI開発における成立経緯、the Softwareの概念、Archive例外、囲い込みへの対応、および配布規定について",
-		sec1Title: "1. 基本概説",
-		sec1Text1: "MIT-SA（SPDX規格名称: MIT-SA）は、伝統的なMITライセンスを近代化し、Share-Alike（相互共有義務）を導入したライセンスです。実務的な位置づけとしては、「非OSS・商用囲い込み環境でも運用可能なAGPL相当の相互性ライセンス」と解釈するのが最も明快です。MITが持つ商用利用の自由度を維持しつつ、機能劣化の抑止とネットワーク経由でのバイナリ供出義務を課します。",
-		sec1Text2: "知的財産の防衛的観点から、ライセンス条文自体の著作権について「The author disclaims copyright to this license text.」（本ライセンス条文の著作権を放棄する）と明記しています。条文の財産権を放棄することで、ライセンス文自体の複製や配布を巡る著作権紛争・反訴リスクを完全に遮断しています。一方で著作者人格権を安易に放棄（waiver）していないのは、大陸法系（日本や欧州等）における著作者人格権の一身専属性（法的に放棄不能である原則）との整合性を保ちつつ、第三者による名義冒用や不当な帰属主張に対する最低限の防衛盾を確保するためです。",
-		sec2Title: "2. 成り立ちと「ソースコード」の課題",
-		sec2Lead: "MIT-SAの成立は、AGPL等の古典的コピーレフト理論と、現代のVLM（Vision-Language Model）駆動型開発現場との間での深刻な構造的摩擦に起因しています。",
-		sec2Point1Title: "VLM駆動開発と唯一の信頼アンカー（HTML）",
-		sec2Point1Text: "当初の構想では、VLMが単一のHTMLファイルを直接編集し、自己完結したブラウザ稼働ツールを生成していました。このとき、ブラウザで動作するHTMLそのものが唯一の信頼アンカー（Single Source of Truth）であり、客観的な「ソースコード」として機能していました。",
-		sec2Point2Title: "中間表現（Preact/JSX）の導入",
-		sec2Point2Text: "プロンプト容量および推論の限界に対処するため、コンポーネント指向の中間表現（Intermediate Representation: IR）としてPreactを採用。パイプラインは「VLM → Preact（中間表現） → 単一HTML（ソースコード）」へと多層化しました。",
-		sec2Point3Title: "AGPLが引き起こした致命的な2つの問題",
-		sec2Point3Text: "このパイプライン変更に伴い、従来のAGPL解釈において「改変を行うための好ましい形式（ソースコード）」の定義がHTMLからPreactコードへと不当に移動しました。これにより以下の重大な矛盾が生じました：",
+		kicker: "知的財産・先端テック法務分析",
+		title: "MIT-SAライセンスの法制構造と実務解説",
+		subtitle: "自己適用型MITライセンス（MIT-SA）の構造分析：生成AI開発における成立背景、「ソースコード」の主観的漂流、基本原則と権力力学、感染性の局所化、リバースエンジニアリング条項、代行解釈と囲い込み条項、および配布規定について",
+		sec1Title: "1. 基本概説と法的位置づけ",
+		sec1P1: "自己適用型MITライセンス（SPDX規格正式名称: MIT-SA、またはLicenseRef-MIT-SA）は、伝統的な寛容型ライセンスであるMITライセンスを近代化し、Share-Alike（相互共有義務）を導入したライセンスです。実務的な位置づけとしては、「非OSS・商用囲い込み環境でも運用可能なAGPL相当の相互性ライセンス」と解釈するのが最も明快です。",
+		sec1P2: "MITが持つ商用利用の自由度を維持しつつ、機能劣化の抑止とネットワーク経由での稼働可能バイナリ供出義務を課すことで、原著者の主導権とエンドユーザーの可用性を担保します。",
+		sec1Quote: "The author disclaims copyright to this license text.",
+		sec1P3: "知的財産の防衛的観点から、ライセンス条文自体の財産的著作権について「The author disclaims copyright to this license text.」（本ライセンス条文の著作権を放棄する）と明記しています。条文の財産権を明示的に放棄することで、ライセンス文自体の複製や配布を巡る著作権紛争・反訴リスクを完全に遮断しています。一方で著作者人格権を安易に放棄（waiver）していないのは、大陸法系（日本や欧州等）における著作者人格権の一身専属性（法的に放棄不能である原則）との整合性を保ちつつ、第三者による名義冒用や不当な帰属主張に対する最低限の防衛盾を確保するためです。",
+		sec2Title: "2. 成り立ちと「ソースコード」の所在問題",
+		sec2Lead: "MIT-SAの成立は、AGPL等の古典的コピーレフト法理と、現代のVLM（Vision-Language Model）駆動型開発現場との間での深刻な構造的摩擦に起因しています。",
+		sec2Sub1Title: "VLM駆動開発と唯一の信頼アンカー（HTML）",
+		sec2Sub1Text: "当初の自己完結型Webツール開発では、VLMが単一のHTMLファイルを直接編集し、ブラウザ上で稼働するツールを生成していました。このとき、ブラウザで動作するHTMLそのものが唯一の信頼アンカー（Single Source of Truth）であり、客観的な「ソースコード」として機能していました。",
+		sec2Sub2Title: "中間表現（Preact/JSX）の導入",
+		sec2Sub2Text: "プロンプト容量および推論の限界に対処するため、コンポーネント指向の中間表現（Intermediate Representation: IR）としてPreactを採用。パイプラインは「VLM → Preact（中間表現） → 単一HTML（成果物ソフトウェア）」へと多層化しました。",
+		sec2Sub3Title: "AGPLが引き起こした2つの構造的破綻",
+		sec2Sub3Text: "このパイプライン変更に伴い、従来のAGPL解釈において「改変を行うための好ましい形式（ソースコード）」の定義がHTMLからPreactコードへと不当に移動しました。これにより以下の重大な矛盾が生じました：",
 		sec2Fail1Label: "「ソースコード」の主観的漂流：",
-		sec2Fail1Text: "単なる自動ビルド工程を一段挟んだだけで法的な「ソースコード」の所在が移動した事実は、現代の機械生成パラダイムにおいて「ソースコード」なる概念が客観的実体ではなく、主観的かつ脆弱な分類に過ぎないことを証明した。",
+		sec2Fail1Text: "単なる自動ビルド工程を一段挟んだだけで法的な「ソースコード」の所在が移動した事実は、現代の機械生成パラダイムにおいて「ソースコード」なる概念が客観的実体ではなく、主観的かつ脆弱な分類に過ぎないことを証明しました。",
 		sec2Fail2Label: "無関係なツールチェーンの巻き上げ：",
-		sec2Fail2Text: "AGPLの伝統的解釈は、本来の自己完結的信頼アンカーであるHTMLを「単なる中間バイナリ」とみなして軽視する一方で、HTMLツールとは直接機能的関連のない周辺のPreactビルド環境やツールチェーンのコードまで不当に徴発しようとした。",
-		sec2Conclusion: "これにより「ソースコードの開示」をトリガーとするAGPLは破綻したと判断され、バイナリとしての the Software そのものを基準とするMIT-SAが設計されました。なお、AGPLはより過酷かつ強制的な共有義務を課す上位規範であるため、改変版に限りGNU AGPLv3への一方的な再ライセンス（コンバート）が例外として許容されています。この一方通行のエグジットを設けることで、より厳格なコピーレフト生態系との相互運用性を担保しつつ、無秩序な私有化を防止しています。",
-		sec3Title: "3. the Software の概念と憲法上の対比",
-		sec3Text1: "MIT-SAは、原初MITにおける「the Software」という概念を徹底的に純化しました。その法制構造はフランス第5共和国憲法第1条第1文「フランスは、不可分の、非宗教的、民主的かつ社会的な共和国である」の理念と完全に対応しています。",
-		tableHeaders: [
-			"憲法条文の要素",
-			"MIT-SAでの対応概念",
-			"法技術・構造的解釈"
+		sec2Fail2Text: "AGPLの伝統的解釈は、本来の自己完結的信頼アンカーであるHTMLを「単なる中間バイナリ」とみなして軽視する一方で、HTMLツールとは直接機能的関連のない周辺のPreactビルド環境やツールチェーンのコードまで不当に徴発しようとしました。",
+		sec2Conclusion: "これにより「ソースコードの開示」をトリガーとするAGPLは破綻したと判断され、成果物バイナリとしての「the Software」そのものを基準とするMIT-SAが設計されました。",
+		sec3Title: "3. 基本原則と権力力学",
+		sec3Lead: "MIT-SAは、原著者の主権防衛と利用者の可用性確保を両立するため、2つの原則的支柱に基づいて構築されています：",
+		sec3Pillars: [{
+			title: "原則1. 原著者の知的財産権の防護",
+			items: ["(a) 原著者の絶対的主導権の確保：プロジェクトの統治権およびアーキテクチャの決定権を原著者に不可逆的に留保する。", "(b) 知財の簒奪防止：企業によるフリーライド、商標・信用の希釈、および外部ライセンス汚染から知財を防衛する。"]
+		}, {
+			title: "原則2. ユーザーの可用性の確保",
+			items: ["(a) 原著者による権利行使からの防護：原著者が後から恣意的に権利を振りかざし、利用者を脅かすリスクを遮断する。", "(b) 制限なき自由の保持：MITの核心である「To deal in the Software without restriction」（制限なくソフトウェアを取り扱う自由）を保持する。"]
+		}],
+		sec3PowerTitle: "設計の根底にある権力力学",
+		sec3HierarchyLead: "本ライセンスは、以下の明確な力学（権力ヒエラルキー）に基づき設計されています：",
+		sec3HierarchyAuthor: "原著者",
+		sec3HierarchyUser: "ユーザー",
+		sec3HierarchyVendor: "第二著者・ベンダー（脅威）",
+		sec3HierarchyDesc: "この力学において、原著者とエンドユーザーは利害の一致する共生関係にあります。一方で、中間に介在する第二著者や商業ベンダーは、ソフトウェアの劣化改変、知財の私有化囲い込み、あるいは利用者に対する法的提訴を行い得る「潜在的脅威」として明確に位置づけられ、ライセンスによる統制を受けます。",
+		sec4Title: "4. ライセンス感染性の局所化と適用対象",
+		sec4Lead: "組織全体のコードベースへと無差別に共有義務を波及させようとする古典的コピーレフトとは異なり、MIT-SAはライセンス感染を局所化し、予期せぬ感染拡大を抑止する設計が施されています。",
+		sec4TargetTitle: "想定される適用単位",
+		sec4TargetText: "MIT-SAは、配布される実行バイナリ、単一ファイル形式のHTMLアプリケーション、あるいはプロジェクト全体という完結した単位に対して付与されることを想定しています。",
+		sec4ContraTitle: "コンポーネントおよび共有ライブラリへの適用非推奨",
+		sec4ContraText: "MIT-SAを個別のUIコンポーネントや共通ライブラリに採用することは明確に非推奨とされています。粒度の細かいモジュールに共有義務を課すと、依存関係の結合時に過度な法務リスクと摩擦を生じさせるためです。コンポーネントやライブラリの階層では、パブリックドメイン（Unlicense）、MIT、あるいはGPLv2等の既存規格を採用すべきです。",
+		sec5Title: "5. リバース・エンジニアリング条項と権利保護",
+		sec5Lead: "バイナリ解析（リバースエンジニアリング）に対するMIT-SAの法的態度は、原著者の意思決定と法理に基づき論理的に組み立てられています：",
+		sec5R1Title: "原著者の意思と禁反言",
+		sec5R1Text: "原著者が「All rights reserved（全権利保持）」ではなくMIT系統のライセンスを選択している時点で、リバースエンジニアリングやコード解析に対して訴訟を起こす意思がないことは客観的に自明です。",
+		sec5R2Title: "第二著者による提訴の権利侵害性",
+		sec5R2Text: "MIT-SAの法理では、原著者が容認している解析・改変行為に対して、中間に介在する第二著者や商業ベンダーがエンドユーザーを相手取って訴訟を提起することは、原著者の許諾意思およびユーザーの正当な権利の双方を直接侵害する不当行為と解釈されます。",
+		sec5ImmunitiesTitle: "条文に組み込まれた防衛メカニズム",
+		sec5Immunities: [
+			"技術的保護手段の回避禁止請求権の放棄：米DMCA 1201条および各国の同等法規（日本著作権法30条1項2号等）に基づく請求権を完全放棄。",
+			"取消不能な不提訴誓約（Covenant Not to Sue）：バイナリを逆アセンブル、逆コンパイル、復号、または改変した受領者に対し、取消不能な不提訴誓約を付与。",
+			"利用規約（TOS）の無効化：個別契約、利用規約、または技術的制限手段によって受領者の解析・改変の権利を制限することを無効化。"
 		],
-		sec3Grid: [
-			{
-				key: "フランス（La France）",
-				sym: "the Software",
-				desc: "バラバラなテキスト断片ではなく、単一の法的主権体としてのソフトウェア。"
-			},
-			{
-				key: "不可分（Indivisible）",
-				sym: "ファイル境界（File Boundary）",
-				desc: "コンパイル、バンドル、埋め込み等で1つのファイルに統合されたものは不可分であり、全体が単一ソフトウェアとして統治される。"
-			},
-			{
-				key: "非宗教的（Laïque）",
-				sym: "バイナリ志向・形式不問",
-				desc: "ソースコード至上主義という「宗教」を廃止。AST、バイトコード、画像、音声、テキスト等の表現形式を区別せず、すべて等価なバイナリデータとみなす。"
-			},
-			{
-				key: "共和国（République）",
-				sym: "Everything is a file",
-				desc: "UNIX哲学の「すべてはファイルである」。貴族的なソースコードと平民的なバイナリの身分差を撤廃し、ファイルシステム上の1ファイルとして平等に扱う。"
-			}
-		],
-		sec3Note: "ここから、ロベスピエールがUNIX哲学に従い共和化したことが読み取れますが、the Software ではソースコード、中間表現、実行ファイル、画像、テキスト、音声などを区別せず、すべて等価な「バイナリ」として扱います。もっとも、すべてを不可分な単一バイナリとして扱うとファイルの圧縮やアーカイブ化に支障を来すため、MIT-SAでは後述の「Archive」概念をライセンス感染の例外として定立しています。",
-		sec4Title: "4. Archive（アーカイブ）例外とライセンス感染抑止",
-		sec4Lead: "技術的・知財法務的見地から分析すれば、実行バイナリも圧縮ファイルも、シリアライズされたデータ構造という意味において本質的には「pickle（直列化・凍結された実体）」に他なりません。両者の差異は直接実行されることを意図した形式か、復元されることを意図した形式かという主観的な利用目的に過ぎず、概念上排他的な関係にはありません。",
-		sec4DefTitle: "「元の状態を再現できる」という客観的事実による定義",
-		sec4DefText: "そこでMIT-SAは、ファイルフォーマットや拡張子という表層的な区分を排し、「元の状態を再現できる」という客観的事実をもってArchiveを定義しました。この定義を実効的に運用するため、以下の3段階の表現・救済措置を講じています：",
-		sec4Points: [
-			"構成要素の客観的現存：ファイル群やIaC（Infrastructure as Code）記述などにより、バイナリを構成する全ての材料が存在している状態。",
-			"実質的な復元機会の付与：受領者に対して、元の状態へと復元・再構成できる実質的な機会が担保されていること。",
-			"救済措置としての形式要件：「元の状態に復元できる機会」を提供することを目的として設計されたファイル形式（アーカイブ形式）。"
-		],
-		sec4InfectionTitle: "複合著作物の統合と開発親和性（Development-Friendly）の確保",
-		sec4InfectionText: "一般に共有義務（感染性）を伴うライセンスを運用する際、複数のライセンスや著作者による多様な著作物を単一の実行バイナリへとコンパイル・統合すると、ライセンス間の非互換性により法務上の破綻を招きます。MIT-SAはサーバー上で稼働する実行バイナリをArchiveとして取り扱うことを許容することで、全体への不可逆なライセンス感染を抑止し、現代の開発実務に即した高い開発親和性（Development-Friendly）を確立しています。",
-		sec5Title: "5. リバース・エンジニアリング条項",
-		sec5Text: "客観的な「ソースコード」が存在しない以上、受領者が改変を行う唯一の現実的手段はバイナリ解析（リバースエンジニアリング）です。MIT-SAはこれを実効化するため、知財保護法制に対する徹底的な無力化条項を盛り込んでいます。",
-		sec5Points: [
-			"著作権法規の無力化：米DMCA 1201条（技術的保護手段の回避禁止）および各国の同等法規（日本著作権法30条1項2号等）に基づく請求権の完全放棄。",
-			"不提訴誓約（Covenant Not to Sue）：逆アセンブル、逆コンパイル、復号、改変を行った受領者に対し、取消不能な不提訴誓約を付与。",
-			"利用規約の無効化：いかなる個別契約、利用規約（TOS）、技術的制限手段も、解析と改変を阻害することはできない。"
-		],
-		sec6Title: "6. 囲い込み条項と収益化への考え方",
-		sec6Text1: "MIT-SAはOSS原理主義のライセンスではありません。ベンダーが独自機能を付加して囲い込み、商用収益化モデルを構築すること自体を肯定し、その主権を保護します。",
-		sec6Text2: "ライセンスが禁じているのは「既存機能の自立性を奪う劣化改変（Retrograde Degradation）」です。これまでローカル環境で自律動作していた機能を、外部サーバーの継続的認証、テレメトリー、課金インフラに依存させる改変を禁止しています。純粋な新機能追加や、外部依存を伴わない機能削除は自由に認められます。",
-		sec7Title: "7. 配布規定と運用の範囲",
-		sec7Text1: "AGPLが「改変」をトリガーにしたことで改変該当性を巡る神学論争を招いた反省から、MIT-SAは「ネットワーク経由で機能を提供した事実」のみを単一の配布トリガーとします。さらに重要な実務的設計として、バイナリの供出義務は「その機能を提供している間のみ（and only while providing such functionality）」に限定されています。サービス提供を停止・撤退すれば供出義務も同時に終了するため、永続的なコード開示リスクを負うことなく、運用の実態に即した柔軟なライフサイクル管理を可能にしています。",
-		sec7Comp1Title: "本番環境のPET免責とステージング（IaC）準拠",
-		sec7Comp1Text: "近年の本番クラスタは状態依存的（PET運用）であり、完全な再現は非現実的です。MIT-SAは本番環境の完全再現義務を明確に免責し、機能的に等価なローカル実行・セルフホストが可能なステージング（IaC水準）のバイナリ供出で十分と規定しています。",
-		sec7Comp2Title: "「ユーザー介護」の免責 vs 「運用主体」の保守責任",
-		sec7Comp2Text: "MIT-SAはベンダーによる手厚いサポートや個別マニュアル作成などの「介護」を明示的に免責する一方、保守（maintenance）に関する免責は意図的に却下しています。MIT-SAが免責しているのは the Software 自体に過ぎず、ベンダーは常にサービスやシステム運用における全面的な責任を負うからです。"
+		sec6Title: "6. 代行解釈と囲い込み条項",
+		sec6P1: "MIT-SAの法理において、商業ベンダー（第二著者）は「原著者の代行（Agent）」としてソフトウェアの流通・配布を担う主体と位置づけられます。ベンダーはこの配布機能を代行する対価として、ソフトウェアへの独自改変や商用スキーム（収益基盤）の構築を通じて経済的利益を享受する正当な権能を有します。",
+		sec6P2: "実務上、サーバーインフラの維持運用やユーザーサポート体制の構築には相応の資本投下と事業リスクが伴うため、ベンダーが収益を確保すること自体は法理的にも商慣習上も合理性を有します。したがって、サービス提供条件の設定や顧客（対象ユーザー）を選定する裁量権も、各ベンダーの正当な営業の自由として保障されています。",
+		sec6P3: "一方で、原著者の代行という法的地位にある以上、元来備わっていた既存機能に対して機能劣化（デグレード）を伴う改変を施すことは、原著者の権益およびエンドユーザーの正当な利用権の双方を侵害する越権行為と解されます。この法理に基づき、MIT-SAの囲い込み条項は、独自機能の付加や囲い込みによる商用収益化そのものは明確に保護しつつ、既存機能に対する劣化改変のみをピンポイントで規制する条文構造を採っています。",
+		sec7Title: "7. 配布規定",
+		sec7P1: "MIT-SAにおいて、おそらくAGPLよりも厳格に作用するのがこの配布規定です。AGPLは「改変」を開示のトリガーとしたため、改変の定義を巡る不毛な論争やフリーライドを招きました。そこでMIT-SAは、「配布を行う以上は、稼働可能なバイナリを供出する」という単純明快なルールを採用しています。",
+		sec7P2: "一方で、本番環境は固有の状態を持つ「ペット（Pet）運用」であることが常態であり、外部での再現性を確保できないため、本番環境の再現義務は明確に免責されています。具体的にはステージング環境水準の供出を想定しており、IaC（Infrastructure as Code）が普及した現代において、これはベンダーの過度な負担にはならないと整理されています。",
+		sec7P3: "また、ライセンス上はベンダーによるユーザーへの個別サポート等の「介護」を免責する一方、保守（maintenance）に関する免責は意図的に却下されています。MIT-SAが免責しているのはあくまで「the Software」自体の保証に過ぎず、ベンダーが提供するサービスやシステム運用における無責任を肯定するものではありません。"
 	}
 };
 function ExplainMitSa() {
@@ -706,12 +683,13 @@ function ExplainMitSa() {
 				className: "section",
 				children: [
 					 a("h2", { children: t.sec1Title }),
-					 a("p", { children: t.sec1Text1 }),
+					 a("p", { children: t.sec1P1 }),
+					 a("p", { children: t.sec1P2 }),
 					 a("div", {
 						className: "quote-box",
-						children: "The author disclaims copyright to this license text."
+						children: t.sec1Quote
 					}),
-					 a("p", { children: t.sec1Text2 })
+					 a("p", { children: t.sec1P3 })
 				]
 			}),
 			 a("section", {
@@ -719,12 +697,12 @@ function ExplainMitSa() {
 				children: [
 					 a("h2", { children: t.sec2Title }),
 					 a("p", { children: t.sec2Lead }),
-					 a("h3", { children: t.sec2Point1Title }),
-					 a("p", { children: t.sec2Point1Text }),
-					 a("h3", { children: t.sec2Point2Title }),
-					 a("p", { children: t.sec2Point2Text }),
-					 a("h3", { children: t.sec2Point3Title }),
-					 a("p", { children: t.sec2Point3Text }),
+					 a("h3", { children: t.sec2Sub1Title }),
+					 a("p", { children: t.sec2Sub1Text }),
+					 a("h3", { children: t.sec2Sub2Title }),
+					 a("p", { children: t.sec2Sub2Text }),
+					 a("h3", { children: t.sec2Sub3Title }),
+					 a("p", { children: t.sec2Sub3Text }),
 					 a("ol", { children: [ a("li", { children: [
 						 a("strong", { children: t.sec2Fail1Label }),
 						" ",
@@ -741,20 +719,51 @@ function ExplainMitSa() {
 				className: "section",
 				children: [
 					 a("h2", { children: t.sec3Title }),
-					 a("p", { children: t.sec3Text1 }),
+					 a("p", { children: t.sec3Lead }),
 					 a("div", {
 						className: "table-wrapper",
-						children:  a("table", { children: [ a("thead", { children:  a("tr", { children: [
-							 a("th", { children: t.tableHeaders[0] }),
-							 a("th", { children: t.tableHeaders[1] }),
-							 a("th", { children: t.tableHeaders[2] })
-						] }) }),  a("tbody", { children: t.sec3Grid.map((row) =>  a("tr", { children: [
-							 a("td", { children:  a("strong", { children: row.key }) }),
-							 a("td", { children:  a("code", { children: row.sym }) }),
-							 a("td", { children: row.desc })
-						] }, row.key)) })] })
+						children:  a("table", { children: [ a("thead", { children:  a("tr", { children: [ a("th", {
+							style: { width: "45%" },
+							children: t.sec3Pillars[0].title
+						}),  a("th", {
+							style: { width: "55%" },
+							children: t.sec3Pillars[1].title
+						})] }) }),  a("tbody", { children:  a("tr", { children: [ a("td", { children:  a("ul", {
+							style: {
+								margin: 0,
+								paddingLeft: "1.2rem"
+							},
+							children: t.sec3Pillars[0].items.map((it, i) =>  a("li", { children: it }, i))
+						}) }),  a("td", { children:  a("ul", {
+							style: {
+								margin: 0,
+								paddingLeft: "1.2rem"
+							},
+							children: t.sec3Pillars[1].items.map((it, i) =>  a("li", { children: it }, i))
+						}) })] }) })] })
 					}),
-					 a("p", { children: t.sec3Note })
+					 a("h3", { children: t.sec3PowerTitle }),
+					 a("p", { children: t.sec3HierarchyLead }),
+					 a("div", {
+						className: "hierarchy-banner",
+						children: [
+							 a("span", { children: t.sec3HierarchyAuthor }),
+							 a("span", {
+								className: "hierarchy-arrow",
+								children: ">"
+							}),
+							 a("span", { children: t.sec3HierarchyUser }),
+							 a("span", {
+								className: "hierarchy-arrow",
+								children: ">>"
+							}),
+							 a("span", {
+								className: "hierarchy-threat",
+								children: t.sec3HierarchyVendor
+							})
+						]
+					}),
+					 a("p", { children: t.sec3HierarchyDesc })
 				]
 			}),
 			 a("section", {
@@ -762,38 +771,41 @@ function ExplainMitSa() {
 				children: [
 					 a("h2", { children: t.sec4Title }),
 					 a("p", { children: t.sec4Lead }),
-					 a("h3", { children: t.sec4DefTitle }),
-					 a("p", { children: t.sec4DefText }),
-					 a("ol", { children: t.sec4Points.map((pt, i) =>  a("li", { children: pt }, i)) }),
-					 a("h3", { children: t.sec4InfectionTitle }),
-					 a("p", { children: t.sec4InfectionText })
+					 a("h3", { children: t.sec4TargetTitle }),
+					 a("p", { children: t.sec4TargetText }),
+					 a("h3", { children: t.sec4ContraTitle }),
+					 a("p", { children: t.sec4ContraText })
 				]
 			}),
 			 a("section", {
 				className: "section",
 				children: [
 					 a("h2", { children: t.sec5Title }),
-					 a("p", { children: t.sec5Text }),
-					 a("ul", { children: t.sec5Points.map((pt, i) =>  a("li", { children: pt }, i)) })
+					 a("p", { children: t.sec5Lead }),
+					 a("h3", { children: t.sec5R1Title }),
+					 a("p", { children: t.sec5R1Text }),
+					 a("h3", { children: t.sec5R2Title }),
+					 a("p", { children: t.sec5R2Text }),
+					 a("h3", { children: t.sec5ImmunitiesTitle }),
+					 a("ul", { children: t.sec5Immunities.map((item, i) =>  a("li", { children: item }, i)) })
 				]
 			}),
 			 a("section", {
 				className: "section",
 				children: [
 					 a("h2", { children: t.sec6Title }),
-					 a("p", { children: t.sec6Text1 }),
-					 a("p", { children: t.sec6Text2 })
+					 a("p", { children: t.sec6P1 }),
+					 a("p", { children: t.sec6P2 }),
+					 a("p", { children: t.sec6P3 })
 				]
 			}),
 			 a("section", {
 				className: "section",
 				children: [
 					 a("h2", { children: t.sec7Title }),
-					 a("p", { children: t.sec7Text1 }),
-					 a("h3", { children: t.sec7Comp1Title }),
-					 a("p", { children: t.sec7Comp1Text }),
-					 a("h3", { children: t.sec7Comp2Title }),
-					 a("p", { children: t.sec7Comp2Text })
+					 a("p", { children: t.sec7P1 }),
+					 a("p", { children: t.sec7P2 }),
+					 a("p", { children: t.sec7P3 })
 				]
 			}),
 			 a(LicenseArr, {
@@ -804,7 +816,7 @@ function ExplainMitSa() {
 	});
 }
 var container = document.getElementById("app");
-if (container) K(k$1(ExplainMitSa, null), container);</script>
+if (container) Q(k$1(ExplainMitSa, null), container);</script>
     <style>body {
   margin: 0;
   padding: 0;
