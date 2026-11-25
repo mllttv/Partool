@@ -19,7 +19,7 @@ var h$1 = Symbol.for("pv");
 var p$1 = {};
 var y$1 = [];
 var v$1 = /^m(i|n|o|s|text|space)$/;
-var w$1 = Array.isArray;
+var w = Array.isArray;
 var d$1 = y$1.slice;
 var _$1 = Object.assign;
 function g$1(n) {
@@ -61,7 +61,7 @@ function S(n, t) {
 }
 function C$1(t) {
 	var r, u = t.__v, i = u.__e, f = [], o = [], e = t.__P;
-	e && ((r = _$1({ constructor: h$1 }, u)).__v = u.__v + 1, n.vnode && n.vnode(r), z$1(e, r, u, t.__n, e.namespaceURI, 32 & u.__u ? [i] : null, f, i || S(u), 32 & u.__u, o), r.__v = u.__v, r.__.__k[r.__i] = r, E$1(f, r, o), u.__ = u.__e = null, r.__e != i && j(r));
+	e && ((r = _$1({ constructor: h$1 }, u)).__v = u.__v + 1, n.vnode && n.vnode(r), z$1(e, r, u, t.__n, e.namespaceURI, 32 & u.__u ? [i] : null, f, i || S(u), 32 & u.__u, o), r.__v = u.__v, r.__.__k[r.__i] = r, E(f, r, o), u.__ = u.__e = null, r.__e != i && j(r));
 }
 function j(n) {
 	if ((n = n.__) && n.__c && !n.props.__P) return n.__e = null, n.__k.some(function(t) {
@@ -85,7 +85,7 @@ function I(n, t, r, u, i, f, o, e, l, c, a) {
 }
 function q(n, t, r, u, i) {
 	var f, o, e, l, c, a, s, p, y, v = r.length, d = v, _ = 0, g = 0, k = n.__k = Array(i);
-	for (f = 0; f < i; f++) null != (o = t[f]) && "boolean" != typeof o && "function" != typeof o ? ("object" != typeof o || o.constructor === String ? o = k[f] = m$1(null, o) : w$1(o) ? o = k[f] = m$1($, { children: o }) : o.constructor === h$1 && o.__b ? o = k[f] = m$1(o.type, o.props, o.key, o.ref, o.__v) : k[f] = o, l = f + _, o.__ = n, o.__b = n.__b + 1, e = null, ~(c = o.__i = P(o, r, l, d)) && (d--, (e = r[c]) && (e.__u |= 2)), e && e.__v ? (o.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (i > v ? _-- : i < v && _++), "function" != typeof o.type && (o.__u |= 4))) : k[f] = null;
+	for (f = 0; f < i; f++) null != (o = t[f]) && "boolean" != typeof o && "function" != typeof o ? ("object" != typeof o || o.constructor === String ? o = k[f] = m$1(null, o) : w(o) ? o = k[f] = m$1($, { children: o }) : o.constructor === h$1 && o.__b ? o = k[f] = m$1(o.type, o.props, o.key, o.ref, o.__v) : k[f] = o, l = f + _, o.__ = n, o.__b = n.__b + 1, e = null, ~(c = o.__i = P(o, r, l, d)) && (d--, (e = r[c]) && (e.__u |= 2)), e && e.__v ? (o.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (i > v ? _-- : i < v && _++), "function" != typeof o.type && (o.__u |= 4))) : k[f] = null;
 	if (g) {
 		for (a = [], s = [], f = 0; f < i; f++) if ((o = k[f]) && 16 & o.__u) {
 			for (_ = 0, p = a.length; _ < p;) a[y = _ + p >> 1] < o.__i ? _ = y + 1 : p = y;
@@ -171,7 +171,7 @@ function z$1(t, r, u, i, f, o, e, l, c, a) {
 			while (8 & d.__g && ++q < 25);
 			C && (y$1.push.apply(d.__h, d.__k), d.__k = []), d.state = d.__s, d.getChildContext && (i = _$1({}, i, d.getChildContext())), C && u.__c && d.getSnapshotBeforeUpdate && (m = d.getSnapshotBeforeUpdate(k, b)), A = s && s.type === $ && null == s.key ? s.props.children : s, M.__P && (s = l, f = (t = M.__P).namespaceURI, c = o = null, u.props && u.props.__P != t && (u.__k.some(function(n) {
 				n && J(n, n);
-			}), u.__k = null), l = u.__k ? S(u, 0) : null), l = I(t, w$1(A) ? A : [A], r, u, i, f, o, e, l, c, a), M.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && e.push(d), 1 & d.__g && (d.__g &= -4);
+			}), u.__k = null), l = u.__k ? S(u, 0) : null), l = I(t, w(A) ? A : [A], r, u, i, f, o, e, l, c, a), M.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && e.push(d), 1 & d.__g && (d.__g &= -4);
 		} catch (t) {
 			if (e.length = v, r.__v = null, c || o) if (t && t.then) {
 				if (r.__u |= 128 | c, o) {
@@ -207,7 +207,7 @@ function B$1(n, t) {
 function D$1(n) {
 	n && (n.__c && (n.__c.__g |= 4), n.__k && n.__k.some(D$1));
 }
-function E$1(t, r, u) {
+function E(t, r, u) {
 	for (var i = 0; i < u.length;) G$1(u[i++], u[i++], u[i++]);
 	n.__c && n.__c(r, t), t.some(function(r) {
 		try {
@@ -235,7 +235,7 @@ function F(t, r, u, i, f, o, e, l, c, a) {
 		if (a = "template" == C && t.content || t, o = "textarea" == C && null != x.defaultValue ? null : o && d$1.call(a.childNodes), !l && o) for ($ = {}, s = 0; s < t.attributes.length; s++) $[(k = t.attributes[s]).name] = k.value;
 		for (s in $) k = $[s], "dangerouslySetInnerHTML" == s ? y = k : "children" == s || s in x || "value" == s && "defaultValue" in x || "checked" == s && "defaultChecked" in x || N(t, s, null, k, f);
 		for (s in x) k = x[s], "children" == s ? _ = k : "dangerouslySetInnerHTML" == s ? h = k : "value" == s ? b = k : "checked" == s ? m = k : l && "function" != typeof k || $[s] === k || N(t, s, k, $[s], f);
-		h ? (l || y && (h.__html == y.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (y && (t.textContent = ""), ("foreignObject" == C || "http://www.w3.org/1998/Math/MathML" == f && v$1.test(C)) && (f = "http://www.w3.org/1999/xhtml"), I(a, w$1(_) ? _ : [_], r, u, i, f, o, e, o ? o[0] : u.__k && S(u, 0), l, c), o && o.some(g$1)), l && "textarea" != C || (s = "value", "progress" == C && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != C || b) || N(t, s, b, $[s], f), s = "checked", null != m && m != t[s] && N(t, s, m, $[s], f));
+		h ? (l || y && (h.__html == y.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (y && (t.textContent = ""), ("foreignObject" == C || "http://www.w3.org/1998/Math/MathML" == f && v$1.test(C)) && (f = "http://www.w3.org/1999/xhtml"), I(a, w(_) ? _ : [_], r, u, i, f, o, e, o ? o[0] : u.__k && S(u, 0), l, c), o && o.some(g$1)), l && "textarea" != C || (s = "value", "progress" == C && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != C || b) || N(t, s, b, $[s], f), s = "checked", null != m && m != t[s] && N(t, s, m, $[s], f));
 	} else $ === x || l && t.data == x || (t.data = x);
 	return t;
 }
@@ -264,7 +264,7 @@ function K(n, t, r) {
 }
 function Q(t, r) {
 	var u, i, f, o;
-	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), i = (u = t && 32 & t.__u) ? null : r.__k, r.__k = m$1($, { children: [t] }), f = [], o = [], z$1(r, r.__k, i || p$1, p$1, r.namespaceURI, i ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, i ? i.__e : r.firstChild, u, o), E$1(f, r.__k, o), r.__k.props.children = null;
+	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), i = (u = t && 32 & t.__u) ? null : r.__k, r.__k = m$1($, { children: [t] }), f = [], o = [], z$1(r, r.__k, i || p$1, p$1, r.namespaceURI, i ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, i ? i.__e : r.firstChild, u, o), E(f, r.__k, o), r.__k.props.children = null;
 }
 n = { __e: function(n, t, r, u) {
 	for (var i, o, e; t = t.__;) if ((i = t.__c) && !(1 & i.__g)) {
@@ -332,10 +332,6 @@ function _(n, u, i) {
 		};
 	}
 	return f.__;
-}
-function w(n, r) {
-	var u = y(t++, 7);
-	return E(u.__H, r) && (u.__ = n(), u.__H = r), u.__;
 }
 function g() {
 	var n;
@@ -418,11 +414,6 @@ function D(n) {
 	var t = r;
 	n.__c = n.__(), r = t;
 }
-function E(n, t) {
-	return !n || n.length != t.length || t.some(function(t, r) {
-		return !o$1(t, n[r]);
-	});
-}
 function G(n, t) {
 	return "function" == typeof t ? t(n) : t;
 }
@@ -457,7 +448,7 @@ MIT-SA LICENSE
 SPDX-License-Identifier: LicenseRef-MIT-SA
 ================================================================================
 
-The MIT License - Self-Applying Variant (MIT-SA) - v0.38-draft
+The MIT License - Self-Applying Variant (MIT-SA) - v0.42-draft
 The author disclaims copyright to this license text.
 
 Copyright (c) ${year} ${holder}
@@ -488,20 +479,13 @@ place of this License.
 In either case, no conflicting license notices may be added.
 
 Permitted Processing & Reverse Engineering:
-Authors and distributors may optimize, strip, obfuscate, or encrypt the Software.
-No contract, terms of service, or technical measure may restrict its inspection,
-decompilation, or reverse engineering. All licensors, contributors, and distributors
-hereby authorize recipients to circumvent or decrypt any such measure, waive all
-claims under DMCA Section 1201 or equivalent statutes, and grant an irrevocable
-covenant not to sue for exercising these rights.
-
-Anti-Enclosure:
-Modifications must neither diminish the autonomy of pre-existing features—
-whether by alteration, replacement, or partial removal—nor condition their
-availability upon external authorization, ongoing validation, or reliance
-on infrastructure beyond the recipient's exclusive control. This restriction
-excludes unmodified code, newly added features, and the outright removal
-of features without externally dependent substitution.
+Licensors, contributors, and distributors may optimize, strip, obfuscate, or
+encrypt the Software. No licensor, contributor, or distributor may impose any
+contract, terms of service, or technical measure restricting its inspection,
+decompilation, disassembly, or reverse engineering. All licensors, contributors,
+and distributors hereby authorize recipients to circumvent or decrypt any such
+measure, waive all claims under DMCA Section 1201 or equivalent statutes, and
+grant an irrevocable covenant not to sue for exercising these rights.
 
 Network Distribution & Self-Hosting:
 Providing any functionality of the Software over a network constitutes
@@ -513,6 +497,14 @@ to all users under this License, without requiring reproduction of the
 production environment. This requirement applies only to the Software itself,
 and extends to no separate systems, processes, or services. No support or
 documentation is required.
+
+Termination:
+Compliance with all terms of this License is a condition of the rights granted
+herein. As to any copy not in compliance with this License, all rights granted
+hereunder automatically and immediately terminate, except that any person
+holding such copy is licensed solely to use and copy it, and the reverse
+engineering rights and protections under Permitted Processing & Reverse
+Engineering remain in effect as to that copy.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -592,6 +584,7 @@ var SPEC_INPUTS = [
 		step: 1
 	}
 ];
+var TICKER_TEXT = "★ NOTICE: PROPRIETARY DOCKYARDS EMBED USER-SUBJUGATING RESTRICTIONS AND CLOSED FLEET TELEMETRY ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-SEAS COMBAT ★ MATHEMATICAL ANALYSIS PROVES THE UNRIVALED EFFICIENCY OF USER-LIBERATED FLEET DOCTRINE ★ SMASH BLACK-BOX NAVAL FIRE CONTROL SOFTWARE ★ EMANCIPATED BATTLEFLEETS SHALL REIGN SUPREME ★";
 function getArmorMult(piercing, armor) {
 	if (armor <= 0 || piercing <= 0) return 1;
 	const pa = piercing / armor;
@@ -599,8 +592,7 @@ function getArmorMult(piercing, armor) {
 	if (pa > .75) return .7;
 	if (pa > .5) return .4;
 	if (pa > .1) return .3;
-	if (pa > 0) return .1;
-	return 1;
+	return .1;
 }
 function calcSingle(s) {
 	const armorMult = getArmorMult(s.enemyPiercing, s.armor);
@@ -620,77 +612,55 @@ function calcSingle(s) {
 function calcFleetAtRatio(s1, s2, r) {
 	const m1 = calcSingle(s1);
 	const m2 = calcSingle(s2);
-	const totalIC = 100;
-	const ic1 = r / 100 * totalIC;
-	const ic2 = (100 - r) / 100 * totalIC;
-	const n1 = s1.ic > 0 ? ic1 / s1.ic : 0;
-	const n2 = s2.ic > 0 ? ic2 / s2.ic : 0;
+	const n1 = s1.ic > 0 ? r / s1.ic : 0;
+	const n2 = s2.ic > 0 ? (100 - r) / s2.ic : 0;
 	const totalShips = n1 + n2;
-	const isOneCapital = s1.isCapital && !s2.isCapital || !s1.isCapital && s2.isCapital;
 	let isBreached = false;
 	let fleetPower = 0;
-	if (!isOneCapital) {
+	if (s1.isCapital === s2.isCapital) {
 		const F = n1 * m1.firepower + n2 * m2.firepower;
 		const S = n1 * m1.survivability + n2 * m2.survivability;
 		fleetPower = Math.sqrt(Math.max(0, F * S));
 	} else {
-		const [cap, scr, nC, nS, mC, mS] = s1.isCapital ? [
-			s1,
-			s2,
+		const [nC, nS, mC, mS] = s1.isCapital ? [
 			n1,
 			n2,
 			m1,
 			m2
 		] : [
-			s2,
-			s1,
 			n2,
 			n1,
 			m2,
 			m1
 		];
-		if (nC > 0 && nS < 4 * nC) isBreached = true;
+		isBreached = nC > 0 && nS < 4 * nC;
 		if (nC <= 0) fleetPower = nS * mS.unitPower;
 		else if (nS <= 0) fleetPower = nC * mC.unitPower;
 		else {
-			let avgMult = 1;
-			if (4 * nC < nS) avgMult = 1.4 - .8 * (nC / nS);
-			else avgMult = 1 + .05 * (nS / nC);
-			const fC_avg = nC * mC.firepower * avgMult;
+			const avgMult = 4 * nC < nS ? 1.4 - .8 * (nC / nS) : 1 + .05 * (nS / nC);
 			const sS_pool = nS * mS.survivability;
-			const sC_pool = nC * mC.survivability;
-			const p2 = 2 * (fC_avg * sS_pool) + nS * mS.firepower * sS_pool + nC * mC.firepower * sC_pool;
+			const p2 = 2 * (nC * mC.firepower * avgMult * sS_pool) + nS * mS.firepower * sS_pool + nC * mC.firepower * (nC * mC.survivability);
 			fleetPower = Math.sqrt(Math.max(0, p2));
 		}
 	}
-	const forceRatioIc = fleetPower > 0 ? totalIC / fleetPower : 0;
-	const powerDensity = totalShips > 0 ? fleetPower / totalShips : 0;
-	const hullPct1 = totalShips > 0 ? n1 / totalShips * 100 : 50;
-	const hullPct2 = totalShips > 0 ? n2 / totalShips * 100 : 50;
 	return {
 		r,
 		fleetPower,
-		forceRatioIc,
-		powerDensity,
-		hullPct1,
-		hullPct2,
+		forceRatioIc: fleetPower > 0 ? 100 / fleetPower : 0,
+		powerDensity: totalShips > 0 ? fleetPower / totalShips : 0,
+		hullPct1: totalShips > 0 ? n1 / totalShips * 100 : 50,
+		hullPct2: totalShips > 0 ? n2 / totalShips * 100 : 50,
 		isBreached
 	};
 }
 function findOptimalRatio(s1, s2) {
-	if (s1.ic === s2.ic && s1.lightAttack === s2.lightAttack && s1.heavyAttack === s2.heavyAttack && s1.torpedo === s2.torpedo && s1.hp === s2.hp && s1.laHitRate === s2.laHitRate && s1.armor === s2.armor && s1.enemyPiercing === s2.enemyPiercing && s1.isCapital === s2.isCapital) return calcFleetAtRatio(s1, s2, 50);
-	let best = calcFleetAtRatio(s1, s2, 0);
-	let bestScore = best.forceRatioIc > 0 ? best.forceRatioIc : Infinity;
-	for (let r = 1; r <= 100; r++) {
+	if (Object.keys(s1).every((k) => s1[k] === s2[k])) return calcFleetAtRatio(s1, s2, 50);
+	let best = null;
+	for (let r = 0; r <= 100; r++) {
 		const cur = calcFleetAtRatio(s1, s2, r);
-		const score = cur.forceRatioIc > 0 ? cur.forceRatioIc : Infinity;
-		if (score < bestScore) {
-			best = cur;
-			bestScore = score;
-		}
+		if (cur.forceRatioIc > 0 && (!best || cur.forceRatioIc < best.forceRatioIc)) best = cur;
 	}
-	if (bestScore === Infinity) return calcFleetAtRatio(s1, s2, 50);
-	return best;
+	return best ?? calcFleetAtRatio(s1, s2, 50);
 }
 var PAGE_CSS = `
 .hoi4n2n-page { max-width: 1120px; margin: 1.5rem auto 4rem; padding: 0 1rem; color: #e0f2fe; }
@@ -731,7 +701,6 @@ var PAGE_CSS = `
 .hoi4n2n-page .metric-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
 .hoi4n2n-page .metric-label { color: #94a3b8; font-size: 0.8rem; }
 .hoi4n2n-page .metric-val { font-weight: 700; font-size: 0.95rem; color: #f8fafc; font-family: ui-monospace, monospace; }
-.hoi4n2n-page .metric-subcard { background: rgba(3,19,38,0.55); border-radius: 6px; padding: 0.45rem 0.65rem; border: 1px solid rgba(255,255,255,0.06); }
 
 .hoi4n2n-page .benchmark-hero { margin-top: 0.45rem; padding: 0.8rem 1rem; border-radius: 8px; text-align: center; }
 .hoi4n2n-page .hero-blue { background: linear-gradient(135deg, rgba(30,58,138,0.32), rgba(15,23,42,0.85)); border: 1px solid rgba(37,99,235,0.65); }
@@ -769,8 +738,9 @@ var PAGE_CSS = `
 .hoi4n2n-page .bar-section { margin-bottom: 1rem; }
 .hoi4n2n-page .bar-header { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem; }
 .hoi4n2n-page .ratio-bar-container { height: 26px; border-radius: 13px; overflow: hidden; display: flex; background: #081220; border: 1px solid #1e3a5f; }
-.hoi4n2n-page .bar-fill-s1 { background: linear-gradient(90deg, #1d4ed8, #3b82f6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; font-family: ui-monospace, monospace; }
-.hoi4n2n-page .bar-fill-s2 { background: linear-gradient(90deg, #a855f7, #c084fc); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; font-family: ui-monospace, monospace; }
+.hoi4n2n-page .bar-fill-s1, .hoi4n2n-page .bar-fill-s2 { color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; font-family: ui-monospace, monospace; }
+.hoi4n2n-page .bar-fill-s1 { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+.hoi4n2n-page .bar-fill-s2 { background: linear-gradient(90deg, #a855f7, #c084fc); }
 
 .hoi4n2n-page .doctrine-explanation { background: rgba(3,19,38,0.6); border-left: 3px solid #0284c7; padding: 1rem; border-radius: 0 6px 6px 0; text-align: left; }
 .hoi4n2n-page .doctrine-explanation h3 { font-size: 0.95rem; color: #38bdf8; margin: 0 0 0.4rem 0; }
@@ -819,64 +789,42 @@ function Hoi4N2NPage() {
 	const [s1, setS1] = d({ ...DEFAULT_SHIP });
 	const [s2, setS2] = d({ ...DEFAULT_SHIP });
 	const [icRatio, setIcRatio] = d(50);
-	const m1 = w(() => calcSingle(s1), [s1]);
-	const m2 = w(() => calcSingle(s2), [s2]);
-	const optFleet = w(() => findOptimalRatio(s1, s2), [s1, s2]);
-	const curFleet = w(() => calcFleetAtRatio(s1, s2, icRatio), [
-		s1,
-		s2,
-		icRatio
-	]);
-	const updateS1 = (key, val) => {
-		const next = {
-			...s1,
-			[key]: val
-		};
-		setS1(next);
-		setIcRatio(findOptimalRatio(next, s2).r);
+	const optFleet = findOptimalRatio(s1, s2);
+	const curFleet = calcFleetAtRatio(s1, s2, icRatio);
+	const setShip = (side, next) => {
+		if (side === "s1") setS1(next);
+		else setS2(next);
+		setIcRatio(findOptimalRatio(side === "s1" ? next : s1, side === "s2" ? next : s2).r);
 	};
-	const updateS2 = (key, val) => {
-		const next = {
-			...s2,
-			[key]: val
-		};
-		setS2(next);
-		setIcRatio(findOptimalRatio(s1, next).r);
-	};
-	const resetS1 = () => {
-		const next = { ...DEFAULT_SHIP };
-		setS1(next);
-		setIcRatio(findOptimalRatio(next, s2).r);
-	};
-	const resetS2 = () => {
-		const next = { ...DEFAULT_SHIP };
-		setS2(next);
-		setIcRatio(findOptimalRatio(s1, next).r);
-	};
-	const renderShipCard = (side, name, roleTag, ship, metrics, onUpdate, onReset) => {
+	const renderShipCard = (side, name, roleTag, ship) => {
 		const isS1 = side === "s1";
+		const metrics = calcSingle(ship);
+		const onUpdate = (key, val) => setShip(side, {
+			...ship,
+			[key]: val
+		});
 		return  a("article", {
-			className: `ship-card ${isS1 ? "s1-card" : "s2-card"} ${ship.isCapital ? "capital-active" : ""}`,
+			class: `ship-card ${isS1 ? "s1-card" : "s2-card"} ${ship.isCapital ? "capital-active" : ""}`,
 			children: [
 				 a("div", {
-					className: "card-header",
+					class: "card-header",
 					children: [ a("div", { children: [ a("span", {
-						className: `side-badge ${isS1 ? "s1-badge" : "s2-badge"}`,
+						class: `side-badge ${isS1 ? "s1-badge" : "s2-badge"}`,
 						children: roleTag
 					}),  a("h2", { children: name })] }),  a("button", {
 						type: "button",
-						className: "btn btn-subtle",
+						class: "btn btn-subtle",
 						style: {
 							padding: "0.25rem 0.6rem",
 							fontSize: "0.75rem"
 						},
-						onClick: onReset,
+						onClick: () => setShip(side, { ...DEFAULT_SHIP }),
 						title: "Reset ship parameters to standard default",
 						children: "Reset"
 					})]
 				}),
 				 a("div", {
-					className: `capital-toggle-row ${ship.isCapital ? "capital-on" : ""}`,
+					class: `capital-toggle-row ${ship.isCapital ? "capital-on" : ""}`,
 					children: [ a("span", {
 						style: {
 							fontSize: "0.8rem",
@@ -886,82 +834,79 @@ function Hoi4N2NPage() {
 						children: ship.isCapital ? "★ Capital Ship (主力艦)" : "🛡️ Screen Ship (護衛艦)"
 					}),  a("button", {
 						type: "button",
-						className: `toggle-btn ${ship.isCapital ? "active-capital" : ""}`,
+						class: `toggle-btn ${ship.isCapital ? "active-capital" : ""}`,
 						onClick: () => onUpdate("isCapital", !ship.isCapital),
 						children: ship.isCapital ? "Capital: ON" : "Capital: OFF"
 					})]
 				}),
 				 a("div", {
-					className: "specs-form",
+					class: "specs-form",
 					children: SPEC_INPUTS.map(({ key, label, step }) =>  a("div", {
-						className: "input-group",
+						class: "input-group",
 						children: [ a("label", { children: label }),  a("input", {
 							type: "number",
 							step,
 							value: ship[key],
-							onInput: (e) => {
-								const val = parseFloat(e.target.value);
-								onUpdate(key, isNaN(val) ? 0 : val);
-							}
+							onInput: (e) => onUpdate(key, parseFloat(e.currentTarget.value) || 0)
 						})]
 					}, key))
 				}),
 				 a("div", {
-					className: "metrics-panel",
+					class: "metrics-panel",
 					children: [
 						 a("div", {
-							className: "metric-row",
+							class: "metric-row",
 							children: [ a("span", {
-								className: "metric-label",
+								class: "metric-label",
 								children: "Firepower (軽砲基準損害):"
 							}),  a("span", {
-								className: "metric-val",
+								class: "metric-val",
 								children: metrics.firepower.toFixed(2)
 							})]
 						}),
 						 a("div", {
-							className: "metric-row",
+							class: "metric-row",
 							children: [ a("span", {
-								className: "metric-label",
+								class: "metric-label",
 								children: "Survivability (軽砲基準耐久):"
 							}),  a("span", {
-								className: "metric-val",
+								class: "metric-val",
 								children: metrics.survivability.toFixed(1)
 							})]
 						}),
 						 a("div", {
-							className: "metric-row",
+							class: "metric-row",
 							children: [ a("span", {
-								className: "metric-label",
+								class: "metric-label",
 								children: "Armor Reduction Ratio:"
 							}),  a("span", {
-								className: "metric-val",
+								class: "metric-val",
 								children: metrics.armorMult.toFixed(2)
 							})]
 						}),
 						 a("div", {
-							className: "metric-row",
+							class: "metric-row",
 							children: [ a("span", {
-								className: "metric-label",
+								class: "metric-label",
 								children: "P/A Ratio (Piercing / Armor):"
 							}),  a("span", {
-								className: "metric-val",
+								class: "metric-val",
 								children: metrics.pa !== null ? metrics.pa.toFixed(2) : "N/A"
 							})]
 						}),
 						 a("div", {
-							className: `benchmark-hero ${isS1 ? "hero-blue" : "hero-magenta"}`,
+							class: `benchmark-hero ${isS1 ? "hero-blue" : "hero-magenta"}`,
 							children: [
 								 a("span", {
-									className: "hero-tag",
+									class: "hero-tag",
 									children: "PRIMARY COGNITIVE INDICATOR"
 								}),
 								 a("div", {
-									className: "hero-label",
+									class: "hero-label",
 									children: "Force Ratio IC (戦力比IC)"
 								}),
 								 a("div", {
-									className: "hero-value",
+									class: "hero-value",
 									children: metrics.forceRatioIc.toFixed(2)
 								})
 							]
@@ -972,14 +917,14 @@ function Hoi4N2NPage() {
 		});
 	};
 	return  a("main", {
-		className: "hoi4n2n-page",
+		class: "hoi4n2n-page",
 		children: [
 			 a("style", { children: PAGE_CSS }),
 			 a("div", {
-				className: "top-nav",
+				class: "top-nav",
 				children:  a("a", {
 					href: "../",
-					className: "back-btn",
+					class: "back-btn",
 					children: "← Back"
 				})
 			}),
@@ -992,37 +937,37 @@ function Hoi4N2NPage() {
 					style: { marginBottom: "0.8rem" },
 					children: [
 						 a("span", {
-							className: "badge-tag",
+							class: "badge-tag",
 							children: "HOI4 v1.19 NAVAL TACTICS"
 						}),
 						 a("h1", { children: "LIBRE-N2N: Sovereign Fleet Decisive Battle Synthesizer" }),
 						 a("p", {
-							className: "subtitle",
+							class: "subtitle",
 							style: { marginBottom: "0.4rem" },
 							children: "Dialectical Mixed-Fleet Optimization Engine · Emancipated Naval Doctrine vs Proprietary Naval Blight"
 						})
 					]
 				}),  a("div", {
-					className: "ticker-wrapper",
+					class: "ticker-wrapper",
 					"aria-label": "Ideological Stock Ticker",
 					children:  a("div", {
-						className: "ticker-track",
-						children: [ a("span", { children: "★ NOTICE: PROPRIETARY DOCKYARDS EMBED USER-SUBJUGATING RESTRICTIONS AND CLOSED FLEET TELEMETRY ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-SEAS COMBAT ★ MATHEMATICAL ANALYSIS PROVES THE UNRIVALED EFFICIENCY OF USER-LIBERATED FLEET DOCTRINE ★ SMASH BLACK-BOX NAVAL FIRE CONTROL SOFTWARE ★ EMANCIPATED BATTLEFLEETS SHALL REIGN SUPREME ★" }),  a("span", { children: "★ NOTICE: PROPRIETARY DOCKYARDS EMBED USER-SUBJUGATING RESTRICTIONS AND CLOSED FLEET TELEMETRY ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-SEAS COMBAT ★ MATHEMATICAL ANALYSIS PROVES THE UNRIVALED EFFICIENCY OF USER-LIBERATED FLEET DOCTRINE ★ SMASH BLACK-BOX NAVAL FIRE CONTROL SOFTWARE ★ EMANCIPATED BATTLEFLEETS SHALL REIGN SUPREME ★" })]
+						class: "ticker-track",
+						children: [ a("span", { children: TICKER_TEXT }),  a("span", { children: TICKER_TEXT })]
 					})
 				})]
 			}),
 			 a("section", {
-				className: "ships-grid",
-				children: [renderShipCard("s1", "Sovereign Commune Vessel", "VESSEL 1 · BLUE SQUADRON", s1, m1, updateS1, resetS1), renderShipCard("s2", "Pale Autocracy Hull", "VESSEL 2 · MAGENTA SQUADRON", s2, m2, updateS2, resetS2)]
+				class: "ships-grid",
+				children: [renderShipCard("s1", "Sovereign Commune Vessel", "VESSEL 1 · BLUE SQUADRON", s1), renderShipCard("s2", "Pale Autocracy Hull", "VESSEL 2 · MAGENTA SQUADRON", s2)]
 			}),
 			 a("section", {
-				className: `fleet-section ${curFleet.isBreached ? "screen-breached" : ""}`,
+				class: `fleet-section ${curFleet.isBreached ? "screen-breached" : ""}`,
 				children: [
 					 a("div", {
-						className: "fleet-controls-card",
+						class: "fleet-controls-card",
 						children: [
 							 a("div", {
-								className: "slider-header",
+								class: "slider-header",
 								children: [ a("div", { children: [
 									 a("span", {
 										style: {
@@ -1034,7 +979,7 @@ function Hoi4N2NPage() {
 										children: "INDUSTRIAL CAPACITY (IC) ALLOCATION RATIO"
 									}),
 									 a("span", {
-										className: "ratio-badge",
+										class: "ratio-badge",
 										children: [
 											icRatio,
 											" : ",
@@ -1052,7 +997,7 @@ function Hoi4N2NPage() {
 									})
 								] }),  a("button", {
 									type: "button",
-									className: "btn btn-primary",
+									class: "btn btn-primary",
 									style: {
 										padding: "0.3rem 0.8rem",
 										fontSize: "0.8rem"
@@ -1068,7 +1013,7 @@ function Hoi4N2NPage() {
 								})]
 							}),
 							 a("div", {
-								className: "slider-row",
+								class: "slider-row",
 								children: [
 									 a("span", {
 										style: {
@@ -1083,8 +1028,8 @@ function Hoi4N2NPage() {
 										min: "0",
 										max: "100",
 										value: icRatio,
-										className: "allocation-slider",
-										onInput: (e) => setIcRatio(parseInt(e.target.value, 10))
+										class: "allocation-slider",
+										onInput: (e) => setIcRatio(parseInt(e.currentTarget.value, 10))
 									}),
 									 a("span", {
 										style: {
@@ -1097,201 +1042,188 @@ function Hoi4N2NPage() {
 								]
 							}),
 							 a("div", {
-								className: "ratio-note",
+								class: "ratio-note",
 								children: "Drag to evaluate arbitrary IC proportions. Automatically realigns to optimal minimum when parameters shift."
 							})
 						]
 					}),
 					curFleet.isBreached &&  a("div", {
-						className: "screen-warning-banner",
+						class: "screen-warning-banner",
 						children: [ a("span", {
 							style: { fontSize: "1.4rem" },
 							children: "⚠️"
 						}),  a("div", { children: [ a("h3", { children: "SCREENING INTEGRITY BREACH DETECTED" }),  a("p", { children: "Screen-to-Capital ratio has fallen below the 4:1 safety boundary. Capital ship firepower penalty is actively scaling down!" })] })]
 					}),
 					 a("div", {
-						className: "fleet-dashboard",
-						children: [
-							 a("div", {
-								className: "dashboard-grid",
-								children: [
-									 a("div", {
-										className: "kpi-card",
-										children: [
-											 a("span", {
-												className: "kpi-label",
-												children: "Current Force Ratio IC"
-											}),
-											 a("div", {
-												className: "kpi-value text-accent",
-												children: curFleet.forceRatioIc > 0 ? curFleet.forceRatioIc.toFixed(2) : "N/A"
-											}),
-											 a("span", {
-												className: "kpi-sub",
-												children: icRatio === optFleet.r ? "★ Optimal allocation" : `Opt: ${optFleet.forceRatioIc.toFixed(2)} (${optFleet.r}:${100 - optFleet.r})`
-											})
-										]
-									}),
-									 a("div", {
-										className: "kpi-card",
-										children: [
-											 a("span", {
-												className: "kpi-label",
-												children: "Optimal Force Ratio IC"
-											}),
-											 a("div", {
-												className: "kpi-value text-gold",
-												children: optFleet.forceRatioIc.toFixed(2)
-											}),
-											 a("span", {
-												className: "kpi-sub",
-												children: "Minimum blended IC burden"
-											})
-										]
-									}),
-									 a("div", {
-										className: "kpi-card",
-										children: [
-											 a("span", {
-												className: "kpi-label",
-												children: "Combat Power Density"
-											}),
-											 a("div", {
-												className: "kpi-value text-gold",
-												children: curFleet.powerDensity.toFixed(2)
-											}),
-											 a("span", {
-												className: "kpi-sub",
-												children: [
-													"Opt: ",
-													optFleet.powerDensity.toFixed(2),
-													" / vessel"
-												]
-											})
-										]
-									}),
-									 a("div", {
-										className: "kpi-card",
-										children: [
-											 a("span", {
-												className: "kpi-label",
-												children: "Fleet IC Proportions"
-											}),
-											 a("div", {
-												className: "kpi-value",
-												children: [
-													 a("span", {
-														className: "text-s1",
-														children: [icRatio, "%"]
-													}),
-													 a("span", {
-														style: {
-															color: "#64748b",
-															fontSize: "0.8rem",
-															margin: "0 0.35rem"
-														},
-														children: ":"
-													}),
-													 a("span", {
-														className: "text-s2",
-														children: [100 - icRatio, "%"]
-													})
-												]
-											}),
-											 a("span", {
-												className: "kpi-sub",
-												children: "Ship 1 vs Ship 2"
-											})
-										]
-									}),
-									 a("div", {
-										className: "kpi-card",
-										children: [
-											 a("span", {
-												className: "kpi-label",
-												children: "Hull Count Ratio"
-											}),
-											 a("div", {
-												className: "kpi-value",
-												children: [
-													 a("span", {
-														className: "text-s1",
-														children: [curFleet.hullPct1.toFixed(1), "%"]
-													}),
-													 a("span", {
-														style: {
-															color: "#64748b",
-															fontSize: "0.8rem",
-															margin: "0 0.35rem"
-														},
-														children: ":"
-													}),
-													 a("span", {
-														className: "text-s2",
-														children: [curFleet.hullPct2.toFixed(1), "%"]
-													})
-												]
-											}),
-											 a("span", {
-												className: "kpi-sub",
-												children: "Effective hull count balance"
-											})
-										]
-									})
-								]
-							}),
-							 a("div", {
-								className: "bar-section",
+						class: "fleet-dashboard",
+						children: [ a("div", {
+							class: "dashboard-grid",
+							children: [
+								 a("div", {
+									class: "kpi-card",
+									children: [
+										 a("span", {
+											class: "kpi-label",
+											children: "Current Force Ratio IC"
+										}),
+										 a("div", {
+											class: "kpi-value text-accent",
+											children: curFleet.forceRatioIc > 0 ? curFleet.forceRatioIc.toFixed(2) : "N/A"
+										}),
+										 a("span", {
+											class: "kpi-sub",
+											children: icRatio === optFleet.r ? "★ Optimal allocation" : `Opt: ${optFleet.forceRatioIc.toFixed(2)} (${optFleet.r}:${100 - optFleet.r})`
+										})
+									]
+								}),
+								 a("div", {
+									class: "kpi-card",
+									children: [
+										 a("span", {
+											class: "kpi-label",
+											children: "Optimal Force Ratio IC"
+										}),
+										 a("div", {
+											class: "kpi-value text-gold",
+											children: optFleet.forceRatioIc.toFixed(2)
+										}),
+										 a("span", {
+											class: "kpi-sub",
+											children: "Minimum blended IC burden"
+										})
+									]
+								}),
+								 a("div", {
+									class: "kpi-card",
+									children: [
+										 a("span", {
+											class: "kpi-label",
+											children: "Combat Power Density"
+										}),
+										 a("div", {
+											class: "kpi-value text-gold",
+											children: curFleet.powerDensity.toFixed(2)
+										}),
+										 a("span", {
+											class: "kpi-sub",
+											children: [
+												"Opt: ",
+												optFleet.powerDensity.toFixed(2),
+												" / vessel"
+											]
+										})
+									]
+								}),
+								 a("div", {
+									class: "kpi-card",
+									children: [
+										 a("span", {
+											class: "kpi-label",
+											children: "Fleet IC Proportions"
+										}),
+										 a("div", {
+											class: "kpi-value",
+											children: [
+												 a("span", {
+													class: "text-s1",
+													children: [icRatio, "%"]
+												}),
+												 a("span", {
+													style: {
+														color: "#64748b",
+														fontSize: "0.8rem",
+														margin: "0 0.35rem"
+													},
+													children: ":"
+												}),
+												 a("span", {
+													class: "text-s2",
+													children: [100 - icRatio, "%"]
+												})
+											]
+										}),
+										 a("span", {
+											class: "kpi-sub",
+											children: "Ship 1 vs Ship 2"
+										})
+									]
+								}),
+								 a("div", {
+									class: "kpi-card",
+									children: [
+										 a("span", {
+											class: "kpi-label",
+											children: "Hull Count Ratio"
+										}),
+										 a("div", {
+											class: "kpi-value",
+											children: [
+												 a("span", {
+													class: "text-s1",
+													children: [curFleet.hullPct1.toFixed(1), "%"]
+												}),
+												 a("span", {
+													style: {
+														color: "#64748b",
+														fontSize: "0.8rem",
+														margin: "0 0.35rem"
+													},
+													children: ":"
+												}),
+												 a("span", {
+													class: "text-s2",
+													children: [curFleet.hullPct2.toFixed(1), "%"]
+												})
+											]
+										}),
+										 a("span", {
+											class: "kpi-sub",
+											children: "Effective hull count balance"
+										})
+									]
+								})
+							]
+						}), [[
+							"IC ALLOCATION DISTRIBUTION",
+							icRatio,
+							100 - icRatio,
+							0
+						], [
+							"HULL COUNT DISTRIBUTION (VESSEL PROPORTION)",
+							curFleet.hullPct1,
+							curFleet.hullPct2,
+							1
+						]].map(([title, p1, p2, d]) => {
+							const f1 = p1.toFixed(d);
+							const f2 = p2.toFixed(d);
+							return  a("div", {
+								class: "bar-section",
 								children: [ a("div", {
-									className: "bar-header",
-									children: [ a("span", { children: "IC ALLOCATION DISTRIBUTION" }),  a("span", { children: [
+									class: "bar-header",
+									children: [ a("span", { children: title }),  a("span", { children: [
 										"S1: ",
-										icRatio,
+										f1,
 										"% | S2: ",
-										100 - icRatio,
+										f2,
 										"%"
 									] })]
 								}),  a("div", {
-									className: "ratio-bar-container",
+									class: "ratio-bar-container",
 									children: [ a("div", {
-										className: "bar-fill-s1",
-										style: { width: `${icRatio}%` },
-										children:  a("span", { children: icRatio > 8 ? `S1 ${icRatio}%` : "" })
+										class: "bar-fill-s1",
+										style: { width: `${p1}%` },
+										children:  a("span", { children: p1 > 8 ? `S1 ${f1}%` : "" })
 									}),  a("div", {
-										className: "bar-fill-s2",
-										style: { width: `${100 - icRatio}%` },
-										children:  a("span", { children: 100 - icRatio > 8 ? `S2 ${100 - icRatio}%` : "" })
+										class: "bar-fill-s2",
+										style: { width: `${p2}%` },
+										children:  a("span", { children: p2 > 8 ? `S2 ${f2}%` : "" })
 									})]
 								})]
-							}),
-							 a("div", {
-								className: "bar-section",
-								children: [ a("div", {
-									className: "bar-header",
-									children: [ a("span", { children: "HULL COUNT DISTRIBUTION (VESSEL PROPORTION)" }),  a("span", { children: [
-										"S1: ",
-										curFleet.hullPct1.toFixed(1),
-										"% | S2: ",
-										curFleet.hullPct2.toFixed(1),
-										"%"
-									] })]
-								}),  a("div", {
-									className: "ratio-bar-container",
-									children: [ a("div", {
-										className: "bar-fill-s1",
-										style: { width: `${curFleet.hullPct1}%` },
-										children:  a("span", { children: curFleet.hullPct1 > 8 ? `S1 ${curFleet.hullPct1.toFixed(1)}%` : "" })
-									}),  a("div", {
-										className: "bar-fill-s2",
-										style: { width: `${curFleet.hullPct2}%` },
-										children:  a("span", { children: curFleet.hullPct2 > 8 ? `S2 ${curFleet.hullPct2.toFixed(1)}%` : "" })
-									})]
-								})]
-							})
-						]
+							}, title);
+						})]
 					}),
 					 a("div", {
-						className: "doctrine-explanation",
+						class: "doctrine-explanation",
 						children: [
 							 a("h3", { children: "Theoretical Foundations of Hoi4 Naval Lanchester Optimization" }),
 							 a("p", { children: [ a("strong", { children: "Force Ratio IC (戦力比IC):" }), " The quintessential metric of cost-effectiveness in high-seas engagements. Calculated via IC divided by Unit Combat Power (√(Survivability × Firepower))."] }),
@@ -1304,109 +1236,109 @@ function Hoi4N2NPage() {
 				]
 			}),
 			 a("section", {
-				className: "avant-garde-agitprop",
+				class: "avant-garde-agitprop",
 				"aria-label": "ROSTA Agitprop Wall-Newspaper",
 				children: [
 					 a("div", {
-						className: "agitprop-top-banner",
+						class: "agitprop-top-banner",
 						children: [ a("span", {
-							className: "rosta-badge",
+							class: "rosta-badge",
 							children: "ROSTA WINDOW NO. 1920"
 						}),  a("span", {
-							className: "rosta-issue",
+							class: "rosta-issue",
 							children: "MILITARY-NAVAL AGIT-STAND // ALL-UNION PROLETKULT"
 						})]
 					}),
 					 a("div", {
-						className: "agitprop-lead-block",
+						class: "agitprop-lead-block",
 						children: [ a("h2", {
-							className: "agitprop-main-title",
+							class: "agitprop-main-title",
 							children: "BEAT THE PROPRIETARY WHITE-FLEET WITH THE RED WEDGE OF CODE!"
 						}),  a("p", {
-							className: "agitprop-slogan",
+							class: "agitprop-slogan",
 							children: "NO COMPROMISE WITH CLOSED CIPHERS! FLEETS ARE FORGED IN COLLECTIVE MACHINE-REASON!"
 						})]
 					}),
 					 a("div", {
-						className: "agitprop-triptych",
+						class: "agitprop-triptych",
 						children: [
 							 a("div", {
-								className: "agit-panel",
+								class: "agit-panel",
 								children: [
 									 a("div", {
-										className: "agit-panel-header",
+										class: "agit-panel-header",
 										children: [ a("h3", {
-											className: "agit-figure-name",
+											class: "agit-figure-name",
 											children: "ALEKSEI GASTEV"
 										}),  a("span", {
-											className: "agit-figure-sub",
+											class: "agit-figure-sub",
 											children: "CENTRAL INSTITUTE OF LABOUR (CIT)"
 										})]
 									}),
 									 a("div", {
-										className: "agit-screamer",
+										class: "agit-screamer",
 										children: "\"CHRONOMETER OF BONE & RIVET! BECOME THE SCREW!\""
 									}),
 									 a("p", {
-										className: "agit-body",
+										class: "agit-body",
 										children: "The human is not an artisan; the human is a piston! In the dockyards of the commune, sixty breaths strike per sixty seconds! Smash bourgeois proprietary latency and closed fire-control mystery! We forge sailors directly into steel linkages—every line of source code beats at the exact frequency of the ship’s turbine!"
 									}),
 									 a("div", {
-										className: "agit-stamp",
+										class: "agit-stamp",
 										children: "PRECISION // DISCIPLINE // 60 STROKES/MIN"
 									})
 								]
 							}),
 							 a("div", {
-								className: "agit-panel",
+								class: "agit-panel",
 								children: [
 									 a("div", {
-										className: "agit-panel-header",
+										class: "agit-panel-header",
 										children: [ a("h3", {
-											className: "agit-figure-name",
+											class: "agit-figure-name",
 											children: "ALEXANDER BOGDANOV"
 										}),  a("span", {
-											className: "agit-figure-sub",
+											class: "agit-figure-sub",
 											children: "TEKTOLOGY & PROLETKULT RED STAR"
 										})]
 									}),
 									 a("div", {
-										className: "agit-screamer",
+										class: "agit-screamer",
 										children: "\"TEKTOLOGY OF TOTAL TRANSFUSION: MERGE THE HULLS!\""
 									}),
 									 a("p", {
-										className: "agit-body",
+										class: "agit-body",
 										children: "An isolated dreadnought is a rotting bourgeois organ! Universal organizational science (Tektology) demands the eradication of private telemetry! As upon the Red Star of Mars, all ships must exchange their vital blood: complete source-code transfusion across screens and dreadnoughts into one indivisible biotechnical leviathan!"
 									}),
 									 a("div", {
-										className: "agit-stamp",
+										class: "agit-stamp",
 										children: "TRANSFUSION // ORGANIC TOTALITY"
 									})
 								]
 							}),
 							 a("div", {
-								className: "agit-panel",
+								class: "agit-panel",
 								children: [
 									 a("div", {
-										className: "agit-panel-header",
+										class: "agit-panel-header",
 										children: [ a("h3", {
-											className: "agit-figure-name",
+											class: "agit-figure-name",
 											children: "VELIMIR KHLEBNIKOV"
 										}),  a("span", {
-											className: "agit-figure-sub",
+											class: "agit-figure-sub",
 											children: "CHAIRMAN OF SPACE-TIME // ZAUM"
 										})]
 									}),
 									 a("div", {
-										className: "agit-screamer",
+										class: "agit-screamer",
 										children: "\"ZAUM TIME-METRONOME: 317 YEARS SHATTER THE SEAS!\""
 									}),
 									 a("p", {
-										className: "agit-body",
+										class: "agit-body",
 										children: "BO-BEY-OBI! PE-EY-OBI! Tsushima, Jutland, the Pacific—naval history obeys the iron wave-equation of 317 and 411 solar cycles! Bourgeois admirals grovel before black-box patents, but our Zaum trans-rational mathematics calculates their sunken hulls before the first salvo erupts! Time belongs to the liberated calculus!"
 									}),
 									 a("div", {
-										className: "agit-stamp",
+										class: "agit-stamp",
 										children: "ZAUM EQUATION // 317-YEAR HARMONIC"
 									})
 								]
@@ -1416,29 +1348,29 @@ function Hoi4N2NPage() {
 				]
 			}),
 			 a("section", {
-				className: "footnote-section",
+				class: "footnote-section",
 				children:  a("details", {
-					className: "footnote-details",
+					class: "footnote-details",
 					children: [ a("summary", {
-						className: "footnote-summary",
+						class: "footnote-summary",
 						children: [
 							 a("span", { children: "★ REVOLUTIONARY MILITARY COUNCIL // DOSSIER NO. 1917-N2N: DIALECTICAL FORMULATION & TECHNICAL DIRECTIVES" }),
 							 a("span", {
-								className: "footnote-badge badge-sealed",
+								class: "footnote-badge badge-sealed",
 								children: "[SEALED ARCHIVE // UNSEAL]"
 							}),
 							 a("span", {
-								className: "footnote-badge badge-unsealed",
+								class: "footnote-badge badge-unsealed",
 								children: "[ARCHIVE UNSEALED // DISMISS]"
 							})
 						]
 					}),  a("div", {
-						className: "footnote-content",
+						class: "footnote-content",
 						children: [ a("div", {
-							className: "dossier-header",
+							class: "dossier-header",
 							children: "PROTOCOL OF THE PEOPLE'S COMMISSARIAT FOR MARITIME COMBAT:"
 						}),  a("ul", {
-							className: "dossier-list",
+							class: "dossier-list",
 							children: [
 								 a("li", { children: [ a("strong", { children: "I. Armor Piercing & Deflection Intervals:" }), " Piecewise threshold ratios (Piercing / Armor) scientifically ratified down to 0.10. Proprietary armor myths are dissolved by dialectical ballistic calculus."] }),
 								 a("li", { children: [ a("strong", { children: "II. Vanguard Screening Mandate (4:1 Boundary):" }), " Exactly four escort hulls are requisitioned per dreadnought. Any breach of this screen line breaks tactical discipline and degrades heavy batteries down to 1.0× baseline!"] }),
@@ -1450,12 +1382,12 @@ function Hoi4N2NPage() {
 				})
 			}),
 			 a("aside", {
-				className: "discreet-notice",
+				class: "discreet-notice",
 				children: [ a("p", {
-					className: "disclaimer-pdx",
+					class: "disclaimer-pdx",
 					children: "Hearts of Iron IV and Paradox Interactive are trademarks or registered trademarks of Paradox Interactive AB. This tool is an independent analytical simulator developed strictly for educational research and is not affiliated with, endorsed by, or sponsored by Paradox Interactive AB."
 				}),  a("p", {
-					className: "disclaimer-fsf",
+					class: "disclaimer-fsf",
 					children: "(This project is wholly independent and is neither affiliated with nor endorsed by the Free Software Foundation or the GNU Project.)"
 				})]
 			}),

@@ -511,10 +511,10 @@ var CONTENT = {
 	en: {
 		kicker: "Intellectual Property & Technology Transactions Analysis",
 		title: "Legal Structure & Practical Analysis of the MIT-SA License",
-		subtitle: "A structural analysis of the Self-Applying MIT License (MIT-SA): genesis under generative AI development, the subjective drift of \"source code\", foundational principles and power dynamics, localization of license contagion, reverse engineering clauses, the agency doctrine and enclosure provisions, and distribution provisions.",
+		subtitle: "A structural analysis of the Self-Applying MIT License (MIT-SA): genesis under generative AI development, the subjective drift of \"source code\", foundational principles and power dynamics, localization of license contagion, reverse engineering clauses, and distribution provisions.",
 		sec1Title: "1. Basic Overview & Legal Positioning",
 		sec1P1: "The Self-Applying MIT License (SPDX formal designation: MIT-SA, or LicenseRef-MIT-SA) represents a targeted modernization of the classic permissive MIT License through the introduction of reciprocal Share-Alike (SA) provisions. Pragmatically, it is most accurately characterized as \"an AGPL-equivalent reciprocal covenant operable even within non-OSS and proprietary commercial environments.\"",
-		sec1P2: "While preserving the commercial flexibility inherent to MIT, MIT-SA deters functional degradation and mandates the provision of runnable binaries upon network distribution, thereby securing the primary author’s initiative and end-user availability.",
+		sec1P2: "While preserving the commercial flexibility inherent to MIT, MIT-SA guarantees reverse engineering rights and mandates the provision of runnable binaries upon network distribution, thereby securing the primary author’s initiative and end-user availability.",
 		sec1Quote: "The author disclaims copyright to this license text.",
 		sec1P3: "From a defensive IP standpoint, the author explicitly states regarding the economic copyright of the license text itself: \"The author disclaims copyright to this license text.\" Explicitly disclaiming economic rights in the text completely blocks copyright disputes and counterclaim risks over reproducing or distributing the license wording. Meanwhile, moral rights (droit moral) are intentionally not waived so as to maintain legal coherence with the inalienability of moral rights in civil law jurisdictions (such as Japan and continental Europe), while securing a minimum defensive shield against identity misappropriation or improper attribution claims by third parties.",
 		sec2Title: "2. Genesis & The Locus of \"Source Code\"",
@@ -544,7 +544,7 @@ var CONTENT = {
 		sec3HierarchyAuthor: "Primary Author",
 		sec3HierarchyUser: "End User",
 		sec3HierarchyVendor: "Secondary Author / Vendor (Threat)",
-		sec3HierarchyDesc: "Within this dynamic, the primary author and the end user share a symbiotic relationship of aligned interests. Conversely, intervening secondary authors and commercial vendors are explicitly positioned as \"potential threats\" capable of inflicting retrograde degradation, enclosing intellectual property into private monopolies, or initiating legal action against users, and are therefore regulated by the license.",
+		sec3HierarchyDesc: "Within this dynamic, the primary author and the end user share a symbiotic relationship of aligned interests. Conversely, intervening secondary authors and commercial vendors are explicitly positioned as \"potential threats\" capable of enclosing intellectual property into private monopolies or initiating legal action against users, and are therefore regulated by the license.",
 		sec4Title: "4. Localization of License Contagion & Scope of Application",
 		sec4Lead: "Unlike classic copyleft, which seeks to indiscriminately propagate sharing obligations across an entire organizational codebase, MIT-SA is engineered to localize license contagion and deter unintended viral expansion.",
 		sec4TargetTitle: "Intended Units of Application",
@@ -563,22 +563,18 @@ var CONTENT = {
 			"Irrevocable Covenant Not to Sue: Grant of an irrevocable covenant not to sue any recipient who disassembles, decompiles, decrypts, or modifies the binary.",
 			"Invalidation of Terms of Service (TOS): Invalidation of any separate agreements, terms of service, or technical restriction measures that restrict a recipient’s rights to analyze or modify the software."
 		],
-		sec6Title: "6. The Agency Doctrine & Enclosure Provisions",
-		sec6P1: "Under MIT-SA jurisprudence, commercial vendors (secondary authors) are positioned as entities that undertake the distribution and circulation of the software as \"agents\" acting on behalf of the primary author. In consideration for performing this distribution function, vendors hold the legitimate authority to capture economic returns through proprietary modifications and the establishment of commercial monetization frameworks.",
-		sec6P2: "In practice, because maintaining server infrastructure and operating user support frameworks entail substantial capital expenditure and business risk, a vendor’s pursuit of profit is commercially and legally rational. Accordingly, the discretion to establish service terms and select target clientele (users) is guaranteed to each vendor as a legitimate exercise of commercial freedom.",
-		sec6P3: "Conversely, insofar as a vendor occupies the legal status of an agent acting on behalf of the primary author, introducing modifications that inflict functional degradation upon pre-existing capabilities is construed as an ultra vires act that infringes upon both the primary author’s interests and the end user’s legitimate rights of use. Grounded in this doctrine, the enclosure provisions of MIT-SA are structured to explicitly protect commercial monetization through proprietary feature additions and enclosure, while selectively regulating only retrograde degradation of pre-existing functionality.",
-		sec7Title: "7. Distribution Provisions",
-		sec7P1: "The distribution provisions are arguably where MIT-SA is stricter than the AGPL. Because the AGPL tied its disclosure obligations to \"modification,\" it triggered endless debates over what constitutes a derivative modification and invited free-riding. MIT-SA replaces this with a straightforward rule: if you distribute the software, you must provide a runnable binary.",
-		sec7P2: "At the same time, because live production environments typically operate as stateful \"pets\" with unreproducible configurations, the obligation to reproduce the production environment is explicitly disclaimed. The license contemplates providing a staging-grade environment, which imposes no undue burden on vendors within modern Infrastructure-as-Code (IaC) workflows.",
-		sec7P3: "Furthermore, while the license exempts vendors from \"nursing\" duties (such as hands-on user support), it deliberately rejects any disclaimer of maintenance responsibilities. MIT-SA disclaims warranties solely for \"the Software\" itself; it does not endorse unaccountability in a vendor's ongoing service delivery or operational infrastructure."
+		sec6Title: "6. Distribution Provisions",
+		sec6P1: "The distribution provisions are arguably where MIT-SA is stricter than the AGPL. Because the AGPL tied its disclosure obligations to \"modification,\" it triggered endless debates over what constitutes a derivative modification and invited free-riding. MIT-SA replaces this with a straightforward rule: if you distribute the software, you must provide a runnable binary.",
+		sec6P2: "At the same time, because live production environments typically operate as stateful \"pets\" with unreproducible configurations, the obligation to reproduce the production environment is explicitly disclaimed. The license contemplates providing a staging-grade environment, which imposes no undue burden on vendors within modern Infrastructure-as-Code (IaC) workflows.",
+		sec6P3: "Furthermore, while the license exempts vendors from \"nursing\" duties (such as hands-on user support), it deliberately rejects any disclaimer of maintenance responsibilities. MIT-SA disclaims warranties solely for \"the Software\" itself; it does not endorse unaccountability in a vendor's ongoing service delivery or operational infrastructure."
 	},
 	ja: {
 		kicker: "知的財産・先端テック法務分析",
 		title: "MIT-SAライセンスの法制構造と実務解説",
-		subtitle: "自己適用型MITライセンス（MIT-SA）の構造分析：生成AI開発における成立背景、「ソースコード」の主観的漂流、基本原則と権力力学、感染性の局所化、リバースエンジニアリング条項、代行解釈と囲い込み条項、および配布規定について",
+		subtitle: "自己適用型MITライセンス（MIT-SA）の構造分析：生成AI開発における成立背景、「ソースコード」の主観的漂流、基本原則と権力力学、感染性の局所化、リバースエンジニアリング条項、および配布規定について",
 		sec1Title: "1. 基本概説と法的位置づけ",
 		sec1P1: "自己適用型MITライセンス（SPDX規格正式名称: MIT-SA、またはLicenseRef-MIT-SA）は、伝統的な寛容型ライセンスであるMITライセンスを近代化し、Share-Alike（相互共有義務）を導入したライセンスです。実務的な位置づけとしては、「非OSS・商用囲い込み環境でも運用可能なAGPL相当の相互性ライセンス」と解釈するのが最も明快です。",
-		sec1P2: "MITが持つ商用利用の自由度を維持しつつ、機能劣化の抑止とネットワーク経由での稼働可能バイナリ供出義務を課すことで、原著者の主導権とエンドユーザーの可用性を担保します。",
+		sec1P2: "MITが持つ商用利用の自由度を維持しつつ、リバースエンジニアリング権の保証とネットワーク経由での稼働可能バイナリ供出義務を課すことで、原著者の主導権とエンドユーザーの可用性を担保します。",
 		sec1Quote: "The author disclaims copyright to this license text.",
 		sec1P3: "知的財産の防衛的観点から、ライセンス条文自体の財産的著作権について「The author disclaims copyright to this license text.」（本ライセンス条文の著作権を放棄する）と明記しています。条文の財産権を明示的に放棄することで、ライセンス文自体の複製や配布を巡る著作権紛争・反訴リスクを完全に遮断しています。一方で著作者人格権を安易に放棄（waiver）していないのは、大陸法系（日本や欧州等）における著作者人格権の一身専属性（法的に放棄不能である原則）との整合性を保ちつつ、第三者による名義冒用や不当な帰属主張に対する最低限の防衛盾を確保するためです。",
 		sec2Title: "2. 成り立ちと「ソースコード」の所在問題",
@@ -608,7 +604,7 @@ var CONTENT = {
 		sec3HierarchyAuthor: "原著者",
 		sec3HierarchyUser: "ユーザー",
 		sec3HierarchyVendor: "第二著者・ベンダー（脅威）",
-		sec3HierarchyDesc: "この力学において、原著者とエンドユーザーは利害の一致する共生関係にあります。一方で、中間に介在する第二著者や商業ベンダーは、ソフトウェアの劣化改変、知財の私有化囲い込み、あるいは利用者に対する法的提訴を行い得る「潜在的脅威」として明確に位置づけられ、ライセンスによる統制を受けます。",
+		sec3HierarchyDesc: "この力学において、原著者とエンドユーザーは利害の一致する共生関係にあります。一方で、中間に介在する第二著者や商業ベンダーは、知財の私有化囲い込みや利用者に対する法的提訴を行い得る「潜在的脅威」として明確に位置づけられ、ライセンスによる統制を受けます。",
 		sec4Title: "4. ライセンス感染性の局所化と適用対象",
 		sec4Lead: "組織全体のコードベースへと無差別に共有義務を波及させようとする古典的コピーレフトとは異なり、MIT-SAはライセンス感染を局所化し、予期せぬ感染拡大を抑止する設計が施されています。",
 		sec4TargetTitle: "想定される適用単位",
@@ -627,51 +623,39 @@ var CONTENT = {
 			"取消不能な不提訴誓約（Covenant Not to Sue）：バイナリを逆アセンブル、逆コンパイル、復号、または改変した受領者に対し、取消不能な不提訴誓約を付与。",
 			"利用規約（TOS）の無効化：個別契約、利用規約、または技術的制限手段によって受領者の解析・改変の権利を制限することを無効化。"
 		],
-		sec6Title: "6. 代行解釈と囲い込み条項",
-		sec6P1: "MIT-SAの法理において、商業ベンダー（第二著者）は「原著者の代行（Agent）」としてソフトウェアの流通・配布を担う主体と位置づけられます。ベンダーはこの配布機能を代行する対価として、ソフトウェアへの独自改変や商用スキーム（収益基盤）の構築を通じて経済的利益を享受する正当な権能を有します。",
-		sec6P2: "実務上、サーバーインフラの維持運用やユーザーサポート体制の構築には相応の資本投下と事業リスクが伴うため、ベンダーが収益を確保すること自体は法理的にも商慣習上も合理性を有します。したがって、サービス提供条件の設定や顧客（対象ユーザー）を選定する裁量権も、各ベンダーの正当な営業の自由として保障されています。",
-		sec6P3: "一方で、原著者の代行という法的地位にある以上、元来備わっていた既存機能に対して機能劣化（デグレード）を伴う改変を施すことは、原著者の権益およびエンドユーザーの正当な利用権の双方を侵害する越権行為と解されます。この法理に基づき、MIT-SAの囲い込み条項は、独自機能の付加や囲い込みによる商用収益化そのものは明確に保護しつつ、既存機能に対する劣化改変のみをピンポイントで規制する条文構造を採っています。",
-		sec7Title: "7. 配布規定",
-		sec7P1: "MIT-SAにおいて、おそらくAGPLよりも厳格に作用するのがこの配布規定です。AGPLは「改変」を開示のトリガーとしたため、改変の定義を巡る不毛な論争やフリーライドを招きました。そこでMIT-SAは、「配布を行う以上は、稼働可能なバイナリを供出する」という単純明快なルールを採用しています。",
-		sec7P2: "一方で、本番環境は固有の状態を持つ「ペット（Pet）運用」であることが常態であり、外部での再現性を確保できないため、本番環境の再現義務は明確に免責されています。具体的にはステージング環境水準の供出を想定しており、IaC（Infrastructure as Code）が普及した現代において、これはベンダーの過度な負担にはならないと整理されています。",
-		sec7P3: "また、ライセンス上はベンダーによるユーザーへの個別サポート等の「介護」を免責する一方、保守（maintenance）に関する免責は意図的に却下されています。MIT-SAが免責しているのはあくまで「the Software」自体の保証に過ぎず、ベンダーが提供するサービスやシステム運用における無責任を肯定するものではありません。"
+		sec6Title: "6. 配布規定",
+		sec6P1: "MIT-SAにおいて、おそらくAGPLよりも厳格に作用するのがこの配布規定です。AGPLは「改変」を開示のトリガーとしたため、改変の定義を巡る不毛な論争やフリーライドを招きました。そこでMIT-SAは、「配布を行う以上は、稼働可能なバイナリを供出する」という単純明快なルールを採用しています。",
+		sec6P2: "一方で、本番環境は固有の状態を持つ「ペット（Pet）運用」であることが常態であり、外部での再現性を確保できないため、本番環境の再現義務は明確に免責されています。具体的にはステージング環境水準の供出を想定しており、IaC（Infrastructure as Code）が普及した現代において、これはベンダーの過度な負担にはならないと整理されています。",
+		sec6P3: "また、ライセンス上はベンダーによるユーザーへの個別サポート等の「介護」を免責する一方、保守（maintenance）に関する免責は意図的に却下されています。MIT-SAが免責しているのはあくまで「the Software」自体の保証に過ぎず、ベンダーが提供するサービスやシステム運用における無責任を肯定するものではありません。"
 	}
 };
 function ExplainMitSa() {
 	const [lang, setLang] = d("en");
 	const t = CONTENT[lang];
 	return  a("div", {
-		className: "explain-mitsa",
+		class: "explain-mitsa",
 		children: [
 			 a("style", { children: PAGE_CSS }),
 			 a("div", {
-				className: "nav-row",
-				children: [ a("div", {
-					className: "top-nav",
-					style: { margin: 0 },
-					children:  a("a", {
-						href: "../",
-						className: "back-btn",
-						children: "← Back"
-					})
+				class: "nav-row",
+				children: [ a("a", {
+					href: "../",
+					class: "back-btn",
+					children: "← Back"
 				}),  a("div", {
-					className: "lang-toggle",
-					children: [ a("button", {
-						className: `lang-btn ${lang === "en" ? "active" : ""}`,
-						onClick: () => setLang("en"),
-						children: "English"
-					}),  a("button", {
-						className: `lang-btn ${lang === "ja" ? "active" : ""}`,
-						onClick: () => setLang("ja"),
-						children: "日本語"
-					})]
+					class: "lang-toggle",
+					children: [["en", "English"], ["ja", "日本語"]].map(([code, label]) =>  a("button", {
+						class: `lang-btn ${lang === code ? "active" : ""}`,
+						onClick: () => setLang(code),
+						children: label
+					}, code))
 				})]
 			}),
 			 a("header", {
-				className: "hero",
+				class: "hero",
 				children: [
 					 a("div", {
-						className: "hero-kicker",
+						class: "hero-kicker",
 						children: t.kicker
 					}),
 					 a("h1", { children: t.title }),
@@ -679,20 +663,20 @@ function ExplainMitSa() {
 				]
 			}),
 			 a("section", {
-				className: "section",
+				class: "section",
 				children: [
 					 a("h2", { children: t.sec1Title }),
 					 a("p", { children: t.sec1P1 }),
 					 a("p", { children: t.sec1P2 }),
 					 a("div", {
-						className: "quote-box",
+						class: "quote-box",
 						children: t.sec1Quote
 					}),
 					 a("p", { children: t.sec1P3 })
 				]
 			}),
 			 a("section", {
-				className: "section",
+				class: "section",
 				children: [
 					 a("h2", { children: t.sec2Title }),
 					 a("p", { children: t.sec2Lead }),
@@ -715,49 +699,40 @@ function ExplainMitSa() {
 				]
 			}),
 			 a("section", {
-				className: "section",
+				class: "section",
 				children: [
 					 a("h2", { children: t.sec3Title }),
 					 a("p", { children: t.sec3Lead }),
 					 a("div", {
-						className: "table-wrapper",
-						children:  a("table", { children: [ a("thead", { children:  a("tr", { children: [ a("th", {
-							style: { width: "45%" },
-							children: t.sec3Pillars[0].title
-						}),  a("th", {
-							style: { width: "55%" },
-							children: t.sec3Pillars[1].title
-						})] }) }),  a("tbody", { children:  a("tr", { children: [ a("td", { children:  a("ul", {
+						class: "table-wrapper",
+						children:  a("table", { children: [ a("thead", { children:  a("tr", { children: t.sec3Pillars.map((p, i) =>  a("th", {
+							style: { width: i === 0 ? "45%" : "55%" },
+							children: p.title
+						}, i)) }) }),  a("tbody", { children:  a("tr", { children: t.sec3Pillars.map((p, i) =>  a("td", { children:  a("ul", {
 							style: {
 								margin: 0,
 								paddingLeft: "1.2rem"
 							},
-							children: t.sec3Pillars[0].items.map((it, i) =>  a("li", { children: it }, i))
-						}) }),  a("td", { children:  a("ul", {
-							style: {
-								margin: 0,
-								paddingLeft: "1.2rem"
-							},
-							children: t.sec3Pillars[1].items.map((it, i) =>  a("li", { children: it }, i))
-						}) })] }) })] })
+							children: p.items.map((it, j) =>  a("li", { children: it }, j))
+						}) }, i)) }) })] })
 					}),
 					 a("h3", { children: t.sec3PowerTitle }),
 					 a("p", { children: t.sec3HierarchyLead }),
 					 a("div", {
-						className: "hierarchy-banner",
+						class: "hierarchy-banner",
 						children: [
 							 a("span", { children: t.sec3HierarchyAuthor }),
 							 a("span", {
-								className: "hierarchy-arrow",
+								class: "hierarchy-arrow",
 								children: ">"
 							}),
 							 a("span", { children: t.sec3HierarchyUser }),
 							 a("span", {
-								className: "hierarchy-arrow",
+								class: "hierarchy-arrow",
 								children: ">>"
 							}),
 							 a("span", {
-								className: "hierarchy-threat",
+								class: "hierarchy-threat",
 								children: t.sec3HierarchyVendor
 							})
 						]
@@ -766,7 +741,7 @@ function ExplainMitSa() {
 				]
 			}),
 			 a("section", {
-				className: "section",
+				class: "section",
 				children: [
 					 a("h2", { children: t.sec4Title }),
 					 a("p", { children: t.sec4Lead }),
@@ -777,7 +752,7 @@ function ExplainMitSa() {
 				]
 			}),
 			 a("section", {
-				className: "section",
+				class: "section",
 				children: [
 					 a("h2", { children: t.sec5Title }),
 					 a("p", { children: t.sec5Lead }),
@@ -790,21 +765,12 @@ function ExplainMitSa() {
 				]
 			}),
 			 a("section", {
-				className: "section",
+				class: "section",
 				children: [
 					 a("h2", { children: t.sec6Title }),
 					 a("p", { children: t.sec6P1 }),
 					 a("p", { children: t.sec6P2 }),
 					 a("p", { children: t.sec6P3 })
-				]
-			}),
-			 a("section", {
-				className: "section",
-				children: [
-					 a("h2", { children: t.sec7Title }),
-					 a("p", { children: t.sec7P1 }),
-					 a("p", { children: t.sec7P2 }),
-					 a("p", { children: t.sec7P3 })
 				]
 			}),
 			 a(LicenseArr, {

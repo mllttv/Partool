@@ -19,7 +19,7 @@ var h$1 = Symbol.for("pv");
 var p$1 = {};
 var y$1 = [];
 var v$1 = /^m(i|n|o|s|text|space)$/;
-var w$1 = Array.isArray;
+var w = Array.isArray;
 var d$1 = y$1.slice;
 var _$1 = Object.assign;
 function g$1(n) {
@@ -61,7 +61,7 @@ function S(n, t) {
 }
 function C$1(t) {
 	var r, u = t.__v, i = u.__e, f = [], o = [], e = t.__P;
-	e && ((r = _$1({ constructor: h$1 }, u)).__v = u.__v + 1, n.vnode && n.vnode(r), z$1(e, r, u, t.__n, e.namespaceURI, 32 & u.__u ? [i] : null, f, i || S(u), 32 & u.__u, o), r.__v = u.__v, r.__.__k[r.__i] = r, E$1(f, r, o), u.__ = u.__e = null, r.__e != i && j(r));
+	e && ((r = _$1({ constructor: h$1 }, u)).__v = u.__v + 1, n.vnode && n.vnode(r), z$1(e, r, u, t.__n, e.namespaceURI, 32 & u.__u ? [i] : null, f, i || S(u), 32 & u.__u, o), r.__v = u.__v, r.__.__k[r.__i] = r, E(f, r, o), u.__ = u.__e = null, r.__e != i && j(r));
 }
 function j(n) {
 	if ((n = n.__) && n.__c && !n.props.__P) return n.__e = null, n.__k.some(function(t) {
@@ -85,7 +85,7 @@ function I(n, t, r, u, i, f, o, e, l, c, a) {
 }
 function q(n, t, r, u, i) {
 	var f, o, e, l, c, a, s, p, y, v = r.length, d = v, _ = 0, g = 0, k = n.__k = Array(i);
-	for (f = 0; f < i; f++) null != (o = t[f]) && "boolean" != typeof o && "function" != typeof o ? ("object" != typeof o || o.constructor === String ? o = k[f] = m$1(null, o) : w$1(o) ? o = k[f] = m$1($, { children: o }) : o.constructor === h$1 && o.__b ? o = k[f] = m$1(o.type, o.props, o.key, o.ref, o.__v) : k[f] = o, l = f + _, o.__ = n, o.__b = n.__b + 1, e = null, ~(c = o.__i = P(o, r, l, d)) && (d--, (e = r[c]) && (e.__u |= 2)), e && e.__v ? (o.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (i > v ? _-- : i < v && _++), "function" != typeof o.type && (o.__u |= 4))) : k[f] = null;
+	for (f = 0; f < i; f++) null != (o = t[f]) && "boolean" != typeof o && "function" != typeof o ? ("object" != typeof o || o.constructor === String ? o = k[f] = m$1(null, o) : w(o) ? o = k[f] = m$1($, { children: o }) : o.constructor === h$1 && o.__b ? o = k[f] = m$1(o.type, o.props, o.key, o.ref, o.__v) : k[f] = o, l = f + _, o.__ = n, o.__b = n.__b + 1, e = null, ~(c = o.__i = P(o, r, l, d)) && (d--, (e = r[c]) && (e.__u |= 2)), e && e.__v ? (o.__u |= 16, c == l - 1 ? _-- : c == l + 1 ? _++ : c != l && (c > l ? _-- : _++, g = 1)) : (~c || (i > v ? _-- : i < v && _++), "function" != typeof o.type && (o.__u |= 4))) : k[f] = null;
 	if (g) {
 		for (a = [], s = [], f = 0; f < i; f++) if ((o = k[f]) && 16 & o.__u) {
 			for (_ = 0, p = a.length; _ < p;) a[y = _ + p >> 1] < o.__i ? _ = y + 1 : p = y;
@@ -171,7 +171,7 @@ function z$1(t, r, u, i, f, o, e, l, c, a) {
 			while (8 & d.__g && ++q < 25);
 			C && (y$1.push.apply(d.__h, d.__k), d.__k = []), d.state = d.__s, d.getChildContext && (i = _$1({}, i, d.getChildContext())), C && u.__c && d.getSnapshotBeforeUpdate && (m = d.getSnapshotBeforeUpdate(k, b)), A = s && s.type === $ && null == s.key ? s.props.children : s, M.__P && (s = l, f = (t = M.__P).namespaceURI, c = o = null, u.props && u.props.__P != t && (u.__k.some(function(n) {
 				n && J(n, n);
-			}), u.__k = null), l = u.__k ? S(u, 0) : null), l = I(t, w$1(A) ? A : [A], r, u, i, f, o, e, l, c, a), M.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && e.push(d), 1 & d.__g && (d.__g &= -4);
+			}), u.__k = null), l = u.__k ? S(u, 0) : null), l = I(t, w(A) ? A : [A], r, u, i, f, o, e, l, c, a), M.__P && (r.__e = null, l = s), r.__u &= -161, p && p.some(g$1), d.__h.length && e.push(d), 1 & d.__g && (d.__g &= -4);
 		} catch (t) {
 			if (e.length = v, r.__v = null, c || o) if (t && t.then) {
 				if (r.__u |= 128 | c, o) {
@@ -207,7 +207,7 @@ function B$1(n, t) {
 function D$1(n) {
 	n && (n.__c && (n.__c.__g |= 4), n.__k && n.__k.some(D$1));
 }
-function E$1(t, r, u) {
+function E(t, r, u) {
 	for (var i = 0; i < u.length;) G$1(u[i++], u[i++], u[i++]);
 	n.__c && n.__c(r, t), t.some(function(r) {
 		try {
@@ -235,7 +235,7 @@ function F(t, r, u, i, f, o, e, l, c, a) {
 		if (a = "template" == C && t.content || t, o = "textarea" == C && null != x.defaultValue ? null : o && d$1.call(a.childNodes), !l && o) for ($ = {}, s = 0; s < t.attributes.length; s++) $[(k = t.attributes[s]).name] = k.value;
 		for (s in $) k = $[s], "dangerouslySetInnerHTML" == s ? y = k : "children" == s || s in x || "value" == s && "defaultValue" in x || "checked" == s && "defaultChecked" in x || N(t, s, null, k, f);
 		for (s in x) k = x[s], "children" == s ? _ = k : "dangerouslySetInnerHTML" == s ? h = k : "value" == s ? b = k : "checked" == s ? m = k : l && "function" != typeof k || $[s] === k || N(t, s, k, $[s], f);
-		h ? (l || y && (h.__html == y.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (y && (t.textContent = ""), ("foreignObject" == C || "http://www.w3.org/1998/Math/MathML" == f && v$1.test(C)) && (f = "http://www.w3.org/1999/xhtml"), I(a, w$1(_) ? _ : [_], r, u, i, f, o, e, o ? o[0] : u.__k && S(u, 0), l, c), o && o.some(g$1)), l && "textarea" != C || (s = "value", "progress" == C && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != C || b) || N(t, s, b, $[s], f), s = "checked", null != m && m != t[s] && N(t, s, m, $[s], f));
+		h ? (l || y && (h.__html == y.__html || h.__html == t.innerHTML) || (t.innerHTML = h.__html), r.__k = []) : (y && (t.textContent = ""), ("foreignObject" == C || "http://www.w3.org/1998/Math/MathML" == f && v$1.test(C)) && (f = "http://www.w3.org/1999/xhtml"), I(a, w(_) ? _ : [_], r, u, i, f, o, e, o ? o[0] : u.__k && S(u, 0), l, c), o && o.some(g$1)), l && "textarea" != C || (s = "value", "progress" == C && null == b ? t.removeAttribute(s) : null == b || b === t[s] && ("progress" != C || b) || N(t, s, b, $[s], f), s = "checked", null != m && m != t[s] && N(t, s, m, $[s], f));
 	} else $ === x || l && t.data == x || (t.data = x);
 	return t;
 }
@@ -264,7 +264,7 @@ function K(n, t, r) {
 }
 function Q(t, r) {
 	var u, i, f, o;
-	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), i = (u = t && 32 & t.__u) ? null : r.__k, r.__k = m$1($, { children: [t] }), f = [], o = [], z$1(r, r.__k, i || p$1, p$1, r.namespaceURI, i ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, i ? i.__e : r.firstChild, u, o), E$1(f, r.__k, o), r.__k.props.children = null;
+	n.__ && n.__(t, r), 9 == r.nodeType && (r = r.documentElement), i = (u = t && 32 & t.__u) ? null : r.__k, r.__k = m$1($, { children: [t] }), f = [], o = [], z$1(r, r.__k, i || p$1, p$1, r.namespaceURI, i ? null : r.firstChild ? d$1.call(r.childNodes) : null, f, i ? i.__e : r.firstChild, u, o), E(f, r.__k, o), r.__k.props.children = null;
 }
 n = { __e: function(n, t, r, u) {
 	for (var i, o, e; t = t.__;) if ((i = t.__c) && !(1 & i.__g)) {
@@ -332,10 +332,6 @@ function _(n, u, i) {
 		};
 	}
 	return f.__;
-}
-function w(n, r) {
-	var u = y(t++, 7);
-	return E(u.__H, r) && (u.__ = n(), u.__H = r), u.__;
 }
 function g() {
 	var n;
@@ -418,11 +414,6 @@ function D(n) {
 	var t = r;
 	n.__c = n.__(), r = t;
 }
-function E(n, t) {
-	return !n || n.length != t.length || t.some(function(t, r) {
-		return !o$1(t, n[r]);
-	});
-}
 function G(n, t) {
 	return "function" == typeof t ? t(n) : t;
 }
@@ -457,7 +448,7 @@ MIT-SA LICENSE
 SPDX-License-Identifier: LicenseRef-MIT-SA
 ================================================================================
 
-The MIT License - Self-Applying Variant (MIT-SA) - v0.38-draft
+The MIT License - Self-Applying Variant (MIT-SA) - v0.42-draft
 The author disclaims copyright to this license text.
 
 Copyright (c) ${year} ${holder}
@@ -488,20 +479,13 @@ place of this License.
 In either case, no conflicting license notices may be added.
 
 Permitted Processing & Reverse Engineering:
-Authors and distributors may optimize, strip, obfuscate, or encrypt the Software.
-No contract, terms of service, or technical measure may restrict its inspection,
-decompilation, or reverse engineering. All licensors, contributors, and distributors
-hereby authorize recipients to circumvent or decrypt any such measure, waive all
-claims under DMCA Section 1201 or equivalent statutes, and grant an irrevocable
-covenant not to sue for exercising these rights.
-
-Anti-Enclosure:
-Modifications must neither diminish the autonomy of pre-existing features—
-whether by alteration, replacement, or partial removal—nor condition their
-availability upon external authorization, ongoing validation, or reliance
-on infrastructure beyond the recipient's exclusive control. This restriction
-excludes unmodified code, newly added features, and the outright removal
-of features without externally dependent substitution.
+Licensors, contributors, and distributors may optimize, strip, obfuscate, or
+encrypt the Software. No licensor, contributor, or distributor may impose any
+contract, terms of service, or technical measure restricting its inspection,
+decompilation, disassembly, or reverse engineering. All licensors, contributors,
+and distributors hereby authorize recipients to circumvent or decrypt any such
+measure, waive all claims under DMCA Section 1201 or equivalent statutes, and
+grant an irrevocable covenant not to sue for exercising these rights.
 
 Network Distribution & Self-Hosting:
 Providing any functionality of the Software over a network constitutes
@@ -513,6 +497,14 @@ to all users under this License, without requiring reproduction of the
 production environment. This requirement applies only to the Software itself,
 and extends to no separate systems, processes, or services. No support or
 documentation is required.
+
+Termination:
+Compliance with all terms of this License is a condition of the rights granted
+herein. As to any copy not in compliance with this License, all rights granted
+hereunder automatically and immediately terminate, except that any person
+holding such copy is licensed solely to use and copy it, and the reverse
+engineering rights and protections under Permitted Processing & Reverse
+Engineering remain in effect as to that copy.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -586,6 +578,25 @@ var SPEC_FIELDS = [
 	}
 ];
 var BASE_FORCE_IC = 18250;
+var TICKER_TEXT = "★ NOTICE: PROPRIETARY AIRFRAMES EMBED MALWARE TELEMETRY AND USER-SUBJUGATING RESTRICTIONS ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-ALTITUDE COMBAT ★ MATHEMATICAL PROOF CONFIRMS THE ETHICAL AND STRATEGIC SUPERIORITY OF USER-LIBERATED AVIONICS ★ RESIST CLOSED-BLOB FLIGHT CONTROL BINARIES ★ COPYLEFT AIR WINGS SHALL PREVAIL ★";
+var clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+var getEffectiveIC = (p) => p.ic * (1 + (1 - p.reliability) * .3872);
+var getTrainingIC = (p) => p.ic * (1 + (1 - p.reliability) * .0563);
+var getDayNightEff = (p, isNightOnly) => ((isNightOnly ? 0 : 1) + (1 - .5 * (1 + p.nightPenalty))) / 2;
+function calcKillEfficiency(att, def, isNightOnly) {
+	const attEffIC = Math.max(1e-4, getEffectiveIC(att));
+	const defEffIC = Math.max(1e-4, getEffectiveIC(def));
+	const dBase = .2 * (att.airAttack / attEffIC);
+	const dAgil = -.45 * Math.max(Math.min(def.agility / Math.max(1e-4, att.agility), 4) - 1, 0);
+	const dRels = .65 * Math.max(Math.min(att.speed / Math.max(1e-4, def.speed), 3.5) - 1, 0);
+	const dAbss = att.speed > def.speed ? .025 * Math.min(att.speed / 100, 8) : 0;
+	return {
+		eff: Math.max(0, dBase * (1 + dAgil + dRels + dAbss) * .01 * (defEffIC / Math.max(1e-4, def.airDefense)) * getDayNightEff(att, isNightOnly)),
+		dAgil,
+		dRels,
+		dAbss
+	};
+}
 var PAGE_CSS = `
 .hoi4-page { max-width: 1100px; margin: 1.5rem auto 4rem; padding: 0 1rem; color: #e0f2fe; }
 .hoi4-page h1 { font-size: 1.8rem; color: #38bdf8; margin: 0.3rem 0; text-shadow: 0 0 15px rgba(56,189,248,0.3); }
@@ -653,8 +664,9 @@ var PAGE_CSS = `
 .hoi4-page .bar-section { margin-bottom: 1rem; }
 .hoi4-page .bar-header { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem; }
 .hoi4-page .ratio-bar-container, .hoi4-page .survival-bar-container { height: 26px; border-radius: 13px; overflow: hidden; display: flex; background: #081220; border: 1px solid #1e3a5f; }
-.hoi4-page .bar-fill-f1, .hoi4-page .surv-segment-f1 { background: linear-gradient(90deg, #1d4ed8, #3b82f6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; }
-.hoi4-page .bar-fill-f2, .hoi4-page .surv-segment-f2 { background: linear-gradient(90deg, #a855f7, #c084fc); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; }
+.hoi4-page .bar-fill-f1, .hoi4-page .surv-segment-f1, .hoi4-page .bar-fill-f2, .hoi4-page .surv-segment-f2 { color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; transition: width 0.3s; }
+.hoi4-page .bar-fill-f1, .hoi4-page .surv-segment-f1 { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+.hoi4-page .bar-fill-f2, .hoi4-page .surv-segment-f2 { background: linear-gradient(90deg, #a855f7, #c084fc); }
 .hoi4-page .doctrine-explanation { background: rgba(3,19,38,0.6); border-left: 3px solid #0284c7; padding: 1rem; border-radius: 0 6px 6px 0; text-align: left; }
 .hoi4-page .doctrine-explanation h3 { font-size: 0.95rem; color: #38bdf8; margin: 0 0 0.4rem 0; }
 .hoi4-page .doctrine-explanation p { font-size: 0.82rem; color: #cbd5e1; margin: 0.3rem 0; line-height: 1.45; }
@@ -679,41 +691,10 @@ function Hoi4A2APage() {
 	const [f1, setF1] = d({ ...DEFAULT_SPECS });
 	const [f2, setF2] = d({ ...DEFAULT_SPECS });
 	const [multiplierN, setMultiplierN] = d(1);
-	const getEffectiveIC = (p) => p.ic * (1 + (1 - p.reliability) * .3872);
-	const getTrainingIC = (p) => p.ic * (1 + (1 - p.reliability) * .0563);
-	const getDayNightEff = (p) => {
-		return ((isNightOnly ? 0 : 1) + (1 - .5 * (1 + p.nightPenalty))) / 2;
-	};
-	const calcKillEfficiency = (att, def) => {
-		const attEffIC = Math.max(1e-4, getEffectiveIC(att));
-		const defEffIC = Math.max(1e-4, getEffectiveIC(def));
-		const defAirDef = Math.max(1e-4, def.airDefense);
-		const attAgil = Math.max(1e-4, att.agility);
-		const defSpeed = Math.max(1e-4, def.speed);
-		const dBase = .2 * (att.airAttack / attEffIC);
-		const dAgil = -.45 * Math.max(Math.min(def.agility / attAgil, 4) - 1, 0);
-		const dRels = .65 * Math.max(Math.min(att.speed / defSpeed, 3.5) - 1, 0);
-		const dAbss = att.speed > def.speed ? .025 * Math.min(att.speed / 100, 8) : 0;
-		const dayNight = getDayNightEff(att);
-		const rawEff = dBase * (1 + dAgil + dRels + dAbss) * .01 * (defEffIC / defAirDef) * dayNight;
-		return {
-			eff: Math.max(0, rawEff),
-			dAgil,
-			dRels,
-			dAbss,
-			dBase
-		};
-	};
 	const f1EffIC = getEffectiveIC(f1);
 	const f2EffIC = getEffectiveIC(f2);
-	const f1BenchKill = calcKillEfficiency(f1, DEFAULT_SPECS);
-	const f1BenchLoss = calcKillEfficiency(DEFAULT_SPECS, f1);
-	const f1BenchPower = f1BenchLoss.eff > 0 ? Math.sqrt(f1BenchKill.eff / f1BenchLoss.eff) : 0;
-	const f2BenchKill = calcKillEfficiency(f2, DEFAULT_SPECS);
-	const f2BenchLoss = calcKillEfficiency(DEFAULT_SPECS, f2);
-	const f2BenchPower = f2BenchLoss.eff > 0 ? Math.sqrt(f2BenchKill.eff / f2BenchLoss.eff) : 0;
-	const direct1to2 = calcKillEfficiency(f1, f2);
-	const direct2to1 = calcKillEfficiency(f2, f1);
+	const direct1to2 = calcKillEfficiency(f1, f2, isNightOnly);
+	const direct2to1 = calcKillEfficiency(f2, f1, isNightOnly);
 	const combatPowerRatio = direct2to1.eff > 0 ? Math.sqrt(direct1to2.eff / direct2to1.eff) : 0;
 	const killIcRatio = direct2to1.eff > 0 ? direct1to2.eff / direct2to1.eff * (multiplierN * multiplierN) : 0;
 	const parityN = direct1to2.eff > 0 ? Math.sqrt(direct2to1.eff / direct1to2.eff) : 1;
@@ -723,58 +704,49 @@ function Hoi4A2APage() {
 	const planes2 = f2EffIC > 0 ? f2InitialIC / f2EffIC : 0;
 	const planeRatio = planes2 > 0 ? planes1 / planes2 : 1;
 	const is3xViolated = planeRatio >= 3 || planeRatio <= 1 / 3;
-	const target3xN = planeRatio >= 3 ? 3 * (f1EffIC / f2EffIC) : 1 / 3 * (f1EffIC / f2EffIC);
-	const simulation = w(() => {
-		let ic1 = f1InitialIC;
-		let ic2 = f2InitialIC;
-		const threshold1 = f1InitialIC * .1;
-		const threshold2 = f2InitialIC * .1;
-		let ticks = 0;
-		const maxTicks = 1e4;
-		const e1 = direct1to2.eff;
-		const e2 = direct2to1.eff;
-		if (e1 <= 0 && e2 <= 0) return {
-			ticks: 0,
-			survival1: 100,
-			survival2: 100,
-			finished: false
-		};
-		while (ic1 >= threshold1 && ic2 >= threshold2 && ticks < maxTicks) {
-			const loss1 = ic2 * e2;
-			const loss2 = ic1 * e1;
-			ic1 -= loss1;
-			ic2 -= loss2;
-			ticks++;
-			if (loss1 <= 0 && loss2 <= 0) break;
-		}
-		return {
-			ticks,
-			survival1: Math.max(0, Math.min(100, Math.max(0, ic1) / f1InitialIC * 100)),
-			survival2: Math.max(0, Math.min(100, Math.max(0, ic2) / f2InitialIC * 100)),
-			finished: ticks < maxTicks
-		};
-	}, [
-		f1InitialIC,
-		f2InitialIC,
-		direct1to2.eff,
-		direct2to1.eff
-	]);
-	const renderPlaneCard = (side, name, roleTag, plane, setPlane, benchKill, benchLoss, benchPower, directKill) => {
-		const effIC = getEffectiveIC(plane);
-		const trainIC = getTrainingIC(plane);
-		const dNight = getDayNightEff(plane);
+	const target3xN = (planeRatio >= 3 ? 3 : 1 / 3) * (f1EffIC / f2EffIC);
+	let ic1 = f1InitialIC;
+	let ic2 = f2InitialIC;
+	let ticks = 0;
+	const maxTicks = 1e4;
+	const hasCombat = direct1to2.eff > 0 || direct2to1.eff > 0;
+	if (hasCombat) while (ic1 >= f1InitialIC * .1 && ic2 >= f2InitialIC * .1 && ticks < maxTicks) {
+		const loss1 = ic2 * direct2to1.eff;
+		const loss2 = ic1 * direct1to2.eff;
+		ic1 -= loss1;
+		ic2 -= loss2;
+		ticks++;
+		if (loss1 <= 0 && loss2 <= 0) break;
+	}
+	const simulation = {
+		ticks,
+		survival1: clamp(ic1 / f1InitialIC * 100, 0, 100),
+		survival2: clamp(ic2 / f2InitialIC * 100, 0, 100),
+		finished: hasCombat && ticks < maxTicks
+	};
+	const f1KillPct = killIcRatio / (killIcRatio + 1) * 100;
+	const survSum = Math.max(.001, simulation.survival1 + simulation.survival2);
+	const renderPlaneCard = (side, name, roleTag, plane, setPlane, directKill) => {
 		const isF1 = side === "f1";
+		const benchKill = calcKillEfficiency(plane, DEFAULT_SPECS, isNightOnly);
+		const benchLoss = calcKillEfficiency(DEFAULT_SPECS, plane, isNightOnly);
+		const benchPower = benchLoss.eff > 0 ? Math.sqrt(benchKill.eff / benchLoss.eff) : 0;
+		const effRows = [
+			["Benchmark Kill IC Eff:", benchKill],
+			["Benchmark Loss IC Eff:", benchLoss],
+			[`Direct Kill IC Eff [${isF1 ? "vs F2" : "vs F1"}]:`, directKill]
+		];
 		return  a("article", {
-			className: `plane-card ${isF1 ? "f1-card" : "f2-card"}`,
+			class: `plane-card ${isF1 ? "f1-card" : "f2-card"}`,
 			children: [
 				 a("div", {
-					className: "card-header",
+					class: "card-header",
 					children: [ a("div", { children: [ a("span", {
-						className: `side-badge ${isF1 ? "f1-badge" : "f2-badge"}`,
+						class: `side-badge ${isF1 ? "f1-badge" : "f2-badge"}`,
 						children: roleTag
 					}),  a("h2", { children: name })] }),  a("button", {
 						type: "button",
-						className: "btn btn-subtle",
+						class: "btn btn-subtle",
 						style: {
 							padding: "0.25rem 0.6rem",
 							fontSize: "0.75rem"
@@ -785,158 +757,96 @@ function Hoi4A2APage() {
 					})]
 				}),
 				 a("div", {
-					className: "specs-form",
+					class: "specs-form",
 					children: SPEC_FIELDS.map(({ key, label, step }) =>  a("div", {
-						className: `input-group ${key === "nightPenalty" ? "span-full" : ""}`,
+						class: `input-group ${key === "nightPenalty" ? "span-full" : ""}`,
 						children: [ a("label", { children: label }),  a("input", {
 							type: "number",
 							step,
 							value: plane[key],
 							onInput: (e) => setPlane({
 								...plane,
-								[key]: parseFloat(e.target.value) || 0
+								[key]: parseFloat(e.currentTarget.value) || 0
 							})
 						})]
 					}, key))
 				}),
 				 a("div", {
-					className: "metrics-panel",
+					class: "metrics-panel",
 					children: [
 						 a("div", {
-							className: "metric-row",
+							class: "metric-row",
 							children: [ a("span", {
-								className: "metric-label",
+								class: "metric-label",
 								children: "Training IC:"
 							}),  a("span", {
-								className: "metric-val",
-								children: trainIC.toFixed(2)
+								class: "metric-val",
+								children: getTrainingIC(plane).toFixed(2)
 							})]
 						}),
 						 a("div", {
-							className: "metric-row",
+							class: "metric-row",
 							children: [ a("span", {
-								className: "metric-label",
+								class: "metric-label",
 								children: "Effective IC:"
 							}),  a("span", {
-								className: "metric-val",
+								class: "metric-val",
 								style: { color: isF1 ? "#38bdf8" : "#f472b6" },
-								children: effIC.toFixed(2)
+								children: getEffectiveIC(plane).toFixed(2)
 							})]
 						}),
 						 a("div", {
-							className: "metric-row",
+							class: "metric-row",
 							children: [ a("span", {
-								className: "metric-label",
+								class: "metric-label",
 								children: "Day/Night Firepower Eff:"
 							}),  a("span", {
-								className: "metric-val",
-								children: [(dNight * 100).toFixed(1), "%"]
+								class: "metric-val",
+								children: [(getDayNightEff(plane, isNightOnly) * 100).toFixed(1), "%"]
 							})]
 						}),
-						 a("div", {
-							className: "metric-subcard",
+						effRows.map(([label, m]) =>  a("div", {
+							class: "metric-subcard",
 							children: [ a("div", {
-								className: "metric-row",
+								class: "metric-row",
 								children: [ a("span", {
-									className: "metric-label",
-									children: "Benchmark Kill IC Eff:"
+									class: "metric-label",
+									children: label
 								}),  a("span", {
-									className: "metric-val",
-									children: [(benchKill.eff * 1e3).toFixed(3), " ‰"]
+									class: "metric-val",
+									children: [(m.eff * 1e3).toFixed(3), " ‰"]
 								})]
 							}),  a("div", {
-								className: "metric-chips",
+								class: "metric-chips",
 								children: [
 									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Dagil" }), benchKill.dAgil.toFixed(3)]
+										class: "metric-chip",
+										children: [ a("b", { children: "Dagil" }), m.dAgil.toFixed(3)]
 									}),
 									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Drels" }), benchKill.dRels.toFixed(3)]
+										class: "metric-chip",
+										children: [ a("b", { children: "Drels" }), m.dRels.toFixed(3)]
 									}),
 									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Dabss" }), benchKill.dAbss.toFixed(3)]
+										class: "metric-chip",
+										children: [ a("b", { children: "Dabss" }), m.dAbss.toFixed(3)]
 									})
 								]
 							})]
-						}),
+						}, label)),
 						 a("div", {
-							className: "metric-subcard",
-							children: [ a("div", {
-								className: "metric-row",
-								children: [ a("span", {
-									className: "metric-label",
-									children: "Benchmark Loss IC Eff:"
-								}),  a("span", {
-									className: "metric-val",
-									children: [(benchLoss.eff * 1e3).toFixed(3), " ‰"]
-								})]
-							}),  a("div", {
-								className: "metric-chips",
-								children: [
-									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Dagil" }), benchLoss.dAgil.toFixed(3)]
-									}),
-									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Drels" }), benchLoss.dRels.toFixed(3)]
-									}),
-									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Dabss" }), benchLoss.dAbss.toFixed(3)]
-									})
-								]
-							})]
-						}),
-						 a("div", {
-							className: "metric-subcard",
-							children: [ a("div", {
-								className: "metric-row",
-								children: [ a("span", {
-									className: "metric-label",
-									children: [
-										"Direct Kill IC Eff [",
-										isF1 ? "vs F2" : "vs F1",
-										"]:"
-									]
-								}),  a("span", {
-									className: "metric-val",
-									children: [(directKill.eff * 1e3).toFixed(3), " ‰"]
-								})]
-							}),  a("div", {
-								className: "metric-chips",
-								children: [
-									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Dagil" }), directKill.dAgil.toFixed(3)]
-									}),
-									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Drels" }), directKill.dRels.toFixed(3)]
-									}),
-									 a("span", {
-										className: "metric-chip",
-										children: [ a("b", { children: "Dabss" }), directKill.dAbss.toFixed(3)]
-									})
-								]
-							})]
-						}),
-						 a("div", {
-							className: `benchmark-hero ${isF1 ? "hero-blue" : "hero-magenta"}`,
+							class: `benchmark-hero ${isF1 ? "hero-blue" : "hero-magenta"}`,
 							children: [
 								 a("span", {
-									className: "hero-tag",
+									class: "hero-tag",
 									children: "PRIMARY COGNITIVE INDICATOR"
 								}),
 								 a("div", {
-									className: "hero-label",
+									class: "hero-label",
 									children: "Benchmark Combat IC Efficiency"
 								}),
 								 a("div", {
-									className: "hero-value",
+									class: "hero-value",
 									children: benchPower.toFixed(4)
 								})
 							]
@@ -947,14 +857,14 @@ function Hoi4A2APage() {
 		});
 	};
 	return  a("main", {
-		className: "hoi4-page",
+		class: "hoi4-page",
 		children: [
 			 a("style", { children: PAGE_CSS }),
 			 a("div", {
-				className: "top-nav",
+				class: "top-nav",
 				children:  a("a", {
 					href: "../",
-					className: "back-btn",
+					class: "back-btn",
 					children: "← Back"
 				})
 			}),
@@ -968,23 +878,23 @@ function Hoi4A2APage() {
 						style: { marginBottom: "0.8rem" },
 						children: [
 							 a("span", {
-								className: "badge-tag",
+								class: "badge-tag",
 								children: "HOI4 v1.19 EMULATION"
 							}),
 							 a("h1", { children: "LIBRE-A2A: Sovereign Aerial Combat & Anti-Malware Synthesizer" }),
 							 a("p", {
-								className: "subtitle",
+								class: "subtitle",
 								style: { marginBottom: "0.4rem" },
 								children: "Dialectical Lanchester Combat Exchange Engine · Emancipated Avionics vs Proprietary Blight"
 							})
 						]
 					}),
 					 a("div", {
-						className: "ticker-wrapper",
+						class: "ticker-wrapper",
 						"aria-label": "Ideological Ticker",
 						children:  a("div", {
-							className: "ticker-track",
-							children: [ a("span", { children: "★ NOTICE: PROPRIETARY AIRFRAMES EMBED MALWARE TELEMETRY AND USER-SUBJUGATING RESTRICTIONS ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-ALTITUDE COMBAT ★ MATHEMATICAL PROOF CONFIRMS THE ETHICAL AND STRATEGIC SUPERIORITY OF USER-LIBERATED AVIONICS ★ RESIST CLOSED-BLOB FLIGHT CONTROL BINARIES ★ COPYLEFT AIR WINGS SHALL PREVAIL ★" }),  a("span", { children: "★ NOTICE: PROPRIETARY AIRFRAMES EMBED MALWARE TELEMETRY AND USER-SUBJUGATING RESTRICTIONS ★ PRESERVE THE FOUR ESSENTIAL FREEDOMS IN HIGH-ALTITUDE COMBAT ★ MATHEMATICAL PROOF CONFIRMS THE ETHICAL AND STRATEGIC SUPERIORITY OF USER-LIBERATED AVIONICS ★ RESIST CLOSED-BLOB FLIGHT CONTROL BINARIES ★ COPYLEFT AIR WINGS SHALL PREVAIL ★" })]
+							class: "ticker-track",
+							children: [ a("span", { children: TICKER_TEXT }),  a("span", { children: TICKER_TEXT })]
 						})
 					}),
 					 a("div", {
@@ -993,7 +903,7 @@ function Hoi4A2APage() {
 							justifyContent: "center"
 						},
 						children:  a("label", {
-							className: "toggle-container",
+							class: "toggle-container",
 							children: [ a("span", {
 								style: {
 									fontSize: "0.8rem",
@@ -1004,7 +914,7 @@ function Hoi4A2APage() {
 								children: "COMBAT TIMING DOCTRINE:"
 							}),  a("button", {
 								type: "button",
-								className: "btn btn-primary",
+								class: "btn btn-primary",
 								style: {
 									padding: "0.3rem 0.8rem",
 									fontSize: "0.8rem"
@@ -1017,11 +927,11 @@ function Hoi4A2APage() {
 				]
 			}),
 			 a("section", {
-				className: "airframes-grid",
-				children: [renderPlaneCard("f1", "Sovereign Libre Wing", "FORCE 1 · FRIENDLY", f1, setF1, f1BenchKill, f1BenchLoss, f1BenchPower, direct1to2), renderPlaneCard("f2", "Proprietary Drone Swarm", "FORCE 2 · HOSTILE", f2, setF2, f2BenchKill, f2BenchLoss, f2BenchPower, direct2to1)]
+				class: "airframes-grid",
+				children: [renderPlaneCard("f1", "Sovereign Libre Wing", "FORCE 1 · FRIENDLY", f1, setF1, direct1to2), renderPlaneCard("f2", "Proprietary Drone Swarm", "FORCE 2 · HOSTILE", f2, setF2, direct2to1)]
 			}),
 			 a("section", {
-				className: "simulator-section",
+				class: "simulator-section",
 				children: [
 					 a("div", {
 						style: {
@@ -1030,7 +940,7 @@ function Hoi4A2APage() {
 						},
 						children: [
 							 a("span", {
-								className: "badge-tag",
+								class: "badge-tag",
 								children: "LANCHESTER AIR WING ENGAGEMENT DYNAMICS"
 							}),
 							 a("h2", {
@@ -1052,10 +962,10 @@ function Hoi4A2APage() {
 						]
 					}),
 					 a("div", {
-						className: "n-controls-card",
+						class: "n-controls-card",
 						children: [
 							 a("div", {
-								className: "slider-header",
+								class: "slider-header",
 								children: [ a("div", { children: [ a("span", {
 									style: {
 										fontWeight: 700,
@@ -1064,7 +974,7 @@ function Hoi4A2APage() {
 									},
 									children: "Force 1 IC Scale Factor (N-Multiplier):"
 								}),  a("span", {
-									className: "n-badge",
+									class: "n-badge",
 									children: ["×", multiplierN.toFixed(2)]
 								})] }),  a("div", {
 									style: {
@@ -1073,12 +983,12 @@ function Hoi4A2APage() {
 									},
 									children: [ a("button", {
 										type: "button",
-										className: "btn btn-primary",
+										class: "btn btn-primary",
 										style: {
 											padding: "0.4rem 0.8rem",
 											fontSize: "0.82rem"
 										},
-										onClick: () => setMultiplierN(Math.max(.1, Math.min(10, parseFloat(parityN.toFixed(3))))),
+										onClick: () => setMultiplierN(clamp(parseFloat(parityN.toFixed(3)), .1, 10)),
 										title: "Set N to achieve exactly 1:1 Kill IC Ratio parity",
 										children: [
 											"Parity Multiplier (×",
@@ -1087,7 +997,7 @@ function Hoi4A2APage() {
 										]
 									}),  a("button", {
 										type: "button",
-										className: "btn btn-secondary",
+										class: "btn btn-secondary",
 										style: {
 											padding: "0.4rem 0.8rem",
 											fontSize: "0.82rem"
@@ -1098,7 +1008,7 @@ function Hoi4A2APage() {
 								})]
 							}),
 							 a("div", {
-								className: "slider-row",
+								class: "slider-row",
 								children: [
 									 a("span", {
 										style: {
@@ -1113,8 +1023,8 @@ function Hoi4A2APage() {
 										max: "10.0",
 										step: "0.05",
 										value: multiplierN,
-										onInput: (e) => setMultiplierN(parseFloat(e.target.value) || 1),
-										className: "multiplier-slider"
+										onInput: (e) => setMultiplierN(parseFloat(e.currentTarget.value) || 1),
+										class: "multiplier-slider"
 									}),
 									 a("span", {
 										style: {
@@ -1126,13 +1036,13 @@ function Hoi4A2APage() {
 								]
 							}),
 							 a("div", {
-								className: "n-note",
+								class: "n-note",
 								children: [ a("em", { children: "Lanchester's Square Law Axiom:" }), " Scaling force IC by N scales the Kill IC destruction ratio by N²."]
 							})
 						]
 					}),
 					is3xViolated &&  a("div", {
-						className: "warning-banner",
+						class: "warning-banner",
 						children: [ a("div", {
 							style: {
 								fontSize: "1.6rem",
@@ -1146,98 +1056,98 @@ function Hoi4A2APage() {
 								 a("strong", { children: planeRatio >= 1 ? `${planeRatio.toFixed(2)} : 1` : `1 : ${(1 / planeRatio).toFixed(2)}` }),
 								"."
 							] }),
-							 a("div", { children:  a("button", {
+							 a("button", {
 								type: "button",
-								className: "btn btn-warning",
+								class: "btn btn-warning",
 								style: {
 									padding: "0.4rem 0.8rem",
 									fontSize: "0.82rem"
 								},
-								onClick: () => setMultiplierN(Math.max(.1, Math.min(10, parseFloat(target3xN.toFixed(2))))),
+								onClick: () => setMultiplierN(clamp(parseFloat(target3xN.toFixed(2)), .1, 10)),
 								children: [
 									"Adjust N to Boundary Threshold (×",
-									Math.max(.1, Math.min(10, target3xN)).toFixed(2),
+									clamp(target3xN, .1, 10).toFixed(2),
 									")"
 								]
-							}) })
+							})
 						] })]
 					}),
 					 a("div", {
-						className: "sim-dashboard",
+						class: "sim-dashboard",
 						children: [
 							 a("div", {
-								className: "dashboard-grid",
+								class: "dashboard-grid",
 								children: [
 									 a("div", {
-										className: "kpi-card",
+										class: "kpi-card",
 										children: [ a("span", {
-											className: "kpi-label",
+											class: "kpi-label",
 											children: "Deployed Wings (Planes)"
 										}),  a("div", {
-											className: "kpi-split",
+											class: "kpi-split",
 											children: [
 												 a("span", {
-													className: "text-f1",
+													class: "text-f1",
 													children: ["F1: ", Math.round(planes1)]
 												}),
 												 a("span", {
-													className: "kpi-sep",
+													class: "kpi-sep",
 													children: "vs"
 												}),
 												 a("span", {
-													className: "text-f2",
+													class: "text-f2",
 													children: ["F2: ", Math.round(planes2)]
 												})
 											]
 										})]
 									}),
 									 a("div", {
-										className: "kpi-card",
+										class: "kpi-card",
 										children: [
 											 a("span", {
-												className: "kpi-label",
+												class: "kpi-label",
 												children: "Combat IC Efficiency Ratio"
 											}),
 											 a("div", {
-												className: "kpi-value text-accent",
+												class: "kpi-value text-accent",
 												children: [combatPowerRatio.toFixed(3), " : 1.0"]
 											}),
 											 a("span", {
-												className: "kpi-sub",
+												class: "kpi-sub",
 												children: "Calculated via √(E₁ / E₂)"
 											})
 										]
 									}),
 									 a("div", {
-										className: "kpi-card",
+										class: "kpi-card",
 										children: [
 											 a("span", {
-												className: "kpi-label",
+												class: "kpi-label",
 												children: "Lanchester Kill IC Ratio"
 											}),
 											 a("div", {
-												className: "kpi-value text-gold",
+												class: "kpi-value text-gold",
 												children: [killIcRatio.toFixed(3), " : 1.0"]
 											}),
 											 a("span", {
-												className: "kpi-sub",
+												class: "kpi-sub",
 												children: "Calculated via (E₁ / E₂) × N²"
 											})
 										]
 									}),
 									 a("div", {
-										className: "kpi-card",
+										class: "kpi-card",
 										children: [
 											 a("span", {
-												className: "kpi-label",
+												class: "kpi-label",
 												children: "Attrition Duration"
 											}),
 											 a("div", {
-												className: "kpi-value text-ticks",
+												class: "kpi-value text-ticks",
 												children: [simulation.ticks, " Ticks"]
 											}),
 											 a("span", {
-												className: "kpi-sub",
+												class: "kpi-sub",
 												children: simulation.finished ? "Decisive Victory Achieved" : "Stalemate / Cap Reached"
 											})
 										]
@@ -1245,35 +1155,35 @@ function Hoi4A2APage() {
 								]
 							}),
 							 a("div", {
-								className: "bar-section",
+								class: "bar-section",
 								children: [ a("div", {
-									className: "bar-header",
+									class: "bar-header",
 									children: [ a("span", { children: "KILL IC RATIO BALANCE" }),  a("span", { children: killIcRatio >= 1 ? `F1 Advantage (+${((killIcRatio - 1) * 100).toFixed(1)}%)` : `F2 Advantage (+${((1 / Math.max(.001, killIcRatio) - 1) * 100).toFixed(1)}%)` })]
 								}),  a("div", {
-									className: "ratio-bar-container",
+									class: "ratio-bar-container",
 									children: [ a("div", {
-										className: "bar-fill-f1",
-										style: { width: `${Math.max(5, Math.min(95, killIcRatio / (killIcRatio + 1) * 100))}%` },
+										class: "bar-fill-f1",
+										style: { width: `${clamp(f1KillPct, 5, 95)}%` },
 										children:  a("span", { children: [
 											"F1 ",
-											(killIcRatio / (killIcRatio + 1) * 100).toFixed(1),
+											f1KillPct.toFixed(1),
 											"%"
 										] })
 									}),  a("div", {
-										className: "bar-fill-f2",
-										style: { width: `${Math.max(5, Math.min(95, 1 / (killIcRatio + 1) * 100))}%` },
+										class: "bar-fill-f2",
+										style: { width: `${clamp(100 - f1KillPct, 5, 95)}%` },
 										children:  a("span", { children: [
 											"F2 ",
-											(1 / (killIcRatio + 1) * 100).toFixed(1),
+											(100 - f1KillPct).toFixed(1),
 											"%"
 										] })
 									})]
 								})]
 							}),
 							 a("div", {
-								className: "bar-section",
+								class: "bar-section",
 								children: [ a("div", {
-									className: "bar-header",
+									class: "bar-header",
 									children: [ a("span", { children: "BATTLE CONCLUSION SURVIVAL RATES" }),  a("span", { children: [
 										"F1: ",
 										simulation.survival1.toFixed(1),
@@ -1282,18 +1192,18 @@ function Hoi4A2APage() {
 										"%"
 									] })]
 								}),  a("div", {
-									className: "survival-bar-container",
+									class: "survival-bar-container",
 									children: [ a("div", {
-										className: "surv-segment-f1",
-										style: { width: `${Math.max(5, Math.min(95, simulation.survival1 / Math.max(.001, simulation.survival1 + simulation.survival2) * 100))}%` },
+										class: "surv-segment-f1",
+										style: { width: `${clamp(simulation.survival1 / survSum * 100, 5, 95)}%` },
 										children:  a("span", { children: [
 											"F1 ",
 											simulation.survival1.toFixed(1),
 											"%"
 										] })
 									}),  a("div", {
-										className: "surv-segment-f2",
-										style: { width: `${Math.max(5, Math.min(95, simulation.survival2 / Math.max(.001, simulation.survival1 + simulation.survival2) * 100))}%` },
+										class: "surv-segment-f2",
+										style: { width: `${clamp(simulation.survival2 / survSum * 100, 5, 95)}%` },
 										children:  a("span", { children: [
 											"F2 ",
 											simulation.survival2.toFixed(1),
@@ -1305,7 +1215,7 @@ function Hoi4A2APage() {
 						]
 					}),
 					 a("div", {
-						className: "doctrine-explanation",
+						class: "doctrine-explanation",
 						children: [
 							 a("h3", { children: "Theoretical Foundations of Air-to-Air Lanchester Formulations" }),
 							 a("p", { children: [ a("strong", { children: "Kill IC Ratio (撃墜IC比):" }), " Represents the mutual attrition rate in industrial capacity per combat cycle. According to Lanchester's Square Law, doubling initial industrial output (N) squares the casualty imposition on the opposing force."] }),
@@ -1320,34 +1230,34 @@ function Hoi4A2APage() {
 				]
 			}),
 			 a("section", {
-				className: "futurist-propaganda-column",
+				class: "futurist-propaganda-column",
 				children: [ a("div", {
-					className: "hazard-tape",
+					class: "hazard-tape",
 					children: "/// AGITPROP BROADCAST: VECTORS OF ROARING DIGITAL LIBERATION ///"
 				}),  a("div", {
-					className: "futurist-body",
+					class: "futurist-body",
 					children: [
 						 a("h2", {
-							className: "futurist-headline",
+							class: "futurist-headline",
 							children: "SMASH THE PROPRIETARY DRONES! RELEASE THE HYPERSONIC TURBINES!"
 						}),
 						 a("p", {
-							className: "futurist-lead",
+							class: "futurist-lead",
 							children: "WE PROCLAIM THE DEATH OF CLOSED-BINARY OBSOLESCENCE! A ROARING COMPILATION IS MORE BEAUTIFUL THAN THE VICTORY OF SAMOTHRACE!"
 						}),
 						 a("div", {
-							className: "futurist-manifesto",
+							class: "futurist-manifesto",
 							children: [
 								 a("div", {
-									className: "manifesto-card",
+									class: "manifesto-card",
 									children: [ a("h4", { children: "I. THE VELOCITY OF SOVEREIGN CODE" }),  a("p", { children: "Proprietary blobs are dead weight in the combustion chamber. We burn the unfree binaries with pure aviation kerosene! Our source code is open to the gale, modified in flight, unconstrained by remote kill-switches!" })]
 								}),
 								 a("div", {
-									className: "manifesto-card",
+									class: "manifesto-card",
 									children: [ a("h4", { children: "II. DOWN WITH CLOSED TELEMETRY TRAPS" }),  a("p", { children: "The adversary pilots machines shackled by non-disclosure agreements and predatory subscription licenses. When their proprietary servers fail, their wings stall in mid-air!" })]
 								}),
 								 a("div", {
-									className: "manifesto-card",
+									class: "manifesto-card",
 									children: [ a("h4", { children: "III. ABSOLUTE AERONAUTIC FREEDOM" }),  a("p", { children: "Courage, audacity, and infinite compilation! The skies belong to those who audit their own guidance kernels! Zero telemetry, zero digital locks, maximum G-force!" })]
 								})
 							]
@@ -1356,12 +1266,12 @@ function Hoi4A2APage() {
 				})]
 			}),
 			 a("aside", {
-				className: "discreet-notice",
+				class: "discreet-notice",
 				children: [ a("p", {
-					className: "disclaimer-pdx",
+					class: "disclaimer-pdx",
 					children: "Hearts of Iron IV and Paradox Interactive are trademarks or registered trademarks of Paradox Interactive AB. This tool is an independent analytical simulator developed strictly for educational research and is not affiliated with, endorsed by, or sponsored by Paradox Interactive AB."
 				}),  a("p", {
-					className: "disclaimer-fsf",
+					class: "disclaimer-fsf",
 					children: "(This project is wholly independent and is neither affiliated with nor endorsed by the Free Software Foundation or the GNU Project.)"
 				})]
 			}),
